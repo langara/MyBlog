@@ -7,13 +7,16 @@ buildscript {
     repositories {
         maven { url 'http://dl.bintray.com/kotlin/kotlin-eap-1.1' }
         mavenCentral()
+        jcenter()
     }
     dependencies {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "org.jetbrains.dokka:dokka-gradle-plugin:0.9.13"
     }
 }
 
 apply plugin: 'kotlin'
+apply plugin: 'org.jetbrains.dokka'
 
 repositories {
     maven { url 'http://dl.bintray.com/kotlin/kotlin-eap-1.1' }
@@ -22,11 +25,51 @@ repositories {
 
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlin_version"
+    compile 'junit:junit:4.11'
+    compile "org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version"
 }
 
-compileKotlin {
-    kotlinOptions.jvmTarget = "1.8"
+dokka {
+    includes = ['Module.md']
+    outputFormat = "gfm"
 }
-compileTestKotlin {
-    kotlinOptions.jvmTarget = "1.8"
+
+task dokkaHtml(type: org.jetbrains.dokka.gradle.DokkaTask) {
+    includes = ['Module.md']
+    outputFormat = "html"
+    outputDirectory = "$buildDir/dokkaHtml"
 }
+
+task dokkaJavadoc(type: org.jetbrains.dokka.gradle.DokkaTask) {
+    includes = ['Module.md']
+    outputFormat = "javadoc"
+    outputDirectory = "$buildDir/dokkaJavadoc"
+}
+
+task dokkaMarkdown(type: org.jetbrains.dokka.gradle.DokkaTask) {
+    includes = ['Module.md']
+    outputFormat = "markdown"
+    outputDirectory = "$buildDir/dokkaMarkdown"
+}
+
+task dokkaGFM(type: org.jetbrains.dokka.gradle.DokkaTask) {
+    includes = ['Module.md']
+    outputFormat = "gfm"
+    outputDirectory = "$buildDir/dokkaGFM"
+}
+
+task dokkaJekyll(type: org.jetbrains.dokka.gradle.DokkaTask) {
+    includes = ['Module.md']
+    outputFormat = "jekyll"
+    outputDirectory = "$buildDir/dokkaJekyll"
+}
+
+task dokkaKotlinWebsite(type: org.jetbrains.dokka.gradle.DokkaTask) {
+    includes = ['Module.md']
+    outputFormat = "kotlin-website"
+    outputDirectory = "$buildDir/dokkaKotlinWebsite"
+}
+
+task dokkaAll(dependsOn: ['dokka', 'dokkaHtml', 'dokkaJavadoc', 'dokkaMarkdown', 'dokkaGFM', 'dokkaJekyll', 'dokkaKotlinWebsite'])
+
+defaultTasks 'dokkaAll'
