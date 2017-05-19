@@ -29,4 +29,9 @@ class CoroutinesSample {
         println("bla bla bla")
     }
 
+    @Test
+    fun coroutinesBasics() {
+
+    }
+
 }

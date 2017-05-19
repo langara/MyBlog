@@ -32,6 +32,7 @@ dependencies {
 dokka {
     includes = ['Module.md']
     outputFormat = "gfm"
+    outputDirectory = "$rootDir/dokka"
 }
 
 task dokkaHtml(type: org.jetbrains.dokka.gradle.DokkaTask) {
@@ -72,4 +73,4 @@ task dokkaKotlinWebsite(type: org.jetbrains.dokka.gradle.DokkaTask) {
 
 task dokkaAll(dependsOn: ['dokka', 'dokkaHtml', 'dokkaJavadoc', 'dokkaMarkdown', 'dokkaGFM', 'dokkaJekyll', 'dokkaKotlinWebsite'])
 
-defaultTasks 'dokkaAll'
+defaultTasks 'dokka'
