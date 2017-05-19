@@ -21,12 +21,14 @@ apply plugin: 'org.jetbrains.dokka'
 repositories {
     maven { url 'http://dl.bintray.com/kotlin/kotlin-eap-1.1' }
     mavenCentral()
+    jcenter()
 }
 
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlin_version"
     compile 'junit:junit:4.11'
     compile "org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version"
+    compile "org.jetbrains.kotlinx:kotlinx-coroutines-core:0.15"
 }
 
 dokka {
@@ -72,5 +74,9 @@ task dokkaKotlinWebsite(type: org.jetbrains.dokka.gradle.DokkaTask) {
 }
 
 task dokkaAll(dependsOn: ['dokka', 'dokkaHtml', 'dokkaJavadoc', 'dokkaMarkdown', 'dokkaGFM', 'dokkaJekyll', 'dokkaKotlinWebsite'])
+
+clean.doFirst {
+    delete "$rootDir/dokka"
+}
 
 defaultTasks 'dokka'

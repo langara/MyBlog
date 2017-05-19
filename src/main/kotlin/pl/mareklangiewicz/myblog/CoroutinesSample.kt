@@ -1,5 +1,8 @@
 package pl.mareklangiewicz.myblog
 
+import kotlinx.coroutines.experimental.CommonPool
+import kotlinx.coroutines.experimental.delay
+import kotlinx.coroutines.experimental.launch
 import org.junit.Test
 
 /**
@@ -29,8 +32,18 @@ class CoroutinesSample {
         println("bla bla bla")
     }
 
+    /**
+     * ## Lets try something simple
+     * @sample pl.mareklangiewicz.myblog.CoroutinesSample.coroutinesBasics
+     */
     @Test
     fun coroutinesBasics() {
+        launch(CommonPool) {
+            delay(1000L)
+            println("World!")
+        }
+        println("Hello,")
+        Thread.sleep(2000L)
 
     }
 
