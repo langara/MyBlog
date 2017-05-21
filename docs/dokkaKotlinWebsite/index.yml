@@ -15,6 +15,8 @@
               url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-b_run-blocking
             - title: C_sampleConvention
               url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-c_sample-convention
+            - title: D_introduceJob
+              url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-d_introduce-job
     - title: pl.mareklangiewicz.myblog.coroutines
       url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/index
       content:
@@ -29,3 +31,5 @@
               url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-b_run-blocking
             - title: C_sampleConvention
               url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-c_sample-convention
+            - title: D_introduceJob
+              url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-d_introduce-job

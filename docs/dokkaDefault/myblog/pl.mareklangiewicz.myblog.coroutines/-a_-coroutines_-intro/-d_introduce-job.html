@@ -1,0 +1,23 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>A_Coroutines_Intro.D_introduceJob - myblog</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">myblog</a>&nbsp;/&nbsp;<a href="../index.html">pl.mareklangiewicz.myblog.coroutines</a>&nbsp;/&nbsp;<a href="index.html">A_Coroutines_Intro</a>&nbsp;/&nbsp;<a href=".">D_introduceJob</a><br/>
+<br/>
+<h1>D_introduceJob</h1>
+<a name="pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro$D_introduceJob()"></a>
+<code><span class="keyword">fun </span><span class="identifier">D_introduceJob</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Unit</span></code>
+<p>Use Job class to handle coroutine state and to wait (non blocking) for it to finish</p>
+<pre><code class="lang-kotlin">sample {
+        val job = launch(CommonPool) {
+            delay(1000L)
+            println("World!")
+        }
+        println("Hello,")
+        job.join() // this suspending function (join) waits for job to finish
+    }</code></pre>
+</BODY>
+</HTML>

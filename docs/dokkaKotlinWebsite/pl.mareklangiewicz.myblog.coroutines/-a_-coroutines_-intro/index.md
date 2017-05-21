@@ -81,5 +81,17 @@ Some convention for future samples/experiments/tests
 
 </td>
 </tr>
+<tr>
+<td markdown="1">
+<a href="-d_introduce-job.html">D_introduceJob</a>
+</td>
+<td markdown="1">
+<div class="signature"><code><span class="keyword">fun </span><span class="identifier">D_introduceJob</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Unit</span></code></div>
+
+Use Job class to handle coroutine state and to wait (non blocking) for it to finish
+
+
+</td>
+</tr>
 </tbody>
 </table>

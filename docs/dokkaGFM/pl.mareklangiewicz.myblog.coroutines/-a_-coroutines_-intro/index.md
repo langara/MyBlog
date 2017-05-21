@@ -32,3 +32,4 @@ runBlocking {
 }<br>```
 <br> |
 | [C_sampleConvention](-c_sample-convention.md) | `fun C_sampleConvention(): Unit`<br>Some convention for future samples/experiments/tests |
+| [D_introduceJob](-d_introduce-job.md) | `fun D_introduceJob(): Unit`<br>Use Job class to handle coroutine state and to wait (non blocking) for it to finish |
