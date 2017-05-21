@@ -1,0 +1,22 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>A_Coroutines_Intro.B_basics - myblog</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">myblog</a>&nbsp;/&nbsp;<a href="../index.html">pl.mareklangiewicz.myblog.coroutines</a>&nbsp;/&nbsp;<a href="index.html">A_Coroutines_Intro</a>&nbsp;/&nbsp;<a href=".">B_basics</a><br/>
+<br/>
+<h1>B_basics</h1>
+<a name="pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro$B_basics()"></a>
+<code><span class="keyword">fun </span><span class="identifier">B_basics</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Unit</span></code>
+<p>some B_basics</p>
+<h2>Lets try something simple</h2>
+<pre><code class="lang-kotlin">launch(CommonPool) {
+    delay(1000L)
+    println("World!")
+}
+println("Hello,")
+Thread.sleep(2000L)</code></pre>
+</BODY>
+</HTML>

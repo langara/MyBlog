@@ -1,6 +1,6 @@
 # Module MyBlog
 
-Technical blog as a regular github repo with runnable code examples
+Technical notes as a regular github repo with runnable code examples
 
 # Package pl.mareklangiewicz.myblog.coroutines
 

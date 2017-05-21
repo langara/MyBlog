@@ -1,6 +1,6 @@
 
 
-Technical blog as a regular github repo with runnable code examples
+Technical notes as a regular github repo with runnable code examples
 
 ### Packages
 

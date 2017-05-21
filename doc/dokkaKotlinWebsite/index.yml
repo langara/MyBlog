@@ -4,24 +4,24 @@
     - title: alltypes
       url: /home/marek/code/kotlin/myblog/doc/dokkaKotlinWebsite/alltypes/index
       content:
-        - title: CoroutinesIntro
-          url: /home/marek/code/kotlin/myblog/doc/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-coroutines-intro/index
+        - title: A_Coroutines_Intro
+          url: /home/marek/code/kotlin/myblog/doc/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/index
           content:
-            - title: CoroutinesIntro
-              url: /home/marek/code/kotlin/myblog/doc/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-coroutines-intro/-init-
-            - title: basics
-              url: /home/marek/code/kotlin/myblog/doc/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-coroutines-intro/basics
-            - title: bla
-              url: /home/marek/code/kotlin/myblog/doc/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-coroutines-intro/bla
+            - title: A_Coroutines_Intro
+              url: /home/marek/code/kotlin/myblog/doc/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-init-
+            - title: A_bla
+              url: /home/marek/code/kotlin/myblog/doc/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-a_bla
+            - title: B_basics
+              url: /home/marek/code/kotlin/myblog/doc/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-b_basics
     - title: pl.mareklangiewicz.myblog.coroutines
       url: /home/marek/code/kotlin/myblog/doc/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/index
       content:
-        - title: CoroutinesIntro
-          url: /home/marek/code/kotlin/myblog/doc/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-coroutines-intro/index
+        - title: A_Coroutines_Intro
+          url: /home/marek/code/kotlin/myblog/doc/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/index
           content:
-            - title: CoroutinesIntro
-              url: /home/marek/code/kotlin/myblog/doc/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-coroutines-intro/-init-
-            - title: basics
-              url: /home/marek/code/kotlin/myblog/doc/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-coroutines-intro/basics
-            - title: bla
-              url: /home/marek/code/kotlin/myblog/doc/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-coroutines-intro/bla
+            - title: A_Coroutines_Intro
+              url: /home/marek/code/kotlin/myblog/doc/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-init-
+            - title: A_bla
+              url: /home/marek/code/kotlin/myblog/doc/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-a_bla
+            - title: B_basics
+              url: /home/marek/code/kotlin/myblog/doc/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-b_basics

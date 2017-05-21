@@ -12,5 +12,5 @@ This is my attempt to learn about kotlin coroutines and write some tests on the 
 
 ### Types
 
-| [CoroutinesIntro](-coroutines-intro/index.md) | `class CoroutinesIntro`<br>Kotlin Coroutines Intro in "TDD" |
+| [A_Coroutines_Intro](-a_-coroutines_-intro/index.md) | `class A_Coroutines_Intro`<br>Kotlin Coroutines Intro in "TDD" |
 

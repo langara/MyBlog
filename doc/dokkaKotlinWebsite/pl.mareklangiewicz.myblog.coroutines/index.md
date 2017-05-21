@@ -17,10 +17,10 @@ This is my attempt to learn about kotlin coroutines and write some tests on the 
 <tbody>
 <tr>
 <td markdown="1">
-<a href="-coroutines-intro/index.html">CoroutinesIntro</a>
+<a href="-a_-coroutines_-intro/index.html">A_Coroutines_Intro</a>
 </td>
 <td markdown="1">
-<div class="signature"><code><span class="keyword">class </span><span class="identifier">CoroutinesIntro</span></code></div>
+<div class="signature"><code><span class="keyword">class </span><span class="identifier">A_Coroutines_Intro</span></code></div>
 
 Kotlin Coroutines Intro in "TDD"
 
