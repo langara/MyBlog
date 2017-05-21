@@ -75,7 +75,13 @@ task dokkaKotlinWebsite(type: org.jetbrains.dokka.gradle.DokkaTask) {
 task dokkaAll(dependsOn: ['dokka', 'dokkaHtml', 'dokkaJavadoc', 'dokkaMarkdown', 'dokkaGFM', 'dokkaJekyll', 'dokkaKotlinWebsite'])
 
 clean.doFirst {
-    delete "$rootDir/docs"
+    delete "$rootDir/docs/dokkaDefault"
+    delete "$rootDir/docs/dokkaHtml"
+    delete "$rootDir/docs/dokkaJavadoc"
+    delete "$rootDir/docs/dokkaMarkdown"
+    delete "$rootDir/docs/dokkaGFM"
+    delete "$rootDir/docs/dokkaJekyll"
+    delete "$rootDir/docs/dokkaKotlinWebsite"
 }
 
 defaultTasks 'dokkaAll'
