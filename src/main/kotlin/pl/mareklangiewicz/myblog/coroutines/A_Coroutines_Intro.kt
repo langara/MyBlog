@@ -28,7 +28,7 @@ class A_Coroutines_Intro {
     // TODO: write explanation, write about this mixing sleep and delay
 
 
-    // TODO: CommonPool, Executors, Contexts
+    // TODO: CommonPool, Executors, Contexts (and Elements)
 
 
     // TODO: about runblocking, coroutine dispatcher?, interruptions?, coroutinescope?
@@ -60,5 +60,21 @@ class A_Coroutines_Intro {
         delay(1000)
         println("2000")
     }
+
+    /**
+     * Use Job class to handle coroutine state and to wait (non blocking) for it to finish
+     * @sample pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro.D_introduceJob
+     */
+    @Test fun D_introduceJob() = sample {
+        val job = launch(CommonPool) {
+            delay(1000L)
+            println("World!")
+        }
+        println("Hello,")
+        job.join() // this suspending function (join) waits for job to finish
+
+    }
+
+    // TODO LATER: about cancellation
 
 }
