@@ -9,7 +9,7 @@ import org.junit.Test
  * This is my attempt to learn about kotlin coroutines and write some tests on the way.
  *
  * The content here is based on [Coroutines Guide](https://github.com/Kotlin/kotlinx.coroutines/blob/master/coroutines-guide.md)
- * but here it is both: documentation, and executable code in one place.
+ * but here it is both: **documentation** and **runnable code** in **one place**.
  */
 class A_Coroutines_Intro {
 
@@ -109,5 +109,20 @@ class A_Coroutines_Intro {
         println("World!")
     }
 
-
+    /**
+     * Run 100 000 coroutines in parallel
+     *
+     * Coroutines are extremely lightweight so we can start **A LOT** of them
+     * @sample pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro.F_coroutinesAreLightweight
+     */
+    @Test fun F_coroutinesAreLightweight() = sample {
+        val jobs = List(100_000) {
+            // create a lot of coroutines and list their jobs
+            launch(CommonPool) {
+                delay(1000L)
+                print(".")
+            }
+        }
+        jobs.forEach { it.join() } // wait for all jobs to complete    }
+    }
 }

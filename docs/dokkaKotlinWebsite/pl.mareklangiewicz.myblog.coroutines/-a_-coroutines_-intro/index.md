@@ -14,7 +14,7 @@ Kotlin Coroutines Intro in "TDD" (kind of..)
 This is my attempt to learn about kotlin coroutines and write some tests on the way.
 
 The content here is based on <a href="https://github.com/Kotlin/kotlinx.coroutines/blob/master/coroutines-guide.md">Coroutines Guide</a>
-but here it is both: documentation, and executable code in one place.
+but here it is both: **documentation** and **runnable code** in **one place**.
 
 ### Constructors
 
@@ -95,6 +95,18 @@ Use Job class to handle coroutine state and to wait (non blocking) for it to fin
 <div class="signature"><code><span class="keyword">fun </span><span class="identifier">E_extractSuspendingFunction</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Unit</span></code></div>
 
 Extract suspending function
+
+
+</td>
+</tr>
+<tr>
+<td markdown="1">
+<a href="-f_coroutines-are-lightweight.html">F_coroutinesAreLightweight</a>
+</td>
+<td markdown="1">
+<div class="signature"><code><span class="keyword">fun </span><span class="identifier">F_coroutinesAreLightweight</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Unit</span></code></div>
+
+Run 100 000 coroutines in parallel
 
 
 </td>

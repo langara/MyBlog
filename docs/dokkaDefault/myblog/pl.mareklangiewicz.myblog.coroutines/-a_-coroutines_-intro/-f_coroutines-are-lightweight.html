@@ -1,0 +1,26 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>A_Coroutines_Intro.F_coroutinesAreLightweight - myblog</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">myblog</a>&nbsp;/&nbsp;<a href="../index.html">pl.mareklangiewicz.myblog.coroutines</a>&nbsp;/&nbsp;<a href="index.html">A_Coroutines_Intro</a>&nbsp;/&nbsp;<a href=".">F_coroutinesAreLightweight</a><br/>
+<br/>
+<h1>F_coroutinesAreLightweight</h1>
+<a name="pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro$F_coroutinesAreLightweight()"></a>
+<code><span class="keyword">fun </span><span class="identifier">F_coroutinesAreLightweight</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Unit</span></code>
+<p>Run 100 000 coroutines in parallel</p>
+<p>Coroutines are extremely lightweight so we can start <strong>A LOT</strong> of them</p>
+<pre><code class="lang-kotlin">sample {
+        val jobs = List(100_000) {
+            // create a lot of coroutines and list their jobs
+            launch(CommonPool) {
+                delay(1000L)
+                print(".")
+            }
+        }
+        jobs.forEach { it.join() } // wait for all jobs to complete    }
+    }</code></pre>
+</BODY>
+</HTML>
