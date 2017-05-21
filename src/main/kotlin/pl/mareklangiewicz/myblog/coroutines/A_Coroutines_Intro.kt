@@ -3,6 +3,7 @@ package pl.mareklangiewicz.myblog.coroutines
 import kotlinx.coroutines.experimental.CommonPool
 import kotlinx.coroutines.experimental.delay
 import kotlinx.coroutines.experimental.launch
+import kotlinx.coroutines.experimental.runBlocking
 import org.junit.Test
 
 /**
@@ -13,37 +14,12 @@ import org.junit.Test
 class A_Coroutines_Intro {
 
     /**
-     * Some "A_bla" function
+     * First coroutine
      *
-     * # H1
-     * something under H1
-     * ## H2
-     * something under H2
-     * ### H3
-     * something under H3
-     *
-     * And some list:
-     * - fjdksl
-     * - fjdskl fdks
-     * - fj sfkd fsjl
-     * And now the sample itself:
-     * @sample pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro.A_bla
+     * @sample pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro.A_basics
      */
     @Test
-    fun A_bla() {
-        println("A_bla")
-        println("A_bla A_bla")
-        println("A_bla A_bla A_bla")
-    }
-
-    /**
-     * some B_basics
-     *
-     * ## Lets try something simple
-     * @sample pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro.B_basics
-     */
-    @Test
-    fun B_basics() {
+    fun A_basics() {
         launch(CommonPool) {
             delay(1000L)
             println("World!")
@@ -52,5 +28,23 @@ class A_Coroutines_Intro {
         Thread.sleep(2000L)
 
     }
+    // TODO: write explanation, write about this mixing sleep and delay
 
+
+    // TODO: CommonPool, Executors, Contexts
+
+
+    // TODO: about runblocking, coroutine dispatcher?, interruptions?, coroutinescope?
+    // TODO: CoroutineScope looks important to dig into
+    @Test
+    fun B_runBlocking() {
+        runBlocking {
+            delay(1000)
+            println("1000")
+            delay(1000)
+            println("2000")
+            delay(1000)
+            println("3000")
+        }
+    }
 }
