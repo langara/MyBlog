@@ -9,10 +9,12 @@
           content:
             - title: A_Coroutines_Intro
               url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-init-
-            - title: A_bla
-              url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-a_bla
-            - title: B_basics
-              url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-b_basics
+            - title: A_basics
+              url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-a_basics
+            - title: B_runBlocking
+              url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-b_run-blocking
+            - title: C_sampleConvention
+              url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-c_sample-convention
     - title: pl.mareklangiewicz.myblog.coroutines
       url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/index
       content:
@@ -21,7 +23,9 @@
           content:
             - title: A_Coroutines_Intro
               url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-init-
-            - title: A_bla
-              url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-a_bla
-            - title: B_basics
-              url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-b_basics
+            - title: A_basics
+              url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-a_basics
+            - title: B_runBlocking
+              url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-b_run-blocking
+            - title: C_sampleConvention
+              url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-c_sample-convention

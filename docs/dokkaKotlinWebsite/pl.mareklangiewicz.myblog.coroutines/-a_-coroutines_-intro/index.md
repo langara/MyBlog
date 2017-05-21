@@ -38,24 +38,45 @@ Kotlin Coroutines Intro in "TDD" (kind of..)
 <tbody>
 <tr>
 <td markdown="1">
-<a href="-a_bla.html">A_bla</a>
+<a href="-a_basics.html">A_basics</a>
 </td>
 <td markdown="1">
-<div class="signature"><code><span class="keyword">fun </span><span class="identifier">A_bla</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Unit</span></code></div>
+<div class="signature"><code><span class="keyword">fun </span><span class="identifier">A_basics</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Unit</span></code></div>
 
-Some "A_bla" function
+First coroutine
 
 
 </td>
 </tr>
 <tr>
 <td markdown="1">
-<a href="-b_basics.html">B_basics</a>
+<a href="-b_run-blocking.html">B_runBlocking</a>
 </td>
 <td markdown="1">
-<div class="signature"><code><span class="keyword">fun </span><span class="identifier">B_basics</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Unit</span></code></div>
+<div class="signature"><code><span class="keyword">fun </span><span class="identifier">B_runBlocking</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Unit</span></code></div>
 
-some B_basics
+``` kotlin
+runBlocking {
+    delay(1000)
+    println("1000")
+    delay(1000)
+    println("2000")
+    delay(1000)
+    println("3000")
+}
+```
+
+
+</td>
+</tr>
+<tr>
+<td markdown="1">
+<a href="-c_sample-convention.html">C_sampleConvention</a>
+</td>
+<td markdown="1">
+<div class="signature"><code><span class="keyword">fun </span><span class="identifier">C_sampleConvention</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Unit</span></code></div>
+
+Some convention for future samples/experiments/tests
 
 
 </td>

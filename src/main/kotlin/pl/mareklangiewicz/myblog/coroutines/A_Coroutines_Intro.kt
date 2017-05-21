@@ -1,9 +1,6 @@
 package pl.mareklangiewicz.myblog.coroutines
 
-import kotlinx.coroutines.experimental.CommonPool
-import kotlinx.coroutines.experimental.delay
-import kotlinx.coroutines.experimental.launch
-import kotlinx.coroutines.experimental.runBlocking
+import kotlinx.coroutines.experimental.*
 import org.junit.Test
 
 /**
@@ -36,6 +33,9 @@ class A_Coroutines_Intro {
 
     // TODO: about runblocking, coroutine dispatcher?, interruptions?, coroutinescope?
     // TODO: CoroutineScope looks important to dig into
+    /**
+     * @sample pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro.B_runBlocking
+     */
     @Test
     fun B_runBlocking() {
         runBlocking {
@@ -47,4 +47,18 @@ class A_Coroutines_Intro {
             println("3000")
         }
     }
+
+    private fun sample(block: suspend CoroutineScope.() -> Unit): Unit = runBlocking { block() }
+
+    /**
+     * Some convention for future samples/experiments/tests
+     * @sample pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro.C_sampleConvention
+     */
+    @Test fun C_sampleConvention() = sample {
+        delay(1000)
+        println("1000")
+        delay(1000)
+        println("2000")
+    }
+
 }

@@ -14,6 +14,18 @@ This is my attempt to learn about kotlin coroutines and write some tests on the 
 
 ### Functions
 
-| [A_bla](-a_bla.md) | `fun A_bla(): Unit`<br>Some "A_bla" function |
-| [B_basics](-b_basics.md) | `fun B_basics(): Unit`<br>some B_basics |
+| [A_basics](-a_basics.md) | `fun A_basics(): Unit`<br>First coroutine |
+| [B_runBlocking](-b_run-blocking.md) | `fun B_runBlocking(): Unit`
+
+``` kotlin
+runBlocking {
+    delay(1000)
+    println("1000")
+    delay(1000)
+    println("2000")
+    delay(1000)
+    println("3000")
+}<br>```
+<br> |
+| [C_sampleConvention](-c_sample-convention.md) | `fun C_sampleConvention(): Unit`<br>Some convention for future samples/experiments/tests |
 

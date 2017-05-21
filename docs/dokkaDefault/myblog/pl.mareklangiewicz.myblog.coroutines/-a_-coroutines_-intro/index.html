@@ -29,18 +29,31 @@
 <tbody>
 <tr>
 <td>
-<a href="-a_bla.html">A_bla</a></td>
+<a href="-a_basics.html">A_basics</a></td>
 <td>
-<code><span class="keyword">fun </span><span class="identifier">A_bla</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Unit</span></code>
-<p>Some "A_bla" function</p>
+<code><span class="keyword">fun </span><span class="identifier">A_basics</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Unit</span></code>
+<p>First coroutine</p>
 </td>
 </tr>
 <tr>
 <td>
-<a href="-b_basics.html">B_basics</a></td>
+<a href="-b_run-blocking.html">B_runBlocking</a></td>
 <td>
-<code><span class="keyword">fun </span><span class="identifier">B_basics</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Unit</span></code>
-<p>some B_basics</p>
+<code><span class="keyword">fun </span><span class="identifier">B_runBlocking</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Unit</span></code><pre><code class="lang-kotlin">runBlocking {
+    delay(1000)
+    println("1000")
+    delay(1000)
+    println("2000")
+    delay(1000)
+    println("3000")
+}</code></pre></td>
+</tr>
+<tr>
+<td>
+<a href="-c_sample-convention.html">C_sampleConvention</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">C_sampleConvention</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Unit</span></code>
+<p>Some convention for future samples/experiments/tests</p>
 </td>
 </tr>
 </tbody>
