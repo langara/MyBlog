@@ -141,4 +141,73 @@ class A_Coroutines_Intro {
         }
         delay(1300L) // just quit after delay
     }
+
+    /**
+     * Cancel coroutine with Job.cancel
+     *
+     * @sample pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro.H_cancelJobCorrectly
+     */
+    @Test fun H_cancelJobCorrectly() = sample {
+        val job = launch(CommonPool) {
+            repeat(1000) { i ->
+                println("I'm sleeping $i ...")
+                delay(500L)
+            }
+        }
+        delay(1300L) // delay a bit
+        println("main: I'm tired of waiting!")
+        job.cancel() // cancels the job
+        delay(1300L) // delay a bit to ensure it was cancelled indeed
+        println("main: Now I can quit.")
+    }
+
+    /**
+     * Cancellation is cooperative 1
+     *
+     * This example shows that we can not cancel coroutine that doesn't listen
+     * @sample pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro.I_cancellationIsCooperative_1
+     */
+    @Test fun I_cancellationIsCooperative_1() = sample {
+        val job = launch(CommonPool) {
+            var nextPrintTime = 0L
+            var i = 0
+            while (i < 10) { // computation loop
+                val currentTime = System.currentTimeMillis()
+                if (currentTime >= nextPrintTime) {
+                    println("I'm sleeping ${i++} ...")
+                    nextPrintTime = currentTime + 500L
+                }
+            }
+        }
+        delay(1300L) // delay a bit
+        println("main: I'm tired of waiting!")
+        job.cancel() // cancels the job
+        delay(1300L) // delay a bit to see if it was cancelled....
+        println("main: Now I can quit.")
+    }
+
+    /**
+     * Cancellation is cooperative 2
+     *
+     * This example shows that we can cancel coroutine using isActive property from [CoroutineScope]
+     * @sample pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro.I_cancellationIsCooperative_2
+     */
+    @Test fun I_cancellationIsCooperative_2() = sample {
+        val job = launch(CommonPool) {
+            var nextPrintTime = 0L
+            var i = 0
+            while (isActive) { // computation loop
+                val currentTime = System.currentTimeMillis()
+                if (currentTime >= nextPrintTime) {
+                    println("I'm sleeping ${i++} ...")
+                    nextPrintTime = currentTime + 500L
+                }
+            }
+        }
+        delay(1300L) // delay a bit
+        println("main: I'm tired of waiting!")
+        job.cancel() // cancels the job
+        delay(1300L) // delay a bit to see if it was cancelled....
+        println("main: Now I can quit.")
+    }
 }
