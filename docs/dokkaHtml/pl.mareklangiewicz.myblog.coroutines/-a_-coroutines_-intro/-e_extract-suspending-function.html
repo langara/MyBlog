@@ -1,0 +1,23 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>A_Coroutines_Intro.E_extractSuspendingFunction - </title>
+<link rel="stylesheet" href="../../style.css">
+</HEAD>
+<BODY>
+<a href="../index.html">pl.mareklangiewicz.myblog.coroutines</a>&nbsp;/&nbsp;<a href="index.html">A_Coroutines_Intro</a>&nbsp;/&nbsp;<a href=".">E_extractSuspendingFunction</a><br/>
+<br/>
+<h1>E_extractSuspendingFunction</h1>
+<a name="pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro$E_extractSuspendingFunction()"></a>
+<code><span class="keyword">fun </span><span class="identifier">E_extractSuspendingFunction</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Unit</span></code>
+<p>Extract suspending function</p>
+<p>FIXME: this throws an exception and I don't know why...</p>
+<pre><code class="lang-kotlin">sample {
+        val job = launch(CommonPool) {
+            delayAndPrintWorld()
+        }
+        println("Hello,")
+        job.join() // this suspending function (join) waits for job to finish
+    }</code></pre>
+</BODY>
+</HTML>
