@@ -23,5 +23,6 @@ but here it is both: **documentation** and **runnable code** in **one place**.
 | [D_introduceJob](-d_introduce-job.md) | `fun D_introduceJob(): Unit`<br>Use Job class to handle coroutine state and to wait (non blocking) for it to finish |
 | [E_extractSuspendingFunction](-e_extract-suspending-function.md) | `fun E_extractSuspendingFunction(): Unit`<br>Extract suspending function |
 | [F_coroutinesAreLightweight](-f_coroutines-are-lightweight.md) | `fun F_coroutinesAreLightweight(): Unit`<br>Run 100 000 coroutines in parallel |
+| [G_exitWhileCoroutineStillActive](-g_exit-while-coroutine-still-active.md) | `fun G_exitWhileCoroutineStillActive(): Unit`<br>Active coroutines are terminated when the whole process ends (like daemon threads) |
 | [delayAndPrintWorld](delay-and-print-world.md) | `suspend fun delayAndPrintWorld(): Unit`<br>Extracted fun delayAndPrintWorld |
 

@@ -1,6 +1,7 @@
 package pl.mareklangiewicz.myblog.coroutines
 
 import kotlinx.coroutines.experimental.*
+import org.junit.Ignore
 import org.junit.Test
 
 /**
@@ -124,5 +125,20 @@ class A_Coroutines_Intro {
             }
         }
         jobs.forEach { it.join() } // wait for all jobs to complete    }
+    }
+
+    /**
+     * Active coroutines are terminated when the whole process ends (like daemon threads)
+     *
+     * @sample pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro.G_exitWhileCoroutineStillActive
+     */
+    @Ignore @Test fun G_exitWhileCoroutineStillActive() = sample {
+        launch(CommonPool) {
+            repeat(1000) { i ->
+                println("I'm sleeping $i ...")
+                delay(500L)
+            }
+        }
+        delay(1300L) // just quit after delay
     }
 }

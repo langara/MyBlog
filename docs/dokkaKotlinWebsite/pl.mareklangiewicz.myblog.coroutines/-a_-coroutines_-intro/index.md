@@ -113,6 +113,18 @@ Run 100 000 coroutines in parallel
 </tr>
 <tr>
 <td markdown="1">
+<a href="-g_exit-while-coroutine-still-active.html">G_exitWhileCoroutineStillActive</a>
+</td>
+<td markdown="1">
+<div class="signature"><code><span class="keyword">fun </span><span class="identifier">G_exitWhileCoroutineStillActive</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Unit</span></code></div>
+
+Active coroutines are terminated when the whole process ends (like daemon threads)
+
+
+</td>
+</tr>
+<tr>
+<td markdown="1">
 <a href="delay-and-print-world.html">delayAndPrintWorld</a>
 </td>
 <td markdown="1">

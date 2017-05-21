@@ -1,0 +1,24 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>A_Coroutines_Intro.G_exitWhileCoroutineStillActive - </title>
+<link rel="stylesheet" href="../../style.css">
+</HEAD>
+<BODY>
+<a href="../index.html">pl.mareklangiewicz.myblog.coroutines</a>&nbsp;/&nbsp;<a href="index.html">A_Coroutines_Intro</a>&nbsp;/&nbsp;<a href=".">G_exitWhileCoroutineStillActive</a><br/>
+<br/>
+<h1>G_exitWhileCoroutineStillActive</h1>
+<a name="pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro$G_exitWhileCoroutineStillActive()"></a>
+<code><span class="keyword">fun </span><span class="identifier">G_exitWhileCoroutineStillActive</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Unit</span></code>
+<p>Active coroutines are terminated when the whole process ends (like daemon threads)</p>
+<pre><code class="lang-kotlin">sample {
+        launch(CommonPool) {
+            repeat(1000) { i -&gt;
+                println("I'm sleeping $i ...")
+                delay(500L)
+            }
+        }
+        delay(1300L) // just quit after delay
+    }</code></pre>
+</BODY>
+</HTML>
