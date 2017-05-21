@@ -6,7 +6,7 @@ import kotlinx.coroutines.experimental.launch
 import org.junit.Test
 
 /**
- * Kotlin Coroutines Intro in "TDD"
+ * Kotlin Coroutines Intro in "TDD" (kind of..)
  *
  * This is my attempt to learn about kotlin coroutines and write some tests on the way.
  */

@@ -32,42 +32,42 @@ dependencies {
 }
 
 dokka {
-    includes = ['Module.md']
+    includes = ['README.md']
     outputDirectory = "$rootDir/doc/dokkaDefault"
 }
 
 task dokkaHtml(type: org.jetbrains.dokka.gradle.DokkaTask) {
-    includes = ['Module.md']
+    includes = ['README.md']
     outputFormat = "html"
     outputDirectory = "$rootDir/doc/dokkaHtml"
 }
 
 task dokkaJavadoc(type: org.jetbrains.dokka.gradle.DokkaTask) {
-    includes = ['Module.md']
+    includes = ['README.md']
     outputFormat = "javadoc"
     outputDirectory = "$rootDir/doc/dokkaJavadoc"
 }
 
 task dokkaMarkdown(type: org.jetbrains.dokka.gradle.DokkaTask) {
-    includes = ['Module.md']
+    includes = ['README.md']
     outputFormat = "markdown"
     outputDirectory = "$rootDir/doc/dokkaMarkdown"
 }
 
 task dokkaGFM(type: org.jetbrains.dokka.gradle.DokkaTask) {
-    includes = ['Module.md']
+    includes = ['README.md']
     outputFormat = "gfm"
     outputDirectory = "$rootDir/doc/dokkaGFM"
 }
 
 task dokkaJekyll(type: org.jetbrains.dokka.gradle.DokkaTask) {
-    includes = ['Module.md']
+    includes = ['README.md']
     outputFormat = "jekyll"
     outputDirectory = "$rootDir/doc/dokkaJekyll"
 }
 
 task dokkaKotlinWebsite(type: org.jetbrains.dokka.gradle.DokkaTask) {
-    includes = ['Module.md']
+    includes = ['README.md']
     outputFormat = "kotlin-website"
     outputDirectory = "$rootDir/doc/dokkaKotlinWebsite"
 }
