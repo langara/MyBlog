@@ -13,6 +13,9 @@ Kotlin Coroutines Intro in "TDD" (kind of..)
 
 This is my attempt to learn about kotlin coroutines and write some tests on the way.
 
+The content here is based on <a href="https://github.com/Kotlin/kotlinx.coroutines/blob/master/coroutines-guide.md">Coroutines Guide</a>
+but here it is both: documentation, and executable code in one place.
+
 ### Constructors
 
 <table class="api-docs-table">
@@ -80,6 +83,30 @@ Some convention for future samples/experiments/tests
 <div class="signature"><code><span class="keyword">fun </span><span class="identifier">D_introduceJob</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Unit</span></code></div>
 
 Use Job class to handle coroutine state and to wait (non blocking) for it to finish
+
+
+</td>
+</tr>
+<tr>
+<td markdown="1">
+<a href="-e_extract-suspending-function.html">E_extractSuspendingFunction</a>
+</td>
+<td markdown="1">
+<div class="signature"><code><span class="keyword">fun </span><span class="identifier">E_extractSuspendingFunction</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Unit</span></code></div>
+
+Extract suspending function
+
+
+</td>
+</tr>
+<tr>
+<td markdown="1">
+<a href="delay-and-print-world.html">delayAndPrintWorld</a>
+</td>
+<td markdown="1">
+<div class="signature"><code><span class="keyword">suspend</span> <span class="keyword">fun </span><span class="identifier">delayAndPrintWorld</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Unit</span></code></div>
+
+Extracted fun delayAndPrintWorld
 
 
 </td>

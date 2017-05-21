@@ -13,3 +13,6 @@ Kotlin Coroutines Intro in "TDD" (kind of..)
 
 This is my attempt to learn about kotlin coroutines and write some tests on the way.
 
+The content here is based on <a href="https://github.com/Kotlin/kotlinx.coroutines/blob/master/coroutines-guide.md">Coroutines Guide</a>
+but here it is both: documentation, and executable code in one place.
+

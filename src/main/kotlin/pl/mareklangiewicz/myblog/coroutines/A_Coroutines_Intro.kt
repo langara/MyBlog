@@ -7,6 +7,9 @@ import org.junit.Test
  * Kotlin Coroutines Intro in "TDD" (kind of..)
  *
  * This is my attempt to learn about kotlin coroutines and write some tests on the way.
+ *
+ * The content here is based on [Coroutines Guide](https://github.com/Kotlin/kotlinx.coroutines/blob/master/coroutines-guide.md)
+ * but here it is both: documentation, and executable code in one place.
  */
 class A_Coroutines_Intro {
 
@@ -35,6 +38,7 @@ class A_Coroutines_Intro {
     // TODO: CoroutineScope looks important to dig into
     /**
      * Bridging blocking and nonblocking worlds
+     *
      * @sample pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro.B_runBlocking
      */
     @Test
@@ -53,6 +57,7 @@ class A_Coroutines_Intro {
 
     /**
      * Some convention for future samples/experiments/tests
+     *
      * @sample pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro.C_sampleConvention
      */
     @Test fun C_sampleConvention() = sample {
@@ -64,6 +69,7 @@ class A_Coroutines_Intro {
 
     /**
      * Use Job class to handle coroutine state and to wait (non blocking) for it to finish
+     *
      * @sample pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro.D_introduceJob
      */
     @Test fun D_introduceJob() = sample {
@@ -77,5 +83,31 @@ class A_Coroutines_Intro {
     }
 
     // TODO LATER: about cancellation
+
+    /**
+     * Extract suspending function
+     *
+     * FIXME: this throws an exception and I don't know why...
+     * @sample pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro.E_extractSuspendingFunction
+     */
+    @Test fun E_extractSuspendingFunction() = sample {
+        val job = launch(CommonPool) {
+            delayAndPrintWorld()
+        }
+        println("Hello,")
+        job.join() // this suspending function (join) waits for job to finish
+
+    }
+
+    /**
+     * Extracted fun delayAndPrintWorld
+     *
+     * @sample pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro.delayAndPrintWorld
+     */
+    suspend fun delayAndPrintWorld() {
+        delay(1000L)
+        println("World!")
+    }
+
 
 }
