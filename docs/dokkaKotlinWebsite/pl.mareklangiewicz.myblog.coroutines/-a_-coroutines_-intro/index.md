@@ -55,16 +55,7 @@ First coroutine
 <td markdown="1">
 <div class="signature"><code><span class="keyword">fun </span><span class="identifier">B_runBlocking</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Unit</span></code></div>
 
-``` kotlin
-runBlocking {
-    delay(1000)
-    println("1000")
-    delay(1000)
-    println("2000")
-    delay(1000)
-    println("3000")
-}
-```
+Bridging blocking and nonblocking worlds
 
 
 </td>

@@ -34,6 +34,7 @@ class A_Coroutines_Intro {
     // TODO: about runblocking, coroutine dispatcher?, interruptions?, coroutinescope?
     // TODO: CoroutineScope looks important to dig into
     /**
+     * Bridging blocking and nonblocking worlds
      * @sample pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro.B_runBlocking
      */
     @Test

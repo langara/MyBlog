@@ -9,6 +9,8 @@ layout: api
 
 <div class="signature"><code><span class="keyword">fun </span><span class="identifier">B_runBlocking</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Unit</span></code></div>
 
+Bridging blocking and nonblocking worlds
+
 ``` kotlin
 runBlocking {
     delay(1000)

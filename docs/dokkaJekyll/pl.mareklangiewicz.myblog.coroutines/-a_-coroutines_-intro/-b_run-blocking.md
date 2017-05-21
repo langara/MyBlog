@@ -8,6 +8,8 @@ title: A_Coroutines_Intro.B_runBlocking -
 
 `fun B_runBlocking(): Unit`
 
+Bridging blocking and nonblocking worlds
+
 ``` kotlin
 runBlocking {
     delay(1000)
