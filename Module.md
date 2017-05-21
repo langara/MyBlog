@@ -1,12 +1,10 @@
 # Module MyBlog
 
-BLABLA.
-- fjdskal 
-- fdsjakfl
-- fja fdksa fjdksla fdjsa
-- fjdsakfa fdsafds
+Technical blog as a regular github repo with runnable code examples
 
-# Package Kotlin Coroutines Intro in "TDD"
+# Package pl.mareklangiewicz.myblog.coroutines
+
+Kotlin Coroutines Intro in "TDD"
 
 This is my attempt to learn about kotlin coroutines and write some tests on the way.
 

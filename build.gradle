@@ -33,50 +33,49 @@ dependencies {
 
 dokka {
     includes = ['Module.md']
-    outputFormat = "gfm"
-    outputDirectory = "$rootDir/dokka"
+    outputDirectory = "$rootDir/doc/dokkaDefault"
 }
 
 task dokkaHtml(type: org.jetbrains.dokka.gradle.DokkaTask) {
     includes = ['Module.md']
     outputFormat = "html"
-    outputDirectory = "$buildDir/dokkaHtml"
+    outputDirectory = "$rootDir/doc/dokkaHtml"
 }
 
 task dokkaJavadoc(type: org.jetbrains.dokka.gradle.DokkaTask) {
     includes = ['Module.md']
     outputFormat = "javadoc"
-    outputDirectory = "$buildDir/dokkaJavadoc"
+    outputDirectory = "$rootDir/doc/dokkaJavadoc"
 }
 
 task dokkaMarkdown(type: org.jetbrains.dokka.gradle.DokkaTask) {
     includes = ['Module.md']
     outputFormat = "markdown"
-    outputDirectory = "$buildDir/dokkaMarkdown"
+    outputDirectory = "$rootDir/doc/dokkaMarkdown"
 }
 
 task dokkaGFM(type: org.jetbrains.dokka.gradle.DokkaTask) {
     includes = ['Module.md']
     outputFormat = "gfm"
-    outputDirectory = "$buildDir/dokkaGFM"
+    outputDirectory = "$rootDir/doc/dokkaGFM"
 }
 
 task dokkaJekyll(type: org.jetbrains.dokka.gradle.DokkaTask) {
     includes = ['Module.md']
     outputFormat = "jekyll"
-    outputDirectory = "$buildDir/dokkaJekyll"
+    outputDirectory = "$rootDir/doc/dokkaJekyll"
 }
 
 task dokkaKotlinWebsite(type: org.jetbrains.dokka.gradle.DokkaTask) {
     includes = ['Module.md']
     outputFormat = "kotlin-website"
-    outputDirectory = "$buildDir/dokkaKotlinWebsite"
+    outputDirectory = "$rootDir/doc/dokkaKotlinWebsite"
 }
 
 task dokkaAll(dependsOn: ['dokka', 'dokkaHtml', 'dokkaJavadoc', 'dokkaMarkdown', 'dokkaGFM', 'dokkaJekyll', 'dokkaKotlinWebsite'])
 
 clean.doFirst {
-    delete "$rootDir/dokka"
+    delete "$rootDir/doc"
 }
 
-defaultTasks 'dokka'
+defaultTasks 'dokkaAll'
