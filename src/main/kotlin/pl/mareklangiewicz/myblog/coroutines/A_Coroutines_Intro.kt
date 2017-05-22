@@ -8,6 +8,10 @@ import kotlin.coroutines.experimental.Continuation
 import kotlin.coroutines.experimental.EmptyCoroutineContext
 import kotlin.coroutines.experimental.startCoroutine
 import kotlinx.coroutines.experimental.CoroutineScope
+import java.util.concurrent.Executors
+import java.util.concurrent.ScheduledExecutorService
+import java.util.concurrent.TimeUnit
+import kotlin.coroutines.experimental.suspendCoroutine
 
 /**
  * Kotlin Coroutines Intro in "TDD" (kind of..)
@@ -245,8 +249,13 @@ class A_Coroutines_Intro {
 
         val completition = object : Continuation<Unit> {
             override val context = EmptyCoroutineContext
-            override fun resume(value: Unit) { "completition: completed normally".p }
-            override fun resumeWithException(exception: Throwable) { "completition: exception: $exception".p }
+            override fun resume(value: Unit) {
+                "completition: completed normally".p
+            }
+
+            override fun resumeWithException(exception: Throwable) {
+                "completition: exception: $exception".p
+            }
         }
 
         "main: start".p
@@ -256,6 +265,43 @@ class A_Coroutines_Intro {
         "main: after sleep 3000".p
     }
 
+
+    /**
+     * Under the hood test 2 without using kotlinx stuff
+     * FIXME NOW: this doesn't work correctly (it logs too much)!
+     *
+     * @sample pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro.J_underTheHood_2
+     */
+    @Test
+    fun J_underTheHood_2() {
+
+        val scheduler = Executors.newSingleThreadScheduledExecutor()
+        val mydelay: suspend Unit.(time: Long) -> Unit = { time ->
+            suspendCoroutine<Unit> { continuation ->
+                scheduler.schedule( { continuation.resume(Unit) }, time, TimeUnit.MILLISECONDS)
+            }
+        }
+
+        val coroutine: suspend Unit.() -> Unit = {
+            "coroutine start".p
+            mydelay(1000)
+            "coroutine middle".p
+            mydelay(1000)
+            "coroutine end".p
+        }
+
+        val completion = object : Continuation<Unit> {
+            override val context = EmptyCoroutineContext
+            override fun resume(value: Unit) { "completion: completed normally".p }
+            override fun resumeWithException(exception: Throwable) { "completion: exception: $exception".p }
+        }
+
+        "main: start".p
+        coroutine.startCoroutine(Unit, completion)
+        "main: after startCoroutine".p
+        Thread.sleep(3000)
+        "main: after sleep 3000".p
+    }
 
 
 }
