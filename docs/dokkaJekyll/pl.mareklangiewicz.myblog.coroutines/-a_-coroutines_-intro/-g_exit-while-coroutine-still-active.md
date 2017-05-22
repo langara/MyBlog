@@ -14,7 +14,7 @@ Active coroutines are terminated when the whole process ends (like daemon thread
 sample {
         launch(CommonPool) {
             repeat(1000) { i ->
-                println("I'm sleeping $i ...")
+                "I'm sleeping $i ...".p
                 delay(500L)
             }
         }

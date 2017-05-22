@@ -13,7 +13,7 @@ sample {
         val job = launch(CommonPool) {
             delayAndPrintWorld()
         }
-        println("Hello,")
+        "Hello,".p
         job.join() // this suspending function (join) waits for job to finish
     }
 ```

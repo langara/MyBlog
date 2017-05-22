@@ -1,0 +1,34 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>A_Coroutines_Intro.I_cancellationIsCooperative_1 - myblog</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">myblog</a>&nbsp;/&nbsp;<a href="../index.html">pl.mareklangiewicz.myblog.coroutines</a>&nbsp;/&nbsp;<a href="index.html">A_Coroutines_Intro</a>&nbsp;/&nbsp;<a href=".">I_cancellationIsCooperative_1</a><br/>
+<br/>
+<h1>I_cancellationIsCooperative_1</h1>
+<a name="pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro$I_cancellationIsCooperative_1()"></a>
+<code><span class="keyword">fun </span><span class="identifier">I_cancellationIsCooperative_1</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Unit</span></code>
+<p>Cancellation is cooperative 1</p>
+<p>This example shows that we can not cancel coroutine that doesn't listen</p>
+<pre><code class="lang-kotlin">sample {
+        val job = launch(CommonPool) {
+            var nextPrintTime = 0L
+            var i = 0
+            while (i &lt; 10) { // computation loop
+                val currentTime = System.currentTimeMillis()
+                if (currentTime &gt;= nextPrintTime) {
+                    "I'm sleeping ${i++} ...".p
+                    nextPrintTime = currentTime + 500L
+                }
+            }
+        }
+        delay(1300L) // delay a bit
+        "main: I'm tired of waiting!".p
+        job.cancel() // cancels the job
+        delay(1300L) // delay a bit to see if it was cancelled....
+        "main: Now I can quit.".p
+    }</code></pre>
+</BODY>
+</HTML>

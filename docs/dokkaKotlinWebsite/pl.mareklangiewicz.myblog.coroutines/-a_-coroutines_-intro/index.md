@@ -35,6 +35,25 @@ Kotlin Coroutines Intro in "TDD" (kind of..)
 </tbody>
 </table>
 
+### Properties
+
+<table class="api-docs-table">
+<tbody>
+<tr>
+<td markdown="1">
+<a href="p.html">p</a>
+</td>
+<td markdown="1">
+<div class="signature"><code><span class="keyword">val </span><span class="identifier">String</span><span class="symbol">.</span><span class="identifier">p</span><span class="symbol">: </span><span class="identifier">Unit</span></code></div>
+
+Print given string with "Coroutines Intro" prefix and with current time in square brackets
+
+
+</td>
+</tr>
+</tbody>
+</table>
+
 ### Functions
 
 <table class="api-docs-table">
@@ -125,12 +144,72 @@ Active coroutines are terminated when the whole process ends (like daemon thread
 </tr>
 <tr>
 <td markdown="1">
+<a href="-h_cancel-job-correctly.html">H_cancelJobCorrectly</a>
+</td>
+<td markdown="1">
+<div class="signature"><code><span class="keyword">fun </span><span class="identifier">H_cancelJobCorrectly</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Unit</span></code></div>
+
+Cancel coroutine with Job.cancel
+
+
+</td>
+</tr>
+<tr>
+<td markdown="1">
+<a href="-i_cancellation-is-cooperative_1.html">I_cancellationIsCooperative_1</a>
+</td>
+<td markdown="1">
+<div class="signature"><code><span class="keyword">fun </span><span class="identifier">I_cancellationIsCooperative_1</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Unit</span></code></div>
+
+Cancellation is cooperative 1
+
+
+</td>
+</tr>
+<tr>
+<td markdown="1">
+<a href="-i_cancellation-is-cooperative_2.html">I_cancellationIsCooperative_2</a>
+</td>
+<td markdown="1">
+<div class="signature"><code><span class="keyword">fun </span><span class="identifier">I_cancellationIsCooperative_2</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Unit</span></code></div>
+
+Cancellation is cooperative 2
+
+
+</td>
+</tr>
+<tr>
+<td markdown="1">
+<a href="-j_under-the-hood_1.html">J_underTheHood_1</a>
+</td>
+<td markdown="1">
+<div class="signature"><code><span class="keyword">fun </span><span class="identifier">J_underTheHood_1</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Unit</span></code></div>
+
+Under the hood test
+
+
+</td>
+</tr>
+<tr>
+<td markdown="1">
 <a href="delay-and-print-world.html">delayAndPrintWorld</a>
 </td>
 <td markdown="1">
 <div class="signature"><code><span class="keyword">suspend</span> <span class="keyword">fun </span><span class="identifier">delayAndPrintWorld</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Unit</span></code></div>
 
 Extracted fun delayAndPrintWorld
+
+
+</td>
+</tr>
+<tr>
+<td markdown="1">
+<a href="get-current-time-string.html">getCurrentTimeString</a>
+</td>
+<td markdown="1">
+<div class="signature"><code><span class="keyword">fun </span><span class="identifier">getCurrentTimeString</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">String</span></code></div>
+
+Current system time as a string
 
 
 </td>

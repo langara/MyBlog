@@ -14,7 +14,7 @@
 <pre><code class="lang-kotlin">sample {
         launch(CommonPool) {
             repeat(1000) { i -&gt;
-                println("I'm sleeping $i ...")
+                "I'm sleeping $i ...".p
                 delay(500L)
             }
         }

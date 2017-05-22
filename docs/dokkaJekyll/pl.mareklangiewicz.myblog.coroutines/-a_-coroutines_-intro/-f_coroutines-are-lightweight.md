@@ -21,7 +21,7 @@ sample {
                 print(".")
             }
         }
-        jobs.forEach { it.join() } // wait for all jobs to complete    }
+        jobs.forEach { it.join() } // wait for all jobs to complete
     }
 ```
 

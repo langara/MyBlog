@@ -1,51 +1,75 @@
 - title: 
-  url: /home/marek/code/kotlin/MyBlog/docs/dokkaKotlinWebsite/index
+  url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/index
   content:
     - title: alltypes
-      url: /home/marek/code/kotlin/MyBlog/docs/dokkaKotlinWebsite/alltypes/index
+      url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/alltypes/index
       content:
         - title: A_Coroutines_Intro
-          url: /home/marek/code/kotlin/MyBlog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/index
+          url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/index
           content:
             - title: A_Coroutines_Intro
-              url: /home/marek/code/kotlin/MyBlog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-init-
+              url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-init-
             - title: A_basics
-              url: /home/marek/code/kotlin/MyBlog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-a_basics
+              url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-a_basics
             - title: B_runBlocking
-              url: /home/marek/code/kotlin/MyBlog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-b_run-blocking
+              url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-b_run-blocking
             - title: C_sampleConvention
-              url: /home/marek/code/kotlin/MyBlog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-c_sample-convention
+              url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-c_sample-convention
             - title: D_introduceJob
-              url: /home/marek/code/kotlin/MyBlog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-d_introduce-job
+              url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-d_introduce-job
             - title: E_extractSuspendingFunction
-              url: /home/marek/code/kotlin/MyBlog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-e_extract-suspending-function
+              url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-e_extract-suspending-function
             - title: F_coroutinesAreLightweight
-              url: /home/marek/code/kotlin/MyBlog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-f_coroutines-are-lightweight
+              url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-f_coroutines-are-lightweight
             - title: G_exitWhileCoroutineStillActive
-              url: /home/marek/code/kotlin/MyBlog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-g_exit-while-coroutine-still-active
+              url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-g_exit-while-coroutine-still-active
+            - title: H_cancelJobCorrectly
+              url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-h_cancel-job-correctly
+            - title: I_cancellationIsCooperative_1
+              url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-i_cancellation-is-cooperative_1
+            - title: I_cancellationIsCooperative_2
+              url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-i_cancellation-is-cooperative_2
+            - title: J_underTheHood_1
+              url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-j_under-the-hood_1
             - title: delayAndPrintWorld
-              url: /home/marek/code/kotlin/MyBlog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/delay-and-print-world
+              url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/delay-and-print-world
+            - title: getCurrentTimeString
+              url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/get-current-time-string
+            - title: p
+              url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/p
     - title: pl.mareklangiewicz.myblog.coroutines
-      url: /home/marek/code/kotlin/MyBlog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/index
+      url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/index
       content:
         - title: A_Coroutines_Intro
-          url: /home/marek/code/kotlin/MyBlog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/index
+          url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/index
           content:
             - title: A_Coroutines_Intro
-              url: /home/marek/code/kotlin/MyBlog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-init-
+              url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-init-
             - title: A_basics
-              url: /home/marek/code/kotlin/MyBlog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-a_basics
+              url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-a_basics
             - title: B_runBlocking
-              url: /home/marek/code/kotlin/MyBlog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-b_run-blocking
+              url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-b_run-blocking
             - title: C_sampleConvention
-              url: /home/marek/code/kotlin/MyBlog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-c_sample-convention
+              url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-c_sample-convention
             - title: D_introduceJob
-              url: /home/marek/code/kotlin/MyBlog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-d_introduce-job
+              url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-d_introduce-job
             - title: E_extractSuspendingFunction
-              url: /home/marek/code/kotlin/MyBlog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-e_extract-suspending-function
+              url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-e_extract-suspending-function
             - title: F_coroutinesAreLightweight
-              url: /home/marek/code/kotlin/MyBlog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-f_coroutines-are-lightweight
+              url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-f_coroutines-are-lightweight
             - title: G_exitWhileCoroutineStillActive
-              url: /home/marek/code/kotlin/MyBlog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-g_exit-while-coroutine-still-active
+              url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-g_exit-while-coroutine-still-active
+            - title: H_cancelJobCorrectly
+              url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-h_cancel-job-correctly
+            - title: I_cancellationIsCooperative_1
+              url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-i_cancellation-is-cooperative_1
+            - title: I_cancellationIsCooperative_2
+              url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-i_cancellation-is-cooperative_2
+            - title: J_underTheHood_1
+              url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-j_under-the-hood_1
             - title: delayAndPrintWorld
-              url: /home/marek/code/kotlin/MyBlog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/delay-and-print-world
+              url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/delay-and-print-world
+            - title: getCurrentTimeString
+              url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/get-current-time-string
+            - title: p
+              url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/p

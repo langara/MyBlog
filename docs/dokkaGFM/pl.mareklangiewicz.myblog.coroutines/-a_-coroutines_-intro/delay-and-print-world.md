@@ -8,6 +8,6 @@ Extracted fun delayAndPrintWorld
 
 ``` kotlin
 delay(1000L)
-println("World!")
+"World!".p
 ```
 

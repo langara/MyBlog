@@ -14,9 +14,9 @@ First coroutine
 ``` kotlin
 launch(CommonPool) {
     delay(1000L)
-    println("World!")
+    "World!".p
 }
-println("Hello,")
+"Hello,".p
 Thread.sleep(2000L)
 ```
 

@@ -3,6 +3,11 @@ package pl.mareklangiewicz.myblog.coroutines
 import kotlinx.coroutines.experimental.*
 import org.junit.Ignore
 import org.junit.Test
+import java.util.*
+import kotlin.coroutines.experimental.Continuation
+import kotlin.coroutines.experimental.EmptyCoroutineContext
+import kotlin.coroutines.experimental.startCoroutine
+import kotlinx.coroutines.experimental.CoroutineScope
 
 /**
  * Kotlin Coroutines Intro in "TDD" (kind of..)
@@ -15,6 +20,18 @@ import org.junit.Test
 class A_Coroutines_Intro {
 
     /**
+     * Current system time as a string
+     *
+     * @return current time as a string with milliseconds
+     */
+    fun getCurrentTimeString() = System.currentTimeMillis().let { String.format(Locale.US, "%tT:%tL", it, it) }
+
+    /**
+     * Print given string with "Coroutines Intro" prefix and with current time in square brackets
+     */
+    val String.p get() = println("Coroutines Intro [${getCurrentTimeString()}] $this")
+
+    /**
      * First coroutine
      *
      * @sample pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro.A_basics
@@ -23,9 +40,9 @@ class A_Coroutines_Intro {
     fun A_basics() {
         launch(CommonPool) {
             delay(1000L)
-            println("World!")
+            "World!".p
         }
-        println("Hello,")
+        "Hello,".p
         Thread.sleep(2000L)
 
     }
@@ -46,11 +63,11 @@ class A_Coroutines_Intro {
     fun B_runBlocking() {
         runBlocking {
             delay(1000)
-            println("1000")
+            "1000".p
             delay(1000)
-            println("2000")
+            "2000".p
             delay(1000)
-            println("3000")
+            "3000".p
         }
     }
 
@@ -63,9 +80,9 @@ class A_Coroutines_Intro {
      */
     @Test fun C_sampleConvention() = sample {
         delay(1000)
-        println("1000")
+        "1000".p
         delay(1000)
-        println("2000")
+        "2000".p
     }
 
     /**
@@ -76,9 +93,9 @@ class A_Coroutines_Intro {
     @Test fun D_introduceJob() = sample {
         val job = launch(CommonPool) {
             delay(1000L)
-            println("World!")
+            "World!".p
         }
-        println("Hello,")
+        "Hello,".p
         job.join() // this suspending function (join) waits for job to finish
 
     }
@@ -95,7 +112,7 @@ class A_Coroutines_Intro {
         val job = launch(CommonPool) {
             delayAndPrintWorld()
         }
-        println("Hello,")
+        "Hello,".p
         job.join() // this suspending function (join) waits for job to finish
 
     }
@@ -107,7 +124,7 @@ class A_Coroutines_Intro {
      */
     suspend fun delayAndPrintWorld() {
         delay(1000L)
-        println("World!")
+        "World!".p
     }
 
     /**
@@ -124,7 +141,7 @@ class A_Coroutines_Intro {
                 print(".")
             }
         }
-        jobs.forEach { it.join() } // wait for all jobs to complete    }
+        jobs.forEach { it.join() } // wait for all jobs to complete
     }
 
     /**
@@ -135,7 +152,7 @@ class A_Coroutines_Intro {
     @Ignore @Test fun G_exitWhileCoroutineStillActive() = sample {
         launch(CommonPool) {
             repeat(1000) { i ->
-                println("I'm sleeping $i ...")
+                "I'm sleeping $i ...".p
                 delay(500L)
             }
         }
@@ -150,15 +167,15 @@ class A_Coroutines_Intro {
     @Test fun H_cancelJobCorrectly() = sample {
         val job = launch(CommonPool) {
             repeat(1000) { i ->
-                println("I'm sleeping $i ...")
+                "I'm sleeping $i ...".p
                 delay(500L)
             }
         }
         delay(1300L) // delay a bit
-        println("main: I'm tired of waiting!")
+        "main: I'm tired of waiting!".p
         job.cancel() // cancels the job
         delay(1300L) // delay a bit to ensure it was cancelled indeed
-        println("main: Now I can quit.")
+        "main: Now I can quit.".p
     }
 
     /**
@@ -174,16 +191,16 @@ class A_Coroutines_Intro {
             while (i < 10) { // computation loop
                 val currentTime = System.currentTimeMillis()
                 if (currentTime >= nextPrintTime) {
-                    println("I'm sleeping ${i++} ...")
+                    "I'm sleeping ${i++} ...".p
                     nextPrintTime = currentTime + 500L
                 }
             }
         }
         delay(1300L) // delay a bit
-        println("main: I'm tired of waiting!")
+        "main: I'm tired of waiting!".p
         job.cancel() // cancels the job
         delay(1300L) // delay a bit to see if it was cancelled....
-        println("main: Now I can quit.")
+        "main: Now I can quit.".p
     }
 
     /**
@@ -199,15 +216,46 @@ class A_Coroutines_Intro {
             while (isActive) { // computation loop
                 val currentTime = System.currentTimeMillis()
                 if (currentTime >= nextPrintTime) {
-                    println("I'm sleeping ${i++} ...")
+                    "I'm sleeping ${i++} ...".p
                     nextPrintTime = currentTime + 500L
                 }
             }
         }
         delay(1300L) // delay a bit
-        println("main: I'm tired of waiting!")
+        "main: I'm tired of waiting!".p
         job.cancel() // cancels the job
         delay(1300L) // delay a bit to see if it was cancelled....
-        println("main: Now I can quit.")
+        "main: Now I can quit.".p
     }
+
+    /**
+     * Under the hood test
+     *
+     * @sample pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro.J_underTheHood_1
+     */
+    @Test
+    fun J_underTheHood_1() {
+        val coroutine: suspend Unit.() -> Unit = {
+            "coroutine start".p
+            delay(1000)
+            "coroutine middle".p
+            delay(1000)
+            "coroutine end".p
+        }
+
+        val completition = object : Continuation<Unit> {
+            override val context = EmptyCoroutineContext
+            override fun resume(value: Unit) { "completition: completed normally".p }
+            override fun resumeWithException(exception: Throwable) { "completition: exception: $exception".p }
+        }
+
+        "main: start".p
+        coroutine.startCoroutine(Unit, completition)
+        "main: after startCoroutine".p
+        Thread.sleep(3000)
+        "main: after sleep 3000".p
+    }
+
+
+
 }

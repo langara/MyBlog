@@ -14,9 +14,9 @@
 <pre><code class="lang-kotlin">sample {
         val job = launch(CommonPool) {
             delay(1000L)
-            println("World!")
+            "World!".p
         }
-        println("Hello,")
+        "Hello,".p
         job.join() // this suspending function (join) waits for job to finish
     }</code></pre>
 </BODY>

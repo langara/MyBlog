@@ -17,6 +17,12 @@ but here it is both: **documentation** and **runnable code** in **one place**.
 |---|---|
 | [&lt;init&gt;](-init-.md) | `A_Coroutines_Intro()`<br>Kotlin Coroutines Intro in "TDD" (kind of..) |
 
+### Properties
+
+| Name | Summary |
+|---|---|
+| [p](p.md) | `val String.p: Unit`<br>Print given string with "Coroutines Intro" prefix and with current time in square brackets |
+
 ### Functions
 
 | Name | Summary |
@@ -28,4 +34,9 @@ but here it is both: **documentation** and **runnable code** in **one place**.
 | [E_extractSuspendingFunction](-e_extract-suspending-function.md) | `fun E_extractSuspendingFunction(): Unit`<br>Extract suspending function |
 | [F_coroutinesAreLightweight](-f_coroutines-are-lightweight.md) | `fun F_coroutinesAreLightweight(): Unit`<br>Run 100 000 coroutines in parallel |
 | [G_exitWhileCoroutineStillActive](-g_exit-while-coroutine-still-active.md) | `fun G_exitWhileCoroutineStillActive(): Unit`<br>Active coroutines are terminated when the whole process ends (like daemon threads) |
+| [H_cancelJobCorrectly](-h_cancel-job-correctly.md) | `fun H_cancelJobCorrectly(): Unit`<br>Cancel coroutine with Job.cancel |
+| [I_cancellationIsCooperative_1](-i_cancellation-is-cooperative_1.md) | `fun I_cancellationIsCooperative_1(): Unit`<br>Cancellation is cooperative 1 |
+| [I_cancellationIsCooperative_2](-i_cancellation-is-cooperative_2.md) | `fun I_cancellationIsCooperative_2(): Unit`<br>Cancellation is cooperative 2 |
+| [J_underTheHood_1](-j_under-the-hood_1.md) | `fun J_underTheHood_1(): Unit`<br>Under the hood test |
 | [delayAndPrintWorld](delay-and-print-world.md) | `suspend fun delayAndPrintWorld(): Unit`<br>Extracted fun delayAndPrintWorld |
+| [getCurrentTimeString](get-current-time-string.md) | `fun getCurrentTimeString(): String`<br>Current system time as a string |

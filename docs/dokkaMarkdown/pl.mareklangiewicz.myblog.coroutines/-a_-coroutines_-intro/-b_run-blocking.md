@@ -9,11 +9,11 @@ Bridging blocking and nonblocking worlds
 ``` kotlin
 runBlocking {
     delay(1000)
-    println("1000")
+    "1000".p
     delay(1000)
-    println("2000")
+    "2000".p
     delay(1000)
-    println("3000")
+    "3000".p
 }
 ```
 

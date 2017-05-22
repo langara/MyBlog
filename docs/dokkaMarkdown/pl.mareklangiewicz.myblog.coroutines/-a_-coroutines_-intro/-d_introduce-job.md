@@ -10,9 +10,9 @@ Use Job class to handle coroutine state and to wait (non blocking) for it to fin
 sample {
         val job = launch(CommonPool) {
             delay(1000L)
-            println("World!")
+            "World!".p
         }
-        println("Hello,")
+        "Hello,".p
         job.join() // this suspending function (join) waits for job to finish
     }
 ```

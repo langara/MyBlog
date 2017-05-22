@@ -1,0 +1,28 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>A_Coroutines_Intro.H_cancelJobCorrectly - myblog</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">myblog</a>&nbsp;/&nbsp;<a href="../index.html">pl.mareklangiewicz.myblog.coroutines</a>&nbsp;/&nbsp;<a href="index.html">A_Coroutines_Intro</a>&nbsp;/&nbsp;<a href=".">H_cancelJobCorrectly</a><br/>
+<br/>
+<h1>H_cancelJobCorrectly</h1>
+<a name="pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro$H_cancelJobCorrectly()"></a>
+<code><span class="keyword">fun </span><span class="identifier">H_cancelJobCorrectly</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Unit</span></code>
+<p>Cancel coroutine with Job.cancel</p>
+<pre><code class="lang-kotlin">sample {
+        val job = launch(CommonPool) {
+            repeat(1000) { i -&gt;
+                "I'm sleeping $i ...".p
+                delay(500L)
+            }
+        }
+        delay(1300L) // delay a bit
+        "main: I'm tired of waiting!".p
+        job.cancel() // cancels the job
+        delay(1300L) // delay a bit to ensure it was cancelled indeed
+        "main: Now I can quit.".p
+    }</code></pre>
+</BODY>
+</HTML>
