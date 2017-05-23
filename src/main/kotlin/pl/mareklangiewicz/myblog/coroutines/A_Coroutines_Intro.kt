@@ -303,5 +303,20 @@ class A_Coroutines_Intro {
         "main: after sleep 3000".p
     }
 
+    /**
+     * Sequence builder test
+     *
+     * @sample pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro.K_sequence
+     */
+    @Test
+    fun K_sequence() {
+        val seq: Sequence<Int> = buildSequence {
+            //delay(10) // this is forbidden
+            yield(2)
+            yield(4)
+            yield(6)
+        }
+        for(i in seq) "$i".p
+    }
 
 }
