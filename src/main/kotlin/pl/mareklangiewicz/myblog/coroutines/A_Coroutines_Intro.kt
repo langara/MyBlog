@@ -4,14 +4,11 @@ import kotlinx.coroutines.experimental.*
 import org.junit.Ignore
 import org.junit.Test
 import java.util.*
-import kotlin.coroutines.experimental.Continuation
-import kotlin.coroutines.experimental.EmptyCoroutineContext
-import kotlin.coroutines.experimental.startCoroutine
 import kotlinx.coroutines.experimental.CoroutineScope
 import java.util.concurrent.Executors
 import java.util.concurrent.ScheduledExecutorService
 import java.util.concurrent.TimeUnit
-import kotlin.coroutines.experimental.suspendCoroutine
+import kotlin.coroutines.experimental.*
 
 /**
  * Kotlin Coroutines Intro in "TDD" (kind of..)
@@ -276,13 +273,14 @@ class A_Coroutines_Intro {
     fun J_underTheHood_2() {
 
         val scheduler = Executors.newSingleThreadScheduledExecutor()
-        val mydelay: suspend Unit.(time: Long) -> Unit = { time ->
+
+        val mydelay: suspend (time: Long) -> Unit = { time ->
             suspendCoroutine<Unit> { continuation ->
                 scheduler.schedule( { continuation.resume(Unit) }, time, TimeUnit.MILLISECONDS)
             }
         }
 
-        val coroutine: suspend Unit.() -> Unit = {
+        val coroutine: suspend () -> Unit = {
             "coroutine start".p
             mydelay(1000)
             "coroutine middle".p
@@ -297,8 +295,10 @@ class A_Coroutines_Intro {
         }
 
         "main: start".p
-        coroutine.startCoroutine(Unit, completion)
-        "main: after startCoroutine".p
+        val continuation = coroutine.createCoroutine(completion)
+        "main: after createCoroutine".p
+        continuation.resume(Unit)
+        "main: after continuation resume (to start coroutine)".p
         Thread.sleep(3000)
         "main: after sleep 3000".p
     }
