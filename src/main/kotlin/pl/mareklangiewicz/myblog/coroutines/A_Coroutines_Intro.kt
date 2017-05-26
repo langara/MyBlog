@@ -424,4 +424,67 @@ class A_Coroutines_Intro {
 
     }
 
+    /**
+     * Prepare a future representing a coroutine
+     *
+     * @sample pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro.prepareFuture
+     */
+    fun <T> prepareFuture(block: suspend () -> T) : () -> CompletableFuture<T> {
+
+        val future = CompletableFuture<T>()
+
+        val completion = object : Continuation<T> {
+            override val context = EmptyCoroutineContext
+            override fun resume(value: T) {
+                future.complete(value)
+            }
+            override fun resumeWithException(exception: Throwable) {
+                future.completeExceptionally(exception)
+            }
+        }
+
+        val continuation = block.createCoroutine(completion)
+
+        return {
+            continuation.resume(Unit)
+            future
+        }
+    }
+
+    /**
+     * Wrap coroutine in LAZY completable future
+     *
+     * @sample pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro.L_completableFuture_2
+     */
+    @Test
+    fun L_completableFuture_2() {
+
+        "main: start".p
+
+        val futureCreator: () -> CompletableFuture<Int> = prepareFuture {
+            "coroutine: start".p
+            delay(1000)
+            "coroutine: middle".p
+            delay(1000)
+            "coroutine: end".p
+            666
+        }
+
+        "main: after prepareFuture".p
+
+        val future = futureCreator()
+
+        "main: before: thenAccept".p
+
+        future
+                .thenApply { it * 10 }
+                .thenAccept { "thenAccept: $it".p }
+
+        "main: after: thenAccept".p
+
+        Thread.sleep(3000)
+
+        "main: after: sleep".p
+
+    }
 }
