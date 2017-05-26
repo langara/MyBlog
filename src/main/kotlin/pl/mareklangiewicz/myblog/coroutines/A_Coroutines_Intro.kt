@@ -4,13 +4,10 @@ import kotlinx.coroutines.experimental.*
 import org.junit.Ignore
 import org.junit.Test
 import java.util.*
-import kotlinx.coroutines.experimental.CoroutineScope
 import java.util.concurrent.CompletableFuture
 import java.util.concurrent.Executors
-import java.util.concurrent.ScheduledExecutorService
 import java.util.concurrent.TimeUnit
 import kotlin.coroutines.experimental.*
-import kotlin.test.fail
 
 /**
  * Kotlin Coroutines Intro in "TDD" (kind of..)
@@ -372,7 +369,7 @@ class A_Coroutines_Intro {
      *
      * @sample pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro.createFuture
      */
-    fun <T> createFuture(block: suspend () -> T) : CompletableFuture<T> {
+    fun <T> createFuture(block: suspend () -> T): CompletableFuture<T> {
 
         val future = CompletableFuture<T>()
 
@@ -381,6 +378,7 @@ class A_Coroutines_Intro {
             override fun resume(value: T) {
                 future.complete(value)
             }
+
             override fun resumeWithException(exception: Throwable) {
                 future.completeExceptionally(exception)
             }
@@ -429,7 +427,7 @@ class A_Coroutines_Intro {
      *
      * @sample pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro.prepareFuture
      */
-    fun <T> prepareFuture(block: suspend () -> T) : () -> CompletableFuture<T> {
+    fun <T> prepareFuture(block: suspend () -> T): () -> CompletableFuture<T> {
 
         val future = CompletableFuture<T>()
 
@@ -438,6 +436,7 @@ class A_Coroutines_Intro {
             override fun resume(value: T) {
                 future.complete(value)
             }
+
             override fun resumeWithException(exception: Throwable) {
                 future.completeExceptionally(exception)
             }
@@ -486,5 +485,43 @@ class A_Coroutines_Intro {
 
         "main: after: sleep".p
 
+    }
+
+    /**
+     * Wrap future in suspension point
+     */
+    suspend fun <T> CompletableFuture<T>.suspend(): T = suspendCoroutine { continuation ->
+        thenAccept { continuation.resume(it) }
+    }
+
+    /**
+     * Wrap futures in suspension points
+     *
+     * @sample pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro.L_completableFuture_3
+     */
+    @Test
+    fun L_completableFuture_3() {
+
+        val scheduler = Executors.newSingleThreadScheduledExecutor()
+
+        val myDelayFuture: (time: Long) -> CompletableFuture<Unit> = { time ->
+            val future = CompletableFuture<Unit>()
+            scheduler.schedule({ future.complete(Unit) }, time, TimeUnit.MILLISECONDS)
+            future
+        }
+
+        "main: start".p
+
+        launch(CommonPool) {
+            "coroutine start".p
+            myDelayFuture(1000).suspend()
+            "coroutine middle".p
+            myDelayFuture(1000).suspend()
+            "coroutine end".p
+        }
+
+        Thread.sleep(3000)
+
+        "main: after: sleep".p
     }
 }

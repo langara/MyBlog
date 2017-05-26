@@ -42,7 +42,11 @@ FIXME NOW: this doesn't work correctly (it logs too much)! |
 FIXME NOW: this example should never print "coroutine end", but it does immediately! |
 | [K_sequence](-k_sequence.md) | `fun K_sequence(): Unit`<br>Sequence builder test |
 | [L_completableFuture](-l_completable-future.md) | `fun L_completableFuture(): Unit`<br>Wrap coroutine in completable future |
+| [L_completableFuture_2](-l_completable-future_2.md) | `fun L_completableFuture_2(): Unit`<br>Wrap coroutine in LAZY completable future |
+| [L_completableFuture_3](-l_completable-future_3.md) | `fun L_completableFuture_3(): Unit`<br>Wrap futures in suspension points |
 | [createFuture](create-future.md) | `fun <T> createFuture(block: SuspendFunction0<T>): `[`CompletableFuture`](http://docs.oracle.com/javase/6/docs/api/java/util/concurrent/CompletableFuture.html)`<T>`<br>Create (and start) a future representing a coroutine |
 | [delayAndPrintWorld](delay-and-print-world.md) | `suspend fun delayAndPrintWorld(): Unit`<br>Extracted fun delayAndPrintWorld |
 | [getCurrentTimeString](get-current-time-string.md) | `fun getCurrentTimeString(): String`<br>Current system time as a string |
+| [prepareFuture](prepare-future.md) | `fun <T> prepareFuture(block: SuspendFunction0<T>): () -> `[`CompletableFuture`](http://docs.oracle.com/javase/6/docs/api/java/util/concurrent/CompletableFuture.html)`<T>`<br>Prepare a future representing a coroutine |
+| [suspend](suspend.md) | `suspend fun <T> `[`CompletableFuture`](http://docs.oracle.com/javase/6/docs/api/java/util/concurrent/CompletableFuture.html)`<T>.suspend(): T`<br>Wrap future in suspension point |
 

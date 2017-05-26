@@ -39,6 +39,10 @@
               url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-k_sequence
             - title: L_completableFuture
               url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-l_completable-future
+            - title: L_completableFuture_2
+              url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-l_completable-future_2
+            - title: L_completableFuture_3
+              url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-l_completable-future_3
             - title: createFuture
               url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/create-future
             - title: delayAndPrintWorld
@@ -47,6 +51,10 @@
               url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/get-current-time-string
             - title: p
               url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/p
+            - title: prepareFuture
+              url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/prepare-future
+            - title: suspend
+              url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/suspend
     - title: pl.mareklangiewicz.myblog.coroutines
       url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/index
       content:
@@ -85,6 +93,10 @@
               url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-k_sequence
             - title: L_completableFuture
               url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-l_completable-future
+            - title: L_completableFuture_2
+              url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-l_completable-future_2
+            - title: L_completableFuture_3
+              url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-l_completable-future_3
             - title: createFuture
               url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/create-future
             - title: delayAndPrintWorld
@@ -93,3 +105,7 @@
               url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/get-current-time-string
             - title: p
               url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/p
+            - title: prepareFuture
+              url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/prepare-future
+            - title: suspend
+              url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/suspend

@@ -1,0 +1,31 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>A_Coroutines_Intro.L_completableFuture_3 - </title>
+<link rel="stylesheet" href="../../style.css">
+</HEAD>
+<BODY>
+<a href="../index.html">pl.mareklangiewicz.myblog.coroutines</a>&nbsp;/&nbsp;<a href="index.html">A_Coroutines_Intro</a>&nbsp;/&nbsp;<a href=".">L_completableFuture_3</a><br/>
+<br/>
+<h1>L_completableFuture_3</h1>
+<a name="pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro$L_completableFuture_3()"></a>
+<code><span class="keyword">fun </span><span class="identifier">L_completableFuture_3</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Unit</span></code>
+<p>Wrap futures in suspension points</p>
+<pre><code class="lang-kotlin">val scheduler = Executors.newSingleThreadScheduledExecutor()
+val myDelayFuture: (time: Long) -&gt; CompletableFuture&lt;Unit&gt; = { time -&gt;
+    val future = CompletableFuture&lt;Unit&gt;()
+    scheduler.schedule({ future.complete(Unit) }, time, TimeUnit.MILLISECONDS)
+    future
+}
+"main: start".p
+launch(CommonPool) {
+    "coroutine start".p
+    myDelayFuture(1000).suspend()
+    "coroutine middle".p
+    myDelayFuture(1000).suspend()
+    "coroutine end".p
+}
+Thread.sleep(3000)
+"main: after: sleep".p</code></pre>
+</BODY>
+</HTML>

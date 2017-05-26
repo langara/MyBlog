@@ -166,6 +166,22 @@ FIXME NOW: this example should never print "coroutine end", but it does immediat
 </tr>
 <tr>
 <td>
+<a href="-l_completable-future_2.html">L_completableFuture_2</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">L_completableFuture_2</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Unit</span></code>
+<p>Wrap coroutine in LAZY completable future</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="-l_completable-future_3.html">L_completableFuture_3</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">L_completableFuture_3</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Unit</span></code>
+<p>Wrap futures in suspension points</p>
+</td>
+</tr>
+<tr>
+<td>
 <a href="create-future.html">createFuture</a></td>
 <td>
 <code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span> <span class="identifier">createFuture</span><span class="symbol">(</span><span class="identifier" id="pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro$createFuture(kotlin.coroutines.SuspendFunction0((pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro.createFuture.T)))/block">block</span><span class="symbol">:</span>&nbsp;<span class="identifier">SuspendFunction0</span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="http://docs.oracle.com/javase/6/docs/api/java/util/concurrent/CompletableFuture.html"><span class="identifier">CompletableFuture</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span></code>
@@ -186,6 +202,22 @@ FIXME NOW: this example should never print "coroutine end", but it does immediat
 <td>
 <code><span class="keyword">fun </span><span class="identifier">getCurrentTimeString</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">String</span></code>
 <p>Current system time as a string</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="prepare-future.html">prepareFuture</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span> <span class="identifier">prepareFuture</span><span class="symbol">(</span><span class="identifier" id="pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro$prepareFuture(kotlin.coroutines.SuspendFunction0((pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro.prepareFuture.T)))/block">block</span><span class="symbol">:</span>&nbsp;<span class="identifier">SuspendFunction0</span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="http://docs.oracle.com/javase/6/docs/api/java/util/concurrent/CompletableFuture.html"><span class="identifier">CompletableFuture</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span></code>
+<p>Prepare a future representing a coroutine</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="suspend.html">suspend</a></td>
+<td>
+<code><span class="keyword">suspend</span> <span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span> <a href="http://docs.oracle.com/javase/6/docs/api/java/util/concurrent/CompletableFuture.html"><span class="identifier">CompletableFuture</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">suspend</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">T</span></code>
+<p>Wrap future in suspension point</p>
 </td>
 </tr>
 </tbody>
