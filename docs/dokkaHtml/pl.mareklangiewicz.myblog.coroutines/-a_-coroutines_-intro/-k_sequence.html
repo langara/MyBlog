@@ -1,0 +1,22 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>A_Coroutines_Intro.K_sequence - </title>
+<link rel="stylesheet" href="../../style.css">
+</HEAD>
+<BODY>
+<a href="../index.html">pl.mareklangiewicz.myblog.coroutines</a>&nbsp;/&nbsp;<a href="index.html">A_Coroutines_Intro</a>&nbsp;/&nbsp;<a href=".">K_sequence</a><br/>
+<br/>
+<h1>K_sequence</h1>
+<a name="pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro$K_sequence()"></a>
+<code><span class="keyword">fun </span><span class="identifier">K_sequence</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Unit</span></code>
+<p>Sequence builder test</p>
+<pre><code class="lang-kotlin">val seq: Sequence&lt;Int&gt; = buildSequence {
+    //delay(10) // this is forbidden
+    yield(2)
+    yield(4)
+    yield(6)
+}
+for (i in seq) "$i".p</code></pre>
+</BODY>
+</HTML>

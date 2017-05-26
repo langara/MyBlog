@@ -5,10 +5,12 @@ import org.junit.Ignore
 import org.junit.Test
 import java.util.*
 import kotlinx.coroutines.experimental.CoroutineScope
+import java.util.concurrent.CompletableFuture
 import java.util.concurrent.Executors
 import java.util.concurrent.ScheduledExecutorService
 import java.util.concurrent.TimeUnit
 import kotlin.coroutines.experimental.*
+import kotlin.test.fail
 
 /**
  * Kotlin Coroutines Intro in "TDD" (kind of..)
@@ -244,19 +246,19 @@ class A_Coroutines_Intro {
             "coroutine end".p
         }
 
-        val completition = object : Continuation<Unit> {
+        val completion = object : Continuation<Unit> {
             override val context = EmptyCoroutineContext
             override fun resume(value: Unit) {
-                "completition: completed normally".p
+                "completion: completed normally".p
             }
 
             override fun resumeWithException(exception: Throwable) {
-                "completition: exception: $exception".p
+                "completion: exception: $exception".p
             }
         }
 
         "main: start".p
-        coroutine.startCoroutine(Unit, completition)
+        coroutine.startCoroutine(Unit, completion)
         "main: after startCoroutine".p
         Thread.sleep(3000)
         "main: after sleep 3000".p
@@ -276,7 +278,7 @@ class A_Coroutines_Intro {
 
         val mydelay: suspend (time: Long) -> Unit = { time ->
             suspendCoroutine<Unit> { continuation ->
-                scheduler.schedule( { continuation.resume(Unit) }, time, TimeUnit.MILLISECONDS)
+                scheduler.schedule({ continuation.resume(Unit) }, time, TimeUnit.MILLISECONDS)
             }
         }
 
@@ -290,8 +292,13 @@ class A_Coroutines_Intro {
 
         val completion = object : Continuation<Unit> {
             override val context = EmptyCoroutineContext
-            override fun resume(value: Unit) { "completion: completed normally".p }
-            override fun resumeWithException(exception: Throwable) { "completion: exception: $exception".p }
+            override fun resume(value: Unit) {
+                "completion: completed normally".p
+            }
+
+            override fun resumeWithException(exception: Throwable) {
+                "completion: exception: $exception".p
+            }
         }
 
         "main: start".p
@@ -326,8 +333,13 @@ class A_Coroutines_Intro {
 
         val completion = object : Continuation<Unit> {
             override val context = EmptyCoroutineContext
-            override fun resume(value: Unit) { "completion: completed normally".p }
-            override fun resumeWithException(exception: Throwable) { "completion: exception: $exception".p }
+            override fun resume(value: Unit) {
+                "completion: completed normally".p
+            }
+
+            override fun resumeWithException(exception: Throwable) {
+                "completion: exception: $exception".p
+            }
         }
 
         "main: start".p
@@ -338,6 +350,7 @@ class A_Coroutines_Intro {
         Thread.sleep(3000)
         "main: after sleep 3000".p
     }
+
     /**
      * Sequence builder test
      *
@@ -351,7 +364,64 @@ class A_Coroutines_Intro {
             yield(4)
             yield(6)
         }
-        for(i in seq) "$i".p
+        for (i in seq) "$i".p
+    }
+
+    /**
+     * Create (and start) a future representing a coroutine
+     *
+     * @sample pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro.createFuture
+     */
+    fun <T> createFuture(block: suspend () -> T) : CompletableFuture<T> {
+
+        val future = CompletableFuture<T>()
+
+        val completion = object : Continuation<T> {
+            override val context = EmptyCoroutineContext
+            override fun resume(value: T) {
+                future.complete(value)
+            }
+            override fun resumeWithException(exception: Throwable) {
+                future.completeExceptionally(exception)
+            }
+        }
+
+        block.startCoroutine(completion)
+
+        return future
+    }
+
+    /**
+     * Wrap coroutine in completable future
+     *
+     * @sample pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro.L_completableFuture
+     */
+    @Test
+    fun L_completableFuture() {
+
+        "main: start".p
+
+        val future: CompletableFuture<Int> = createFuture {
+            "coroutine: start".p
+            delay(1000)
+            "coroutine: middle".p
+            delay(1000)
+            "coroutine: end".p
+            666
+        }
+
+        "main: before: thenAccept".p
+
+        future
+                .thenApply { it * 10 }
+                .thenAccept { "thenAccept: $it".p }
+
+        "main: after: thenAccept".p
+
+        Thread.sleep(3000)
+
+        "main: after: sleep".p
+
     }
 
 }

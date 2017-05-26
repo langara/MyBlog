@@ -192,6 +192,68 @@ Under the hood test
 </tr>
 <tr>
 <td markdown="1">
+<a href="-j_under-the-hood_2.html">J_underTheHood_2</a>
+</td>
+<td markdown="1">
+<div class="signature"><code><span class="keyword">fun </span><span class="identifier">J_underTheHood_2</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Unit</span></code></div>
+
+Under the hood test 2 without using kotlinx stuff
+FIXME NOW: this doesn't work correctly (it logs too much)!
+
+
+</td>
+</tr>
+<tr>
+<td markdown="1">
+<a href="-j_under-the-hood_3.html">J_underTheHood_3</a>
+</td>
+<td markdown="1">
+<div class="signature"><code><span class="keyword">fun </span><span class="identifier">J_underTheHood_3</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Unit</span></code></div>
+
+Under the hood - error case investigation
+FIXME NOW: this example should never print "coroutine end", but it does immediately!
+
+
+</td>
+</tr>
+<tr>
+<td markdown="1">
+<a href="-k_sequence.html">K_sequence</a>
+</td>
+<td markdown="1">
+<div class="signature"><code><span class="keyword">fun </span><span class="identifier">K_sequence</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Unit</span></code></div>
+
+Sequence builder test
+
+
+</td>
+</tr>
+<tr>
+<td markdown="1">
+<a href="-l_completable-future.html">L_completableFuture</a>
+</td>
+<td markdown="1">
+<div class="signature"><code><span class="keyword">fun </span><span class="identifier">L_completableFuture</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Unit</span></code></div>
+
+Wrap coroutine in completable future
+
+
+</td>
+</tr>
+<tr>
+<td markdown="1">
+<a href="create-future.html">createFuture</a>
+</td>
+<td markdown="1">
+<div class="signature"><code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span> <span class="identifier">createFuture</span><span class="symbol">(</span><br/>&nbsp;&nbsp;&nbsp;&nbsp;<span class="parameterName" id="pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro$createFuture(kotlin.coroutines.SuspendFunction0((pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro.createFuture.T)))/block">block</span><span class="symbol">:</span>&nbsp;<span class="identifier">SuspendFunction0</span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span><br/><span class="symbol">)</span><span class="symbol">: </span><a href="http://docs.oracle.com/javase/6/docs/api/java/util/concurrent/CompletableFuture.html"><span class="identifier">CompletableFuture</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span></code></div>
+
+Create (and start) a future representing a coroutine
+
+
+</td>
+</tr>
+<tr>
+<td markdown="1">
 <a href="delay-and-print-world.html">delayAndPrintWorld</a>
 </td>
 <td markdown="1">

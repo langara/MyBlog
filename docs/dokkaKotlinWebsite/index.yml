@@ -31,6 +31,16 @@
               url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-i_cancellation-is-cooperative_2
             - title: J_underTheHood_1
               url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-j_under-the-hood_1
+            - title: J_underTheHood_2
+              url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-j_under-the-hood_2
+            - title: J_underTheHood_3
+              url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-j_under-the-hood_3
+            - title: K_sequence
+              url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-k_sequence
+            - title: L_completableFuture
+              url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-l_completable-future
+            - title: createFuture
+              url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/create-future
             - title: delayAndPrintWorld
               url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/delay-and-print-world
             - title: getCurrentTimeString
@@ -67,6 +77,16 @@
               url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-i_cancellation-is-cooperative_2
             - title: J_underTheHood_1
               url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-j_under-the-hood_1
+            - title: J_underTheHood_2
+              url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-j_under-the-hood_2
+            - title: J_underTheHood_3
+              url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-j_under-the-hood_3
+            - title: K_sequence
+              url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-k_sequence
+            - title: L_completableFuture
+              url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-l_completable-future
+            - title: createFuture
+              url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/create-future
             - title: delayAndPrintWorld
               url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/delay-and-print-world
             - title: getCurrentTimeString

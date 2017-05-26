@@ -1,0 +1,31 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>A_Coroutines_Intro.L_completableFuture - myblog</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">myblog</a>&nbsp;/&nbsp;<a href="../index.html">pl.mareklangiewicz.myblog.coroutines</a>&nbsp;/&nbsp;<a href="index.html">A_Coroutines_Intro</a>&nbsp;/&nbsp;<a href=".">L_completableFuture</a><br/>
+<br/>
+<h1>L_completableFuture</h1>
+<a name="pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro$L_completableFuture()"></a>
+<code><span class="keyword">fun </span><span class="identifier">L_completableFuture</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Unit</span></code>
+<p>Wrap coroutine in completable future</p>
+<pre><code class="lang-kotlin">"main: start".p
+val future: CompletableFuture&lt;Int&gt; = createFuture {
+    "coroutine: start".p
+    delay(1000)
+    "coroutine: middle".p
+    delay(1000)
+    "coroutine: end".p
+    666
+}
+"main: before: thenAccept".p
+future
+        .thenApply { it * 10 }
+        .thenAccept { "thenAccept: $it".p }
+"main: after: thenAccept".p
+Thread.sleep(3000)
+"main: after: sleep".p</code></pre>
+</BODY>
+</HTML>

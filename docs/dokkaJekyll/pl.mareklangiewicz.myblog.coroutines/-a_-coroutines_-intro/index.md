@@ -36,6 +36,13 @@ but here it is both: **documentation** and **runnable code** in **one place**.
 | [I_cancellationIsCooperative_1](-i_cancellation-is-cooperative_1.md) | `fun I_cancellationIsCooperative_1(): Unit`<br>Cancellation is cooperative 1 |
 | [I_cancellationIsCooperative_2](-i_cancellation-is-cooperative_2.md) | `fun I_cancellationIsCooperative_2(): Unit`<br>Cancellation is cooperative 2 |
 | [J_underTheHood_1](-j_under-the-hood_1.md) | `fun J_underTheHood_1(): Unit`<br>Under the hood test |
+| [J_underTheHood_2](-j_under-the-hood_2.md) | `fun J_underTheHood_2(): Unit`<br>Under the hood test 2 without using kotlinx stuff
+FIXME NOW: this doesn't work correctly (it logs too much)! |
+| [J_underTheHood_3](-j_under-the-hood_3.md) | `fun J_underTheHood_3(): Unit`<br>Under the hood - error case investigation
+FIXME NOW: this example should never print "coroutine end", but it does immediately! |
+| [K_sequence](-k_sequence.md) | `fun K_sequence(): Unit`<br>Sequence builder test |
+| [L_completableFuture](-l_completable-future.md) | `fun L_completableFuture(): Unit`<br>Wrap coroutine in completable future |
+| [createFuture](create-future.md) | `fun <T> createFuture(block: SuspendFunction0<T>): `[`CompletableFuture`](http://docs.oracle.com/javase/6/docs/api/java/util/concurrent/CompletableFuture.html)`<T>`<br>Create (and start) a future representing a coroutine |
 | [delayAndPrintWorld](delay-and-print-world.md) | `suspend fun delayAndPrintWorld(): Unit`<br>Extracted fun delayAndPrintWorld |
 | [getCurrentTimeString](get-current-time-string.md) | `fun getCurrentTimeString(): String`<br>Current system time as a string |
 

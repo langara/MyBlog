@@ -19,13 +19,17 @@ val coroutine: suspend Unit.() -> Unit = {
     delay(1000)
     "coroutine end".p
 }
-val completition = object : Continuation<Unit> {
+val completion = object : Continuation<Unit> {
     override val context = EmptyCoroutineContext
-    override fun resume(value: Unit) { "completition: completed normally".p }
-    override fun resumeWithException(exception: Throwable) { "completition: exception: $exception".p }
+    override fun resume(value: Unit) {
+        "completion: completed normally".p
+    }
+    override fun resumeWithException(exception: Throwable) {
+        "completion: exception: $exception".p
+    }
 }
 "main: start".p
-coroutine.startCoroutine(Unit, completition)
+coroutine.startCoroutine(Unit, completion)
 "main: after startCoroutine".p
 Thread.sleep(3000)
 "main: after sleep 3000".p
