@@ -1,10 +1,13 @@
 package pl.mareklangiewicz.myblog.coroutines
 
+import io.reactivex.Flowable
 import kotlinx.coroutines.experimental.*
 import kotlinx.coroutines.experimental.future.await
 import kotlinx.coroutines.experimental.future.future
 import org.junit.Ignore
 import org.junit.Test
+import org.reactivestreams.Subscriber
+import org.reactivestreams.Subscription
 import java.util.*
 import java.util.concurrent.CompletableFuture
 import java.util.concurrent.Executors
@@ -31,7 +34,7 @@ class A_Coroutines_Intro {
     /**
      * Print given string with "Coroutines Intro" prefix and with current time in square brackets
      */
-    val String.p get() = println("Coroutines Intro [${getCurrentTimeString()}] $this")
+    val Any.p get() = println("Coroutines Intro [${getCurrentTimeString()}] $this")
 
     /**
      * First coroutine
@@ -605,5 +608,62 @@ class A_Coroutines_Intro {
         }
         Thread.sleep(3000)
         "main: end".p
+    }
+
+    interface Receiver<T> : AutoCloseable {
+        suspend fun receive() : T
+    }
+
+    class RxSubscriber<T>(val block: suspend Receiver<T>.() -> Unit) : Subscriber<T> {
+
+        private lateinit var subscription: Subscription
+
+        private lateinit var continuation: Continuation<T>
+
+        private val receiver = object : Receiver<T> {
+            suspend override fun receive(): T = suspendCoroutine {
+                continuation = it
+                subscription.request(1)
+            }
+            override fun close() = subscription.cancel()
+        }
+
+        private val completion = object : Continuation<Unit> {
+            override val context = EmptyCoroutineContext
+            override fun resume(value: Unit) { subscription.cancel() }
+            override fun resumeWithException(exception: Throwable) { subscription.cancel() }
+        }
+
+        override fun onSubscribe(subscription: Subscription) {
+            this.subscription = subscription
+            block.startCoroutine(receiver, completion)
+        }
+
+        override fun onNext(t: T) = continuation.resume(t)
+        override fun onError(t: Throwable) = continuation.resumeWithException(t)
+        override fun onComplete() = Unit
+    }
+
+    @Test
+    fun M_rxSubscriber() {
+
+        val flowable = Flowable
+                .interval(300, TimeUnit.MILLISECONDS)
+                .take(10)
+
+        val subscriber = RxSubscriber<Long> {
+            receive().p
+//            close()
+            receive().p
+            receive().p
+//            delay(1500)
+            receive().p
+            receive().p
+            receive().p
+        }
+
+        flowable.subscribe(subscriber)
+
+        Thread.sleep(10000)
     }
 }

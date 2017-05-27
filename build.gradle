@@ -3,6 +3,7 @@ version '0.1'
 
 buildscript {
     ext.kotlin_version = '1.1.2'
+    ext.kotlinx_coroutines_version = '0.15'
 
     repositories {
         maven { url 'http://dl.bintray.com/kotlin/kotlin-eap-1.1' }
@@ -28,8 +29,9 @@ dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlin_version"
     compile 'junit:junit:4.11'
     compile "org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version"
-    compile "org.jetbrains.kotlinx:kotlinx-coroutines-core:0.15"
-    compile "org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:0.15"
+    compile "org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlinx_coroutines_version"
+    compile "org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:$kotlinx_coroutines_version"
+    compile "org.jetbrains.kotlinx:kotlinx-coroutines-rx2:$kotlinx_coroutines_version"
 }
 
 kotlin {
