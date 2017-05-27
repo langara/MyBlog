@@ -1,6 +1,8 @@
 package pl.mareklangiewicz.myblog.coroutines
 
 import kotlinx.coroutines.experimental.*
+import kotlinx.coroutines.experimental.future.await
+import kotlinx.coroutines.experimental.future.future
 import org.junit.Ignore
 import org.junit.Test
 import java.util.*
@@ -523,5 +525,39 @@ class A_Coroutines_Intro {
         Thread.sleep(3000)
 
         "main: after: sleep".p
+    }
+
+    /**
+     * Use future related functions from kotlinx.coroutines
+     *
+     * @sample pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro.L_completableFuture_4
+     */
+    @Test
+    fun L_completableFuture_4() {
+        "main: start".p
+        future {
+            "main future: start".p
+            val f1 = future {
+                "f1: start".p
+                delay(1000) // sleep 1s
+                "f1: end".p
+                1
+            }
+            val f2 = future {
+                "f2: start".p
+                delay(1000) // sleep 1s
+                "f2: end".p
+                2
+            }
+            "main future: before awaits".p
+            val f1val = f1.await()
+            "main future: after f1.await(): f1val = $f1val".p
+            val f2val = f2.await()
+            "main future: after f2.await(): f2val = $f2val".p
+            val sum = f1val + f2val
+            "main future: after awaits: sum = $sum".p
+        }
+        Thread.sleep(3000)
+        "main: end".p
     }
 }
