@@ -107,10 +107,10 @@ class A_Coroutines_Intro {
     /**
      * Extract suspending function
      *
-     * FIXME: this throws an exception and I don't know why...
+     * This throws an exception (see documented errors in next examples - under the hood 2, 3..)
      * @sample pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro.E_extractSuspendingFunction
      */
-    @Test fun E_extractSuspendingFunction() = sample {
+    @Ignore @Test fun E_extractSuspendingFunction() = sample {
         val job = launch(CommonPool) {
             delayAndPrintWorld()
         }
@@ -263,23 +263,28 @@ class A_Coroutines_Intro {
         "main: after sleep 3000".p
     }
 
+    val myscheduler = Executors.newSingleThreadScheduledExecutor()
+
+    /**
+     * Simple suspending function implementation
+     *
+     * Important: the "return" keyword (or expression body syntax) is necessary here.
+     * Without "return" it returns from suspension more than once.. looks like bug in state machine generation
+     */
+    suspend fun mydelay(time: Long): Unit {
+        return suspendCoroutine<Unit> { continuation ->
+            myscheduler.schedule({ continuation.resume(Unit) }, time, TimeUnit.MILLISECONDS)
+        }
+    }
+
 
     /**
      * Under the hood test 2 without using kotlinx stuff
-     * FIXME NOW: this doesn't work correctly (it logs too much)!
      *
      * @sample pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro.J_underTheHood_2
      */
     @Test
     fun J_underTheHood_2() {
-
-        val scheduler = Executors.newSingleThreadScheduledExecutor()
-
-        val mydelay: suspend (time: Long) -> Unit = { time ->
-            suspendCoroutine<Unit> { continuation ->
-                scheduler.schedule({ continuation.resume(Unit) }, time, TimeUnit.MILLISECONDS)
-            }
-        }
 
         val coroutine: suspend () -> Unit = {
             "coroutine start".p
@@ -309,24 +314,29 @@ class A_Coroutines_Intro {
         "main: after sleep 3000".p
     }
 
+    suspend fun mynever1() {
+        suspendCoroutine<Unit> { continuation ->
+            "Got continuation: $continuation, but I will never call .resume(Unit)".p
+        }
+    }
+
+    suspend fun mynever2() = suspendCoroutine<Unit> { continuation ->
+        "Got continuation: $continuation, but I will never call .resume(Unit)".p
+    }
+
     /**
      * Under the hood - error case investigation
-     * FIXME NOW: this example should never print "coroutine end", but it does immediately!
+     *
+     * This example should never print "coroutine end", but it does immediately...
      *
      * @sample pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro.J_underTheHood_3
      */
     @Test
     fun J_underTheHood_3() {
 
-        val mynever: suspend () -> Unit = {
-            suspendCoroutine<Unit> { continuation ->
-                "Got continuation: $continuation, but I will never call .resume(Unit)".p
-            }
-        }
-
         val coroutine: suspend () -> Unit = {
             "coroutine start".p
-            mynever()
+            mynever1() // TO FIX IT: CHANGE "mynever1()" TO "mynever2()"
             "coroutine end - THIS LINE SHOULD NEVER BE CALLED!".p
         }
 
