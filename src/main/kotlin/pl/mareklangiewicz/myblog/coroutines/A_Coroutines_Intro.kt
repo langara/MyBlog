@@ -2,6 +2,8 @@ package pl.mareklangiewicz.myblog.coroutines
 
 import io.reactivex.Flowable
 import kotlinx.coroutines.experimental.*
+import kotlinx.coroutines.experimental.channels.Channel
+import kotlinx.coroutines.experimental.channels.SendChannel
 import kotlinx.coroutines.experimental.future.await
 import kotlinx.coroutines.experimental.future.future
 import org.junit.Ignore
@@ -611,7 +613,7 @@ class A_Coroutines_Intro {
     }
 
     interface Receiver<T> : AutoCloseable {
-        suspend fun receive() : T
+        suspend fun receive(): T
     }
 
     class RxSubscriber<T>(val block: suspend Receiver<T>.() -> Unit) : Subscriber<T> {
@@ -625,13 +627,19 @@ class A_Coroutines_Intro {
                 continuation = it
                 subscription.request(1)
             }
+
             override fun close() = subscription.cancel()
         }
 
         private val completion = object : Continuation<Unit> {
             override val context = EmptyCoroutineContext
-            override fun resume(value: Unit) { subscription.cancel() }
-            override fun resumeWithException(exception: Throwable) { subscription.cancel() }
+            override fun resume(value: Unit) {
+                subscription.cancel()
+            }
+
+            override fun resumeWithException(exception: Throwable) {
+                subscription.cancel()
+            }
         }
 
         override fun onSubscribe(subscription: Subscription) {
@@ -644,6 +652,11 @@ class A_Coroutines_Intro {
         override fun onComplete() = Unit
     }
 
+    /**
+     * Implement rx subscriber wrapping coroutine block
+     *
+     * @sample pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro.M_rxSubscriber
+     */
     @Test
     fun M_rxSubscriber() {
 
@@ -665,5 +678,41 @@ class A_Coroutines_Intro {
         flowable.subscribe(subscriber)
 
         Thread.sleep(10000)
+    }
+
+    suspend fun fibonacci(n: Int, c: SendChannel<Int>) {
+        var x = 0
+        var y = 1
+        for (i in 0..n - 1) {
+//            delay(400)
+            "sending $x".p
+            c.send(x)
+            "sending $x done.".p
+
+            val next = x + y
+            x = y
+            y = next
+        }
+        c.close()
+    }
+
+    /**
+     * Use channels to implement fibonacci numbers generator
+     *
+     * @sample pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro.N_fibonacciChannels
+     */
+    @Test
+    fun N_fibonacciChannels() {
+        val c = Channel<Int>(2) // experiment with different capacity
+        launch(CommonPool) {
+            fibonacci(10, c)
+        }
+        launch(CommonPool) {
+            for (x in c) {
+                delay(300)
+                "*********************** received $x".p
+            }
+        }
+        Thread.sleep(3000)
     }
 }
