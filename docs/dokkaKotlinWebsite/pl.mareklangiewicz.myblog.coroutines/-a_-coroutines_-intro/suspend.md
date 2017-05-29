@@ -11,3 +11,9 @@ layout: api
 
 Wrap future in suspension point
 
+``` kotlin
+suspendCoroutine { continuation ->
+        thenAccept { continuation.resume(it) }
+    }
+```
+

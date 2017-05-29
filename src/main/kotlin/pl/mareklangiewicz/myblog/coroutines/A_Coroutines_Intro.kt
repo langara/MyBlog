@@ -112,10 +112,9 @@ class A_Coroutines_Intro {
     /**
      * Extract suspending function
      *
-     * This throws an exception (see documented errors in next examples - under the hood 2, 3..)
      * @sample pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro.E_extractSuspendingFunction
      */
-    @Ignore @Test fun E_extractSuspendingFunction() = sample {
+    @Test fun E_extractSuspendingFunction() = sample {
         val job = launch(CommonPool) {
             delayAndPrintWorld()
         }
@@ -268,7 +267,7 @@ class A_Coroutines_Intro {
         "main: after sleep 3000".p
     }
 
-    val myscheduler = Executors.newSingleThreadScheduledExecutor()
+    private val myscheduler = Executors.newSingleThreadScheduledExecutor()
 
     /**
      * Simple suspending function implementation
@@ -319,12 +318,22 @@ class A_Coroutines_Intro {
         "main: after sleep 3000".p
     }
 
+    /**
+     * Should suspend forever (but it does not)
+     *
+     * @sample pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro.mynever1
+     */
     suspend fun mynever1() {
         suspendCoroutine<Unit> { continuation ->
             "Got continuation: $continuation, but I will never call .resume(Unit)".p
         }
     }
 
+    /**
+     * Correctly suspends forever
+     *
+     * @sample pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro.mynever2
+     */
     suspend fun mynever2() = suspendCoroutine<Unit> { continuation ->
         "Got continuation: $continuation, but I will never call .resume(Unit)".p
     }
@@ -506,6 +515,8 @@ class A_Coroutines_Intro {
 
     /**
      * Wrap future in suspension point
+     *
+     * @sample pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro.suspend
      */
     suspend fun <T> CompletableFuture<T>.suspend(): T = suspendCoroutine { continuation ->
         thenAccept { continuation.resume(it) }
@@ -612,11 +623,28 @@ class A_Coroutines_Intro {
         "main: end".p
     }
 
+    /**
+     * Something that you can ask for items, but it can suspend when item is not available yet
+     *
+     * @sample pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro.Receiver
+     */
     interface Receiver<T> : AutoCloseable {
+
+        /**
+         * Receives next item immediately or suspends if no item is ready
+         */
         suspend fun receive(): T
     }
 
-    class RxSubscriber<T>(val block: suspend Receiver<T>.() -> Unit) : Subscriber<T> {
+    /**
+     * Wraps a coroutine block in rx subscriber class.
+     *
+     * Returned subscriber can be used in [Flowable.subscribe]
+     * It honors back pressure correctly
+     *
+     * @sample pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro.RxSubscriber
+     */
+    class RxSubscriber<T>(private val block: suspend Receiver<T>.() -> Unit) : Subscriber<T> {
 
         private lateinit var subscription: Subscription
 
@@ -642,13 +670,27 @@ class A_Coroutines_Intro {
             }
         }
 
+        /**
+         * Starts the coroutine
+         */
         override fun onSubscribe(subscription: Subscription) {
             this.subscription = subscription
             block.startCoroutine(receiver, completion)
         }
 
+        /**
+         * Resumes the coroutine with given item
+         */
         override fun onNext(t: T) = continuation.resume(t)
+
+        /**
+         * Resumes the coroutine with given exception
+         */
         override fun onError(t: Throwable) = continuation.resumeWithException(t)
+
+        /**
+         * Does nothing
+         */
         override fun onComplete() = Unit
     }
 
@@ -680,6 +722,11 @@ class A_Coroutines_Intro {
         Thread.sleep(10000)
     }
 
+    /**
+     * Fibonacci numbers generator
+     *
+     * Sends given number of Fibonacci numbers to given [SendChannel]
+     */
     suspend fun fibonacci(n: Int, c: SendChannel<Int>) {
         var x = 0
         var y = 1

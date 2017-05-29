@@ -10,3 +10,9 @@ title: A_Coroutines_Intro.suspend -
 
 Wrap future in suspension point
 
+``` kotlin
+suspendCoroutine { continuation ->
+        thenAccept { continuation.resume(it) }
+    }
+```
+

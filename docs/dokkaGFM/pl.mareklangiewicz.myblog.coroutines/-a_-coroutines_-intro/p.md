@@ -2,7 +2,7 @@
 
 # p
 
-`val String.p: Unit`
+`val Any.p: Unit`
 
 Print given string with "Coroutines Intro" prefix and with current time in square brackets
 

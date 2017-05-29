@@ -13,6 +13,27 @@
 <p>This is my attempt to learn about kotlin coroutines and write some tests on the way.</p>
 <p>The content here is based on <a href="https://github.com/Kotlin/kotlinx.coroutines/blob/master/coroutines-guide.md">Coroutines Guide</a>
 but here it is both: <strong>documentation</strong> and <strong>runnable code</strong> in <strong>one place</strong>.</p>
+<h3>Types</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<a href="-receiver/index.html">Receiver</a></td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">Receiver</span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="http://docs.oracle.com/javase/6/docs/api/java/lang/AutoCloseable.html"><span class="identifier">AutoCloseable</span></a></code>
+<p>Something that you can ask for items, but it can suspend when item is not available yet</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="-rx-subscriber/index.html">RxSubscriber</a></td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">RxSubscriber</span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Subscriber</span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span></code>
+<p>Wraps a coroutine block in rx subscriber class.</p>
+</td>
+</tr>
+</tbody>
+</table>
 <h3>Constructors</h3>
 <table>
 <tbody>
@@ -33,7 +54,7 @@ but here it is both: <strong>documentation</strong> and <strong>runnable code</s
 <td>
 <a href="p.html">p</a></td>
 <td>
-<code><span class="keyword">val </span><span class="identifier">String</span><span class="symbol">.</span><span class="identifier">p</span><span class="symbol">: </span><span class="identifier">Unit</span></code>
+<code><span class="keyword">val </span><span class="identifier">Any</span><span class="symbol">.</span><span class="identifier">p</span><span class="symbol">: </span><span class="identifier">Unit</span></code>
 <p>Print given string with "Coroutines Intro" prefix and with current time in square brackets</p>
 </td>
 </tr>
@@ -135,8 +156,7 @@ but here it is both: <strong>documentation</strong> and <strong>runnable code</s
 <a href="-j_under-the-hood_2.html">J_underTheHood_2</a></td>
 <td>
 <code><span class="keyword">fun </span><span class="identifier">J_underTheHood_2</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Unit</span></code>
-<p>Under the hood test 2 without using kotlinx stuff
-FIXME NOW: this doesn't work correctly (it logs too much)!</p>
+<p>Under the hood test 2 without using kotlinx stuff</p>
 </td>
 </tr>
 <tr>
@@ -144,8 +164,7 @@ FIXME NOW: this doesn't work correctly (it logs too much)!</p>
 <a href="-j_under-the-hood_3.html">J_underTheHood_3</a></td>
 <td>
 <code><span class="keyword">fun </span><span class="identifier">J_underTheHood_3</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Unit</span></code>
-<p>Under the hood - error case investigation
-FIXME NOW: this example should never print "coroutine end", but it does immediately!</p>
+<p>Under the hood - error case investigation</p>
 </td>
 </tr>
 <tr>
@@ -182,6 +201,38 @@ FIXME NOW: this example should never print "coroutine end", but it does immediat
 </tr>
 <tr>
 <td>
+<a href="-l_completable-future_4.html">L_completableFuture_4</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">L_completableFuture_4</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Unit</span></code>
+<p>Use future related functions from kotlinx.coroutines</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="-l_completable-future_5.html">L_completableFuture_5</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">L_completableFuture_5</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Unit</span></code>
+<p>Use prepareFuture to make last example more lazy and simple</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="-m_rx-subscriber.html">M_rxSubscriber</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">M_rxSubscriber</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Unit</span></code>
+<p>Implement rx subscriber wrapping coroutine block</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="-n_fibonacci-channels.html">N_fibonacciChannels</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">N_fibonacciChannels</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Unit</span></code>
+<p>Use channels to implement fibonacci numbers generator</p>
+</td>
+</tr>
+<tr>
+<td>
 <a href="create-future.html">createFuture</a></td>
 <td>
 <code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span> <span class="identifier">createFuture</span><span class="symbol">(</span><span class="identifier" id="pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro$createFuture(kotlin.coroutines.SuspendFunction0((pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro.createFuture.T)))/block">block</span><span class="symbol">:</span>&nbsp;<span class="identifier">SuspendFunction0</span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="http://docs.oracle.com/javase/6/docs/api/java/util/concurrent/CompletableFuture.html"><span class="identifier">CompletableFuture</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span></code>
@@ -198,10 +249,42 @@ FIXME NOW: this example should never print "coroutine end", but it does immediat
 </tr>
 <tr>
 <td>
+<a href="fibonacci.html">fibonacci</a></td>
+<td>
+<code><span class="keyword">suspend</span> <span class="keyword">fun </span><span class="identifier">fibonacci</span><span class="symbol">(</span><span class="identifier" id="pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro$fibonacci(kotlin.Int, kotlinx.coroutines.experimental.channels.SendChannel((kotlin.Int)))/n">n</span><span class="symbol">:</span>&nbsp;<span class="identifier">Int</span><span class="symbol">, </span><span class="identifier" id="pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro$fibonacci(kotlin.Int, kotlinx.coroutines.experimental.channels.SendChannel((kotlin.Int)))/c">c</span><span class="symbol">:</span>&nbsp;<span class="identifier">SendChannel</span><span class="symbol">&lt;</span><span class="identifier">Int</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Unit</span></code>
+<p>Fibonacci numbers generator</p>
+</td>
+</tr>
+<tr>
+<td>
 <a href="get-current-time-string.html">getCurrentTimeString</a></td>
 <td>
 <code><span class="keyword">fun </span><span class="identifier">getCurrentTimeString</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">String</span></code>
 <p>Current system time as a string</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="mydelay.html">mydelay</a></td>
+<td>
+<code><span class="keyword">suspend</span> <span class="keyword">fun </span><span class="identifier">mydelay</span><span class="symbol">(</span><span class="identifier" id="pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro$mydelay(kotlin.Long)/time">time</span><span class="symbol">:</span>&nbsp;<span class="identifier">Long</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Unit</span></code>
+<p>Simple suspending function implementation</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="mynever1.html">mynever1</a></td>
+<td>
+<code><span class="keyword">suspend</span> <span class="keyword">fun </span><span class="identifier">mynever1</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Unit</span></code>
+<p>Should suspend forever (but it does not)</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="mynever2.html">mynever2</a></td>
+<td>
+<code><span class="keyword">suspend</span> <span class="keyword">fun </span><span class="identifier">mynever2</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Unit</span></code>
+<p>Correctly suspends forever</p>
 </td>
 </tr>
 <tr>

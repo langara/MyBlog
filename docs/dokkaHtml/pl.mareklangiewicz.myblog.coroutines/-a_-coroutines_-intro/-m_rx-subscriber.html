@@ -1,0 +1,30 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>A_Coroutines_Intro.M_rxSubscriber - </title>
+<link rel="stylesheet" href="../../style.css">
+</HEAD>
+<BODY>
+<a href="../index.html">pl.mareklangiewicz.myblog.coroutines</a>&nbsp;/&nbsp;<a href="index.html">A_Coroutines_Intro</a>&nbsp;/&nbsp;<a href=".">M_rxSubscriber</a><br/>
+<br/>
+<h1>M_rxSubscriber</h1>
+<a name="pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro$M_rxSubscriber()"></a>
+<code><span class="keyword">fun </span><span class="identifier">M_rxSubscriber</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Unit</span></code>
+<p>Implement rx subscriber wrapping coroutine block</p>
+<pre><code class="lang-kotlin">        val flowable = Flowable
+                .interval(300, TimeUnit.MILLISECONDS)
+                .take(10)
+        val subscriber = RxSubscriber&lt;Long&gt; {
+            receive().p
+//            close()
+            receive().p
+            receive().p
+//            delay(1500)
+            receive().p
+            receive().p
+            receive().p
+        }
+        flowable.subscribe(subscriber)
+        Thread.sleep(10000)</code></pre>
+</BODY>
+</HTML>

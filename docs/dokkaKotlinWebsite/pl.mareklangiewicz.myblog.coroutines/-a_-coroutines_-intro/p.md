@@ -7,7 +7,7 @@ layout: api
 
 # p
 
-<div class="signature"><code><span class="keyword">val </span><span class="identifier">String</span><span class="symbol">.</span><span class="identifier">p</span><span class="symbol">: </span><span class="identifier">Unit</span></code></div>
+<div class="signature"><code><span class="keyword">val </span><span class="identifier">Any</span><span class="symbol">.</span><span class="identifier">p</span><span class="symbol">: </span><span class="identifier">Unit</span></code></div>
 
 Print given string with "Coroutines Intro" prefix and with current time in square brackets
 

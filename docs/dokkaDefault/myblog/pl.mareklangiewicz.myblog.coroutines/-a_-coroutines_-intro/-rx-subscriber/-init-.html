@@ -1,0 +1,63 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>A_Coroutines_Intro.RxSubscriber.<init> - myblog</title>
+<link rel="stylesheet" href="../../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../../index.html">myblog</a>&nbsp;/&nbsp;<a href="../../index.html">pl.mareklangiewicz.myblog.coroutines</a>&nbsp;/&nbsp;<a href="../index.html">A_Coroutines_Intro</a>&nbsp;/&nbsp;<a href="index.html">RxSubscriber</a>&nbsp;/&nbsp;<a href=".">&lt;init&gt;</a><br/>
+<br/>
+<h1>&lt;init&gt;</h1>
+<code><span class="identifier">RxSubscriber</span><span class="symbol">(</span><span class="identifier" id="pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro.RxSubscriber$<init>(kotlin.coroutines.SuspendFunction1((pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro.Receiver((pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro.RxSubscriber.T)), kotlin.Unit)))/block">block</span><span class="symbol">:</span>&nbsp;<span class="identifier">@ExtensionFunctionType</span> <span class="identifier">SuspendFunction1</span><span class="symbol">&lt;</span><a href="../-receiver/index.html"><span class="identifier">Receiver</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span><span class="symbol">,</span>&nbsp;<span class="identifier">Unit</span><span class="symbol">&gt;</span><span class="symbol">)</span></code>
+<p>Wraps a coroutine block in rx subscriber class.</p>
+<p>Returned subscriber can be used in <a href="#">Flowable.subscribe</a>
+It honors back pressure correctly</p>
+<pre><code class="lang-kotlin">/**
+     * Wraps a coroutine block in rx subscriber class.
+     *
+     * Returned subscriber can be used in [Flowable.subscribe]
+     * It honors back pressure correctly
+     *
+     * @sample pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro.RxSubscriber
+     */
+    class RxSubscriber&lt;T&gt;(private val block: suspend Receiver&lt;T&gt;.() -&gt; Unit) : Subscriber&lt;T&gt; {
+        private lateinit var subscription: Subscription
+        private lateinit var continuation: Continuation&lt;T&gt;
+        private val receiver = object : Receiver&lt;T&gt; {
+            suspend override fun receive(): T = suspendCoroutine {
+                continuation = it
+                subscription.request(1)
+            }
+            override fun close() = subscription.cancel()
+        }
+        private val completion = object : Continuation&lt;Unit&gt; {
+            override val context = EmptyCoroutineContext
+            override fun resume(value: Unit) {
+                subscription.cancel()
+            }
+            override fun resumeWithException(exception: Throwable) {
+                subscription.cancel()
+            }
+        }
+        /**
+         * Starts the coroutine
+         */
+        override fun onSubscribe(subscription: Subscription) {
+            this.subscription = subscription
+            block.startCoroutine(receiver, completion)
+        }
+        /**
+         * Resumes the coroutine with given item
+         */
+        override fun onNext(t: T) = continuation.resume(t)
+        /**
+         * Resumes the coroutine with given exception
+         */
+        override fun onError(t: Throwable) = continuation.resumeWithException(t)
+        /**
+         * Does nothing
+         */
+        override fun onComplete() = Unit
+    }</code></pre>
+</BODY>
+</HTML>

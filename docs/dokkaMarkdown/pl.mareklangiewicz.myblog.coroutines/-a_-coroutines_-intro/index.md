@@ -11,13 +11,18 @@ This is my attempt to learn about kotlin coroutines and write some tests on the 
 The content here is based on [Coroutines Guide](https://github.com/Kotlin/kotlinx.coroutines/blob/master/coroutines-guide.md)
 but here it is both: **documentation** and **runnable code** in **one place**.
 
+### Types
+
+| [Receiver](-receiver/index.md) | `interface Receiver<T> : `[`AutoCloseable`](http://docs.oracle.com/javase/6/docs/api/java/lang/AutoCloseable.html)<br>Something that you can ask for items, but it can suspend when item is not available yet |
+| [RxSubscriber](-rx-subscriber/index.md) | `class RxSubscriber<T> : Subscriber<T>`<br>Wraps a coroutine block in rx subscriber class. |
+
 ### Constructors
 
 | [&lt;init&gt;](-init-.md) | `A_Coroutines_Intro()`<br>Kotlin Coroutines Intro in "TDD" (kind of..) |
 
 ### Properties
 
-| [p](p.md) | `val String.p: Unit`<br>Print given string with "Coroutines Intro" prefix and with current time in square brackets |
+| [p](p.md) | `val Any.p: Unit`<br>Print given string with "Coroutines Intro" prefix and with current time in square brackets |
 
 ### Functions
 
@@ -32,17 +37,23 @@ but here it is both: **documentation** and **runnable code** in **one place**.
 | [I_cancellationIsCooperative_1](-i_cancellation-is-cooperative_1.md) | `fun I_cancellationIsCooperative_1(): Unit`<br>Cancellation is cooperative 1 |
 | [I_cancellationIsCooperative_2](-i_cancellation-is-cooperative_2.md) | `fun I_cancellationIsCooperative_2(): Unit`<br>Cancellation is cooperative 2 |
 | [J_underTheHood_1](-j_under-the-hood_1.md) | `fun J_underTheHood_1(): Unit`<br>Under the hood test |
-| [J_underTheHood_2](-j_under-the-hood_2.md) | `fun J_underTheHood_2(): Unit`<br>Under the hood test 2 without using kotlinx stuff
-FIXME NOW: this doesn't work correctly (it logs too much)! |
-| [J_underTheHood_3](-j_under-the-hood_3.md) | `fun J_underTheHood_3(): Unit`<br>Under the hood - error case investigation
-FIXME NOW: this example should never print "coroutine end", but it does immediately! |
+| [J_underTheHood_2](-j_under-the-hood_2.md) | `fun J_underTheHood_2(): Unit`<br>Under the hood test 2 without using kotlinx stuff |
+| [J_underTheHood_3](-j_under-the-hood_3.md) | `fun J_underTheHood_3(): Unit`<br>Under the hood - error case investigation |
 | [K_sequence](-k_sequence.md) | `fun K_sequence(): Unit`<br>Sequence builder test |
 | [L_completableFuture](-l_completable-future.md) | `fun L_completableFuture(): Unit`<br>Wrap coroutine in completable future |
 | [L_completableFuture_2](-l_completable-future_2.md) | `fun L_completableFuture_2(): Unit`<br>Wrap coroutine in LAZY completable future |
 | [L_completableFuture_3](-l_completable-future_3.md) | `fun L_completableFuture_3(): Unit`<br>Wrap futures in suspension points |
+| [L_completableFuture_4](-l_completable-future_4.md) | `fun L_completableFuture_4(): Unit`<br>Use future related functions from kotlinx.coroutines |
+| [L_completableFuture_5](-l_completable-future_5.md) | `fun L_completableFuture_5(): Unit`<br>Use prepareFuture to make last example more lazy and simple |
+| [M_rxSubscriber](-m_rx-subscriber.md) | `fun M_rxSubscriber(): Unit`<br>Implement rx subscriber wrapping coroutine block |
+| [N_fibonacciChannels](-n_fibonacci-channels.md) | `fun N_fibonacciChannels(): Unit`<br>Use channels to implement fibonacci numbers generator |
 | [createFuture](create-future.md) | `fun <T> createFuture(block: SuspendFunction0<T>): `[`CompletableFuture`](http://docs.oracle.com/javase/6/docs/api/java/util/concurrent/CompletableFuture.html)`<T>`<br>Create (and start) a future representing a coroutine |
 | [delayAndPrintWorld](delay-and-print-world.md) | `suspend fun delayAndPrintWorld(): Unit`<br>Extracted fun delayAndPrintWorld |
+| [fibonacci](fibonacci.md) | `suspend fun fibonacci(n: Int, c: SendChannel<Int>): Unit`<br>Fibonacci numbers generator |
 | [getCurrentTimeString](get-current-time-string.md) | `fun getCurrentTimeString(): String`<br>Current system time as a string |
+| [mydelay](mydelay.md) | `suspend fun mydelay(time: Long): Unit`<br>Simple suspending function implementation |
+| [mynever1](mynever1.md) | `suspend fun mynever1(): Unit`<br>Should suspend forever (but it does not) |
+| [mynever2](mynever2.md) | `suspend fun mynever2(): Unit`<br>Correctly suspends forever |
 | [prepareFuture](prepare-future.md) | `fun <T> prepareFuture(block: SuspendFunction0<T>): () -> `[`CompletableFuture`](http://docs.oracle.com/javase/6/docs/api/java/util/concurrent/CompletableFuture.html)`<T>`<br>Prepare a future representing a coroutine |
 | [suspend](suspend.md) | `suspend fun <T> `[`CompletableFuture`](http://docs.oracle.com/javase/6/docs/api/java/util/concurrent/CompletableFuture.html)`<T>.suspend(): T`<br>Wrap future in suspension point |
 

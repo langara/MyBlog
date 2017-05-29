@@ -10,17 +10,13 @@ layout: api
 <div class="signature"><code><span class="keyword">fun </span><span class="identifier">J_underTheHood_3</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Unit</span></code></div>
 
 Under the hood - error case investigation
-FIXME NOW: this example should never print "coroutine end", but it does immediately!
+
+This example should never print "coroutine end", but it does immediately...
 
 ``` kotlin
-val mynever: suspend () -> Unit = {
-    suspendCoroutine<Unit> { continuation ->
-        "Got continuation: $continuation, but I will never call .resume(Unit)".p
-    }
-}
 val coroutine: suspend () -> Unit = {
     "coroutine start".p
-    mynever()
+    mynever1() // TO FIX IT: CHANGE "mynever1()" TO "mynever2()"
     "coroutine end - THIS LINE SHOULD NEVER BE CALLED!".p
 }
 val completion = object : Continuation<Unit> {

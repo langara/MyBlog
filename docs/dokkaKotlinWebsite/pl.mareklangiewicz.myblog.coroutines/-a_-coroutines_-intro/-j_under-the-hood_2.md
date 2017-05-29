@@ -10,15 +10,8 @@ layout: api
 <div class="signature"><code><span class="keyword">fun </span><span class="identifier">J_underTheHood_2</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Unit</span></code></div>
 
 Under the hood test 2 without using kotlinx stuff
-FIXME NOW: this doesn't work correctly (it logs too much)!
 
 ``` kotlin
-val scheduler = Executors.newSingleThreadScheduledExecutor()
-val mydelay: suspend (time: Long) -> Unit = { time ->
-    suspendCoroutine<Unit> { continuation ->
-        scheduler.schedule({ continuation.resume(Unit) }, time, TimeUnit.MILLISECONDS)
-    }
-}
 val coroutine: suspend () -> Unit = {
     "coroutine start".p
     mydelay(1000)

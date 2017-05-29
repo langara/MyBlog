@@ -10,8 +10,6 @@ title: A_Coroutines_Intro.E_extractSuspendingFunction -
 
 Extract suspending function
 
-FIXME: this throws an exception and I don't know why...
-
 ``` kotlin
 sample {
         val job = launch(CommonPool) {

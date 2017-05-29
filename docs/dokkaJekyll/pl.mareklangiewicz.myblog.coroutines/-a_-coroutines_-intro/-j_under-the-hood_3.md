@@ -9,17 +9,13 @@ title: A_Coroutines_Intro.J_underTheHood_3 -
 `fun J_underTheHood_3(): Unit`
 
 Under the hood - error case investigation
-FIXME NOW: this example should never print "coroutine end", but it does immediately!
+
+This example should never print "coroutine end", but it does immediately...
 
 ``` kotlin
-val mynever: suspend () -> Unit = {
-    suspendCoroutine<Unit> { continuation ->
-        "Got continuation: $continuation, but I will never call .resume(Unit)".p
-    }
-}
 val coroutine: suspend () -> Unit = {
     "coroutine start".p
-    mynever()
+    mynever1() // TO FIX IT: CHANGE "mynever1()" TO "mynever2()"
     "coroutine end - THIS LINE SHOULD NEVER BE CALLED!".p
 }
 val completion = object : Continuation<Unit> {

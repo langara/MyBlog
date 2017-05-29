@@ -16,6 +16,37 @@ This is my attempt to learn about kotlin coroutines and write some tests on the 
 The content here is based on <a href="https://github.com/Kotlin/kotlinx.coroutines/blob/master/coroutines-guide.md">Coroutines Guide</a>
 but here it is both: **documentation** and **runnable code** in **one place**.
 
+### Types
+
+<table class="api-docs-table">
+<tbody>
+<tr>
+<td markdown="1">
+<a href="-receiver/index.html">Receiver</a>
+</td>
+<td markdown="1">
+<div class="signature"><code><span class="keyword">interface </span><span class="identifier">Receiver</span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="http://docs.oracle.com/javase/6/docs/api/java/lang/AutoCloseable.html"><span class="identifier">AutoCloseable</span></a></code></div>
+
+Something that you can ask for items, but it can suspend when item is not available yet
+
+
+</td>
+</tr>
+<tr>
+<td markdown="1">
+<a href="-rx-subscriber/index.html">RxSubscriber</a>
+</td>
+<td markdown="1">
+<div class="signature"><code><span class="keyword">class </span><span class="identifier">RxSubscriber</span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Subscriber</span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span></code></div>
+
+Wraps a coroutine block in rx subscriber class.
+
+
+</td>
+</tr>
+</tbody>
+</table>
+
 ### Constructors
 
 <table class="api-docs-table">
@@ -44,7 +75,7 @@ Kotlin Coroutines Intro in "TDD" (kind of..)
 <a href="p.html">p</a>
 </td>
 <td markdown="1">
-<div class="signature"><code><span class="keyword">val </span><span class="identifier">String</span><span class="symbol">.</span><span class="identifier">p</span><span class="symbol">: </span><span class="identifier">Unit</span></code></div>
+<div class="signature"><code><span class="keyword">val </span><span class="identifier">Any</span><span class="symbol">.</span><span class="identifier">p</span><span class="symbol">: </span><span class="identifier">Unit</span></code></div>
 
 Print given string with "Coroutines Intro" prefix and with current time in square brackets
 
@@ -198,7 +229,6 @@ Under the hood test
 <div class="signature"><code><span class="keyword">fun </span><span class="identifier">J_underTheHood_2</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Unit</span></code></div>
 
 Under the hood test 2 without using kotlinx stuff
-FIXME NOW: this doesn't work correctly (it logs too much)!
 
 
 </td>
@@ -211,7 +241,6 @@ FIXME NOW: this doesn't work correctly (it logs too much)!
 <div class="signature"><code><span class="keyword">fun </span><span class="identifier">J_underTheHood_3</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Unit</span></code></div>
 
 Under the hood - error case investigation
-FIXME NOW: this example should never print "coroutine end", but it does immediately!
 
 
 </td>
@@ -266,6 +295,54 @@ Wrap futures in suspension points
 </tr>
 <tr>
 <td markdown="1">
+<a href="-l_completable-future_4.html">L_completableFuture_4</a>
+</td>
+<td markdown="1">
+<div class="signature"><code><span class="keyword">fun </span><span class="identifier">L_completableFuture_4</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Unit</span></code></div>
+
+Use future related functions from kotlinx.coroutines
+
+
+</td>
+</tr>
+<tr>
+<td markdown="1">
+<a href="-l_completable-future_5.html">L_completableFuture_5</a>
+</td>
+<td markdown="1">
+<div class="signature"><code><span class="keyword">fun </span><span class="identifier">L_completableFuture_5</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Unit</span></code></div>
+
+Use prepareFuture to make last example more lazy and simple
+
+
+</td>
+</tr>
+<tr>
+<td markdown="1">
+<a href="-m_rx-subscriber.html">M_rxSubscriber</a>
+</td>
+<td markdown="1">
+<div class="signature"><code><span class="keyword">fun </span><span class="identifier">M_rxSubscriber</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Unit</span></code></div>
+
+Implement rx subscriber wrapping coroutine block
+
+
+</td>
+</tr>
+<tr>
+<td markdown="1">
+<a href="-n_fibonacci-channels.html">N_fibonacciChannels</a>
+</td>
+<td markdown="1">
+<div class="signature"><code><span class="keyword">fun </span><span class="identifier">N_fibonacciChannels</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Unit</span></code></div>
+
+Use channels to implement fibonacci numbers generator
+
+
+</td>
+</tr>
+<tr>
+<td markdown="1">
 <a href="create-future.html">createFuture</a>
 </td>
 <td markdown="1">
@@ -290,12 +367,60 @@ Extracted fun delayAndPrintWorld
 </tr>
 <tr>
 <td markdown="1">
+<a href="fibonacci.html">fibonacci</a>
+</td>
+<td markdown="1">
+<div class="signature"><code><span class="keyword">suspend</span> <span class="keyword">fun </span><span class="identifier">fibonacci</span><span class="symbol">(</span><span class="parameterName" id="pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro$fibonacci(kotlin.Int, kotlinx.coroutines.experimental.channels.SendChannel((kotlin.Int)))/n">n</span><span class="symbol">:</span>&nbsp;<span class="identifier">Int</span><span class="symbol">, </span><span class="parameterName" id="pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro$fibonacci(kotlin.Int, kotlinx.coroutines.experimental.channels.SendChannel((kotlin.Int)))/c">c</span><span class="symbol">:</span>&nbsp;<span class="identifier">SendChannel</span><span class="symbol">&lt;</span><span class="identifier">Int</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Unit</span></code></div>
+
+Fibonacci numbers generator
+
+
+</td>
+</tr>
+<tr>
+<td markdown="1">
 <a href="get-current-time-string.html">getCurrentTimeString</a>
 </td>
 <td markdown="1">
 <div class="signature"><code><span class="keyword">fun </span><span class="identifier">getCurrentTimeString</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">String</span></code></div>
 
 Current system time as a string
+
+
+</td>
+</tr>
+<tr>
+<td markdown="1">
+<a href="mydelay.html">mydelay</a>
+</td>
+<td markdown="1">
+<div class="signature"><code><span class="keyword">suspend</span> <span class="keyword">fun </span><span class="identifier">mydelay</span><span class="symbol">(</span><span class="parameterName" id="pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro$mydelay(kotlin.Long)/time">time</span><span class="symbol">:</span>&nbsp;<span class="identifier">Long</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Unit</span></code></div>
+
+Simple suspending function implementation
+
+
+</td>
+</tr>
+<tr>
+<td markdown="1">
+<a href="mynever1.html">mynever1</a>
+</td>
+<td markdown="1">
+<div class="signature"><code><span class="keyword">suspend</span> <span class="keyword">fun </span><span class="identifier">mynever1</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Unit</span></code></div>
+
+Should suspend forever (but it does not)
+
+
+</td>
+</tr>
+<tr>
+<td markdown="1">
+<a href="mynever2.html">mynever2</a>
+</td>
+<td markdown="1">
+<div class="signature"><code><span class="keyword">suspend</span> <span class="keyword">fun </span><span class="identifier">mynever2</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Unit</span></code></div>
+
+Correctly suspends forever
 
 
 </td>

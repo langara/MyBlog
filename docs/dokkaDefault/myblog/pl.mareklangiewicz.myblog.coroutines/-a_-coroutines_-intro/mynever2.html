@@ -1,0 +1,18 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>A_Coroutines_Intro.mynever2 - myblog</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">myblog</a>&nbsp;/&nbsp;<a href="../index.html">pl.mareklangiewicz.myblog.coroutines</a>&nbsp;/&nbsp;<a href="index.html">A_Coroutines_Intro</a>&nbsp;/&nbsp;<a href=".">mynever2</a><br/>
+<br/>
+<h1>mynever2</h1>
+<a name="pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro$mynever2()"></a>
+<code><span class="keyword">suspend</span> <span class="keyword">fun </span><span class="identifier">mynever2</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Unit</span></code>
+<p>Correctly suspends forever</p>
+<pre><code class="lang-kotlin">suspendCoroutine&lt;Unit&gt; { continuation -&gt;
+        "Got continuation: $continuation, but I will never call .resume(Unit)".p
+    }</code></pre>
+</BODY>
+</HTML>

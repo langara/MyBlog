@@ -1,0 +1,26 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>A_Coroutines_Intro.N_fibonacciChannels - myblog</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">myblog</a>&nbsp;/&nbsp;<a href="../index.html">pl.mareklangiewicz.myblog.coroutines</a>&nbsp;/&nbsp;<a href="index.html">A_Coroutines_Intro</a>&nbsp;/&nbsp;<a href=".">N_fibonacciChannels</a><br/>
+<br/>
+<h1>N_fibonacciChannels</h1>
+<a name="pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro$N_fibonacciChannels()"></a>
+<code><span class="keyword">fun </span><span class="identifier">N_fibonacciChannels</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Unit</span></code>
+<p>Use channels to implement fibonacci numbers generator</p>
+<pre><code class="lang-kotlin">val c = Channel&lt;Int&gt;(2) // experiment with different capacity
+launch(CommonPool) {
+    fibonacci(10, c)
+}
+launch(CommonPool) {
+    for (x in c) {
+        delay(300)
+        "*********************** received $x".p
+    }
+}
+Thread.sleep(3000)</code></pre>
+</BODY>
+</HTML>

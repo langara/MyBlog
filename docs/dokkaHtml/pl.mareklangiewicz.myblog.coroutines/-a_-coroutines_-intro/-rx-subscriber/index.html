@@ -1,0 +1,113 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>A_Coroutines_Intro.RxSubscriber - </title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">pl.mareklangiewicz.myblog.coroutines</a>&nbsp;/&nbsp;<a href="../index.html">A_Coroutines_Intro</a>&nbsp;/&nbsp;<a href=".">RxSubscriber</a><br/>
+<br/>
+<h1>RxSubscriber</h1>
+<code><span class="keyword">class </span><span class="identifier">RxSubscriber</span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Subscriber</span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span></code>
+<p>Wraps a coroutine block in rx subscriber class.</p>
+<p>Returned subscriber can be used in <a href="#">Flowable.subscribe</a>
+It honors back pressure correctly</p>
+<pre><code class="lang-kotlin">/**
+     * Wraps a coroutine block in rx subscriber class.
+     *
+     * Returned subscriber can be used in [Flowable.subscribe]
+     * It honors back pressure correctly
+     *
+     * @sample pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro.RxSubscriber
+     */
+    class RxSubscriber&lt;T&gt;(private val block: suspend Receiver&lt;T&gt;.() -&gt; Unit) : Subscriber&lt;T&gt; {
+        private lateinit var subscription: Subscription
+        private lateinit var continuation: Continuation&lt;T&gt;
+        private val receiver = object : Receiver&lt;T&gt; {
+            suspend override fun receive(): T = suspendCoroutine {
+                continuation = it
+                subscription.request(1)
+            }
+            override fun close() = subscription.cancel()
+        }
+        private val completion = object : Continuation&lt;Unit&gt; {
+            override val context = EmptyCoroutineContext
+            override fun resume(value: Unit) {
+                subscription.cancel()
+            }
+            override fun resumeWithException(exception: Throwable) {
+                subscription.cancel()
+            }
+        }
+        /**
+         * Starts the coroutine
+         */
+        override fun onSubscribe(subscription: Subscription) {
+            this.subscription = subscription
+            block.startCoroutine(receiver, completion)
+        }
+        /**
+         * Resumes the coroutine with given item
+         */
+        override fun onNext(t: T) = continuation.resume(t)
+        /**
+         * Resumes the coroutine with given exception
+         */
+        override fun onError(t: Throwable) = continuation.resumeWithException(t)
+        /**
+         * Does nothing
+         */
+        override fun onComplete() = Unit
+    }</code></pre>
+<h3>Constructors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<a href="-init-.html">&lt;init&gt;</a></td>
+<td>
+<code><span class="identifier">RxSubscriber</span><span class="symbol">(</span><span class="identifier" id="pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro.RxSubscriber$<init>(kotlin.coroutines.SuspendFunction1((pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro.Receiver((pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro.RxSubscriber.T)), kotlin.Unit)))/block">block</span><span class="symbol">:</span>&nbsp;<span class="identifier">SuspendFunction1</span><span class="symbol">&lt;</span><a href="../-receiver/index.html"><span class="identifier">Receiver</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span><span class="symbol">,</span>&nbsp;<span class="identifier">Unit</span><span class="symbol">&gt;</span><span class="symbol">)</span></code>
+<p>Wraps a coroutine block in rx subscriber class.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<a href="on-complete.html">onComplete</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">onComplete</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Unit</span></code>
+<p>Does nothing</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="on-error.html">onError</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">onError</span><span class="symbol">(</span><span class="identifier" id="pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro.RxSubscriber$onError(kotlin.Throwable)/t">t</span><span class="symbol">:</span>&nbsp;<span class="identifier">Throwable</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Unit</span></code>
+<p>Resumes the coroutine with given exception</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="on-next.html">onNext</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">onNext</span><span class="symbol">(</span><span class="identifier" id="pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro.RxSubscriber$onNext(pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro.RxSubscriber.T)/t">t</span><span class="symbol">:</span>&nbsp;<span class="identifier">T</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Unit</span></code>
+<p>Resumes the coroutine with given item</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="on-subscribe.html">onSubscribe</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">onSubscribe</span><span class="symbol">(</span><span class="identifier" id="pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro.RxSubscriber$onSubscribe(org.reactivestreams.Subscription)/subscription">subscription</span><span class="symbol">:</span>&nbsp;<span class="identifier">Subscription</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Unit</span></code>
+<p>Starts the coroutine</p>
+</td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

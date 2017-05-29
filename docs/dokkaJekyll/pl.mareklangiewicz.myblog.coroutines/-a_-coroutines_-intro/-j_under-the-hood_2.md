@@ -9,15 +9,8 @@ title: A_Coroutines_Intro.J_underTheHood_2 -
 `fun J_underTheHood_2(): Unit`
 
 Under the hood test 2 without using kotlinx stuff
-FIXME NOW: this doesn't work correctly (it logs too much)!
 
 ``` kotlin
-val scheduler = Executors.newSingleThreadScheduledExecutor()
-val mydelay: suspend (time: Long) -> Unit = { time ->
-    suspendCoroutine<Unit> { continuation ->
-        scheduler.schedule({ continuation.resume(Unit) }, time, TimeUnit.MILLISECONDS)
-    }
-}
 val coroutine: suspend () -> Unit = {
     "coroutine start".p
     mydelay(1000)
