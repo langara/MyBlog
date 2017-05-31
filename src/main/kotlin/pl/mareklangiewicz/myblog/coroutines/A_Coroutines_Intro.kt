@@ -165,10 +165,23 @@ class A_Coroutines_Intro {
      */
     @Test fun E_coroutineParallel() = sample {
         "start".p
-        val a1 = async(context) { delayAndReturn7() } // we do NOT await for it yet (but it already starts the delayAndReturn7)
-        val a2 = async(context) { delayAndReturn8() } // we do NOT await for it yet (but it already starts the delayAndReturn8)
+        val a1 = async(context) { delayAndReturn7() } // we do NOT await for it yet (but it already starts the `delayAndReturn7`)
+        val a2 = async(context) { delayAndReturn8() } // we do NOT await for it yet (but it already starts the `delayAndReturn8`)
         val result = a1.await() + a2.await()
         "end result: $result.".p // it will take ONE second to print it
+    }
+
+    /**
+     * Run suspending functions in parallel, but lazily
+     *
+     * @sample pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro.E_lazyAsync
+     */
+    @Test fun E_lazyAsync() = sample {
+        "start".p
+        val a1 = async(context, CoroutineStart.LAZY) { delayAndReturn7() }
+        val a2 = async(context, CoroutineStart.LAZY) { delayAndReturn8() }
+        val result = a1.await() + a2.await()
+        "end result: $result.".p // it will take TWO second to print it
     }
 
     /**
