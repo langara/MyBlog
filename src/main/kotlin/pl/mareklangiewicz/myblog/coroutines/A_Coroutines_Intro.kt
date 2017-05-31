@@ -36,7 +36,7 @@ class A_Coroutines_Intro {
     /**
      * Print given string with "Coroutines Intro" prefix and with current time in square brackets
      */
-    val Any.p get() = println("Coroutines Intro [${getCurrentTimeString()}] $this")
+    val Any.p get() = println("Coroutines Intro [${Thread.currentThread().name.padEnd(30).substring(0, 30)}] [${getCurrentTimeString()}] $this")
 
     /**
      * First coroutine
@@ -308,6 +308,36 @@ class A_Coroutines_Intro {
         }
         delay(3000L) // delay a bit
         "main: end.".p
+    }
+
+    /**
+     * Different contexts example
+     *
+     * @sample pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro.IA_contexts
+     */
+    @Test fun IA_contexts() = sample {
+
+        val jobs = arrayListOf<Job>()
+
+        jobs += launch(Unconfined) {
+            // not confined -- will work with main thread
+            "Unconfined".p
+        }
+        jobs += launch(context) {
+            // context of the parent, runBlocking coroutine
+            "context".p
+        }
+        jobs += launch(CommonPool) {
+            // will get dispatched to ForkJoinPool.commonPool (or equivalent)
+            "CommonPool".p
+        }
+        jobs += launch(newSingleThreadContext("MyOwnThread")) {
+            // will get its own new thread
+            "newSTC".p
+        }
+        for( job in jobs)
+            job.join()
+
     }
 
     /**
