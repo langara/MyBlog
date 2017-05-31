@@ -133,6 +133,44 @@ class A_Coroutines_Intro {
         "World!".p
     }
 
+    suspend fun delayAndReturn7(): Int {
+        "delayAndReturn7: start".p
+        delay(1000L)
+        "delayAndReturn7: end".p
+        return 7
+    }
+
+    suspend fun delayAndReturn8(): Int {
+        "delayAndReturn8: start".p
+        delay(1000L)
+        "delayAndReturn8: end".p
+        return 8
+    }
+
+    /**
+     * Suspending functions are called sequentially
+     *
+     * @sample pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro.E_coroutineIsSequential
+     */
+    @Test fun E_coroutineIsSequential() = sample {
+        "start".p
+        val result = delayAndReturn7() + delayAndReturn8()
+        "end result: $result.".p // it will take two seconds to print it
+    }
+
+    /**
+     * Run suspending functions in parallel
+     *
+     * @sample pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro.E_coroutineParallel
+     */
+    @Test fun E_coroutineParallel() = sample {
+        "start".p
+        val a1 = async(context) { delayAndReturn7() } // we do NOT await for it yet (but it already starts the delayAndReturn7)
+        val a2 = async(context) { delayAndReturn8() } // we do NOT await for it yet (but it already starts the delayAndReturn8)
+        val result = a1.await() + a2.await()
+        "end result: $result.".p // it will take ONE second to print it
+    }
+
     /**
      * Run 100 000 coroutines in parallel
      *
