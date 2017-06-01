@@ -2,9 +2,7 @@ package pl.mareklangiewicz.myblog.coroutines
 
 import io.reactivex.Flowable
 import kotlinx.coroutines.experimental.*
-import kotlinx.coroutines.experimental.channels.Channel
-import kotlinx.coroutines.experimental.channels.SendChannel
-import kotlinx.coroutines.experimental.channels.produce
+import kotlinx.coroutines.experimental.channels.*
 import kotlinx.coroutines.experimental.future.await
 import kotlinx.coroutines.experimental.future.future
 import org.junit.Ignore
@@ -923,4 +921,37 @@ class A_Coroutines_Intro {
         "main: end".p
 
     }
+
+    /**
+     * Produces successive numbers
+     */
+    fun produceNumbersFrom(context: CoroutineContext, from: Int) = produce(context) {
+        var x = from
+        while (true) send(x++) // infinite stream of integers from start
+    }
+
+    /**
+     * Simple filter implementation for channels
+     */
+    fun <T> ReceiveChannel<T>.filter(context: CoroutineContext, predicate: suspend (T) -> Boolean) = produce(context) {
+        for (t in this@filter)
+            if (predicate(t))
+                send(t)
+    }
+
+    /**
+     * Generate prime numbers with crazy channels pipeline
+     *
+     * @sample pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro.P_producePrimeNumbers
+     */
+    @Test
+    fun P_producePrimeNumbers() = sample {
+        var cur = produceNumbersFrom(CommonPool, 2)
+        for(i in 1..30) {
+            val prime = cur.receive()
+            "prime: $prime".p
+            cur = cur.filter(context) { it % prime != 0 }
+        }
+    }
 }
+
