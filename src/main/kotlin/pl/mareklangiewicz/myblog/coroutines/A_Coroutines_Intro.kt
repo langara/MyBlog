@@ -927,7 +927,10 @@ class A_Coroutines_Intro {
      */
     fun produceNumbersFrom(context: CoroutineContext, from: Int) = produce(context) {
         var x = from
-        while (true) send(x++) // infinite stream of integers from start
+        while (true) {
+            send(x++)
+            delay(50)
+        }
     }
 
     /**
@@ -947,7 +950,7 @@ class A_Coroutines_Intro {
     @Test
     fun P_producePrimeNumbers() = sample {
         var cur = produceNumbersFrom(CommonPool, 2)
-        for (i in 1..30) {
+        for (i in 1..20) {
             val prime = cur.receive()
             "prime: $prime".p
             cur = cur.filter(context) { it % prime != 0 }
@@ -988,5 +991,26 @@ class A_Coroutines_Intro {
         for (s in channel.take(context, 6))
             s.p
     }
+
+    fun <T> ReceiveChannel<T>.processAll(id: Int) = launch(CommonPool) {
+        for (t in this@processAll)
+            "processor #$id: $t".p
+    }
+
+    /**
+     * One sender, five receivers
+     *
+     * @sample pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro.Q_oneSenderFiveReceivers
+     */
+    @Test
+    fun Q_oneSenderFiveReceivers() = sample {
+        val sender = produceNumbersFrom(CommonPool,1)
+        for (i in 1..5)
+            sender.processAll(i)
+        delay(500)
+//        sender.cancel()
+        delay(500)
+    }
+
 }
 
