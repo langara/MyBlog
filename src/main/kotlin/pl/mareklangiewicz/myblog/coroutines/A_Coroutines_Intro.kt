@@ -294,7 +294,8 @@ class A_Coroutines_Intro {
     @Test fun I_cancellationIsCooperative_3_withTimeout() = sample {
         "main: start.".p
         launch(CommonPool) {
-            withTimeout(100) { // change to 10000 to see the difference
+            withTimeout(100) {
+                // change to 10000 to see the difference
                 var nextPrintTime = 0L
                 while (true) { // computation loop
                     yield() // this will throw CancellationException on timeout
@@ -340,9 +341,28 @@ class A_Coroutines_Intro {
 
         "main: joining all jobs".p
 
-        for( job in jobs)
+        for (job in jobs)
             job.join()
 
+        "main: end".p
+    }
+
+    /**
+     * run and runBlocking with specified context
+     *
+     * @sample pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro.IA_contexts_2
+     */
+    @Test fun IA_contexts_2() {
+        "main: start".p
+        val ctx1 = newSingleThreadContext("Ctx1")
+        val ctx2 = newSingleThreadContext("Ctx2")
+        runBlocking(ctx1) {
+            "runBlocking(ctx1): start".p
+            run(ctx2) {
+                "run(ctx2)".p
+            }
+            "runBlocking(ctx1): end".p
+        }
         "main: end".p
     }
 
