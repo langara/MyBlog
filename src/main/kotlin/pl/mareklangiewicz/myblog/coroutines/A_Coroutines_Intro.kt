@@ -4,6 +4,7 @@ import io.reactivex.Flowable
 import kotlinx.coroutines.experimental.*
 import kotlinx.coroutines.experimental.channels.Channel
 import kotlinx.coroutines.experimental.channels.SendChannel
+import kotlinx.coroutines.experimental.channels.produce
 import kotlinx.coroutines.experimental.future.await
 import kotlinx.coroutines.experimental.future.future
 import org.junit.Ignore
@@ -893,5 +894,33 @@ class A_Coroutines_Intro {
             }
         }
         Thread.sleep(3000)
+    }
+
+    /**
+     * Use `produce` utility function
+     *
+     * @sample pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro.O_produceChannel
+     */
+    @Test
+    fun O_produceChannel() {
+
+        "main: start".p
+
+        val channel = produce(CommonPool) {
+            for (i in 1..10) {
+                "produce: sending: $i".p
+                send(i)
+            }
+        }
+
+        launch(CommonPool) {
+            for (i in channel)
+                "received: $i".p
+        }
+
+        Thread.sleep(2000)
+
+        "main: end".p
+
     }
 }
