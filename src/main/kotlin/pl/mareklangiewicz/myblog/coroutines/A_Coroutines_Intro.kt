@@ -36,7 +36,7 @@ class A_Coroutines_Intro {
     /**
      * Print given string with "Coroutines Intro" prefix and with current time in square brackets
      */
-    val Any.p get() = println("Coroutines Intro [${Thread.currentThread().name.padEnd(30).substring(0, 30)}] [${getCurrentTimeString()}] $this")
+    val Any.p get() = println("Coroutines Intro [${Thread.currentThread().name.padEnd(40).substring(0, 40)}] [${getCurrentTimeString()}] $this")
 
     /**
      * First coroutine
@@ -317,6 +317,8 @@ class A_Coroutines_Intro {
      */
     @Test fun IA_contexts() = sample {
 
+        "main: start".p
+
         val jobs = arrayListOf<Job>()
 
         jobs += launch(Unconfined) {
@@ -335,9 +337,13 @@ class A_Coroutines_Intro {
             // will get its own new thread
             "newSTC".p
         }
+
+        "main: joining all jobs".p
+
         for( job in jobs)
             job.join()
 
+        "main: end".p
     }
 
     /**
