@@ -947,11 +947,46 @@ class A_Coroutines_Intro {
     @Test
     fun P_producePrimeNumbers() = sample {
         var cur = produceNumbersFrom(CommonPool, 2)
-        for(i in 1..30) {
+        for (i in 1..30) {
             val prime = cur.receive()
             "prime: $prime".p
             cur = cur.filter(context) { it % prime != 0 }
         }
+    }
+
+    /**
+     * Take specified number of items from channel and send it further
+     */
+    fun <T> ReceiveChannel<T>.take(context: CoroutineContext, size: Long) = produce(context) {
+        for (i in 1..size)
+            send(receive())
+    }
+
+    /**
+     * Sends given value indefinitely
+     */
+    suspend fun <T> SendChannel<T>.sendPeriodically(t: T, delay: Long) {
+        while (true) {
+            delay(delay)
+            send(t)
+        }
+    }
+
+    /**
+     * One receiver, two senders
+     *
+     * @sample pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro.Q_oneReceiverTwoSenders
+     */
+    @Test
+    fun Q_oneReceiverTwoSenders() = sample {
+
+        val channel = Channel<String>()
+
+        launch(context) { channel.sendPeriodically("foo200", 200) }
+        launch(context) { channel.sendPeriodically("BAR500", 500) }
+
+        for (s in channel.take(context, 6))
+            s.p
     }
 }
 
