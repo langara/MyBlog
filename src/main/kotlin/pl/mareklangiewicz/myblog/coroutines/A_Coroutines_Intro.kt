@@ -14,6 +14,7 @@ import java.util.concurrent.CompletableFuture
 import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
 import kotlin.coroutines.experimental.*
+import kotlin.system.measureTimeMillis
 
 /**
  * Kotlin Coroutines Intro in "TDD" (kind of..)
@@ -1043,6 +1044,42 @@ class A_Coroutines_Intro {
         table.send(Ball(0)) // serve the ball
         delay(2000) // delay 1 second
         table.receive() // game over, grab the ball
+    }
+
+    /**
+     * Runs given action a million times using thousand coroutines
+     *
+     * @sample pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro.massiveRun
+     */
+    suspend fun massiveRun(context: CoroutineContext, action: suspend () -> Unit) {
+        val n = 1000 // number of coroutines to launch
+        val k = 1000 // times an action is repeated by each coroutine
+        val time = measureTimeMillis {
+            val jobs = List(n) {
+                launch(context) {
+                    repeat(k) { action() }
+                }
+            }
+            jobs.forEach { it.join() }
+        }
+    }
+
+    /**
+     * Massive non sync action
+     *
+     * @sample pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro.S_massiveNonsyncAction
+     */
+    @Test
+    fun R_massiveNonsyncAction() = sample {
+        "start".p
+        var counter = 0
+//        val context = newSingleThreadContext("single") // this will increment counter correctly all the times
+        val context = newFixedThreadPoolContext(2, "double") // this should cause some sync errors
+//        val context = CommonPool // this should cause some sync errors on systems with multiple CPUs (more than 2)
+        massiveRun(context) {
+            counter ++
+        }
+        "end. counter: $counter (should be 1000000) (error: ${1000000-counter})".p
     }
 }
 
