@@ -1004,7 +1004,7 @@ class A_Coroutines_Intro {
      */
     @Test
     fun Q_oneSenderFiveReceivers() = sample {
-        val sender = produceNumbersFrom(CommonPool,1)
+        val sender = produceNumbersFrom(CommonPool, 1)
         for (i in 1..5)
             sender.processAll(i)
         delay(500)
@@ -1012,5 +1012,37 @@ class A_Coroutines_Intro {
         delay(500)
     }
 
+
+    /** a ball in ping pong game */
+    data class Ball(var hits: Int)
+
+
+    /**
+     * A player in ping pong game
+     */
+    suspend fun player(name: String, table: Channel<Ball>) {
+        for (ball in table) { // receive the ball in a loop
+            ball.hits++
+            "$name $ball".p
+            delay(300) // wait a bit
+            table.send(ball) // send the ball back
+        }
+    }
+
+    /**
+     * Channels are fair
+     *
+     * @sample pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro.R_channelsAreFair
+     */
+    @Test
+    fun R_channelsAreFair() = sample {
+        val table = Channel<Ball>() // a shared table
+        launch(context) { player("ping", table) }
+        launch(context) { player("pong", table) }
+//        launch(context) { player("PENGGG", table) }
+        table.send(Ball(0)) // serve the ball
+        delay(2000) // delay 1 second
+        table.receive() // game over, grab the ball
+    }
 }
 
