@@ -1098,10 +1098,55 @@ class A_Coroutines_Intro {
 //        val context = CommonPool // this should cause some sync errors on systems with multiple CPUs (more than 2)
 
         massiveRun(context) {
-            counter ++
+            counter++
         }
 
-        "end. counter: $counter (should be 1000000) (error: ${1000000-counter})".p
+        "end. counter: $counter (should be 1000000) (error: ${1000000 - counter})".p
+    }
+
+    /**
+     * Message types for counterActor
+     */
+    sealed class Msg {
+        object Inc : Msg() // one-way message to increment counter
+        class Get(val response: SendChannel<Int>) : Msg() // a request with reply
+    }
+
+
+    // This function launches a new counter actor
+    fun counterActor() = actor<Msg>(CommonPool) {
+        var counter = 0 // actor state
+        for (msg in channel) { // iterate over incoming messages
+            when (msg) {
+                is Msg.Inc -> counter++
+                is Msg.Get -> msg.response.send(counter)
+            }
+        }
+    }
+
+    /**
+     * Massive actor
+     *
+     * @sample pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro.S_massiveActor
+     */
+    @Test
+    fun S_massiveActor() = sample {
+
+        "start".p
+
+        val counter = counterActor() // create the actor
+
+        massiveRun(CommonPool) {
+            counter.send(Msg.Inc)
+        }
+
+        val response = Channel<Int>()
+        counter.send(Msg.Get(response))
+        val result = response.receive()
+
+        counter.close() // shutdown the actor
+
+        "end. counter: $result".p
     }
 }
 
