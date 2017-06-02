@@ -1,0 +1,23 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>A_Coroutines_Intro.P_producePrimeNumbers - myblog</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">myblog</a>&nbsp;/&nbsp;<a href="../index.html">pl.mareklangiewicz.myblog.coroutines</a>&nbsp;/&nbsp;<a href="index.html">A_Coroutines_Intro</a>&nbsp;/&nbsp;<a href=".">P_producePrimeNumbers</a><br/>
+<br/>
+<h1>P_producePrimeNumbers</h1>
+<a name="pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro$P_producePrimeNumbers()"></a>
+<code><span class="keyword">fun </span><span class="identifier">P_producePrimeNumbers</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Unit</span></code>
+<p>Generate prime numbers with crazy channels pipeline</p>
+<pre><code class="lang-kotlin">sample {
+        var cur = produceNumbersFrom(CommonPool, 2)
+        for (i in 1..20) {
+            val prime = cur.receive()
+            "prime: $prime".p
+            cur = cur.filter(context) { it % prime != 0 }
+        }
+    }</code></pre>
+</BODY>
+</HTML>

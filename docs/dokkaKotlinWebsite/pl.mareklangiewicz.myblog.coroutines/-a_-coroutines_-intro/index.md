@@ -22,6 +22,18 @@ but here it is both: **documentation** and **runnable code** in **one place**.
 <tbody>
 <tr>
 <td markdown="1">
+<a href="-ball/index.html">Ball</a>
+</td>
+<td markdown="1">
+<div class="signature"><code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">Ball</span></code></div>
+
+A ball in ping pong game
+
+
+</td>
+</tr>
+<tr>
+<td markdown="1">
 <a href="-receiver/index.html">Receiver</a>
 </td>
 <td markdown="1">
@@ -139,12 +151,48 @@ Use Job class to handle coroutine state and to wait (non blocking) for it to fin
 </tr>
 <tr>
 <td markdown="1">
+<a href="-e_coroutine-is-sequential.html">E_coroutineIsSequential</a>
+</td>
+<td markdown="1">
+<div class="signature"><code><span class="keyword">fun </span><span class="identifier">E_coroutineIsSequential</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Unit</span></code></div>
+
+Suspending functions are called sequentially
+
+
+</td>
+</tr>
+<tr>
+<td markdown="1">
+<a href="-e_coroutine-parallel.html">E_coroutineParallel</a>
+</td>
+<td markdown="1">
+<div class="signature"><code><span class="keyword">fun </span><span class="identifier">E_coroutineParallel</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Unit</span></code></div>
+
+Run suspending functions in parallel
+
+
+</td>
+</tr>
+<tr>
+<td markdown="1">
 <a href="-e_extract-suspending-function.html">E_extractSuspendingFunction</a>
 </td>
 <td markdown="1">
 <div class="signature"><code><span class="keyword">fun </span><span class="identifier">E_extractSuspendingFunction</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Unit</span></code></div>
 
 Extract suspending function
+
+
+</td>
+</tr>
+<tr>
+<td markdown="1">
+<a href="-e_lazy-async.html">E_lazyAsync</a>
+</td>
+<td markdown="1">
+<div class="signature"><code><span class="keyword">fun </span><span class="identifier">E_lazyAsync</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Unit</span></code></div>
+
+Run suspending functions in parallel, but lazily
 
 
 </td>
@@ -187,6 +235,30 @@ Cancel coroutine with Job.cancel
 </tr>
 <tr>
 <td markdown="1">
+<a href="-i-a_contexts.html">IA_contexts</a>
+</td>
+<td markdown="1">
+<div class="signature"><code><span class="keyword">fun </span><span class="identifier">IA_contexts</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Unit</span></code></div>
+
+Different contexts example
+
+
+</td>
+</tr>
+<tr>
+<td markdown="1">
+<a href="-i-a_contexts_2.html">IA_contexts_2</a>
+</td>
+<td markdown="1">
+<div class="signature"><code><span class="keyword">fun </span><span class="identifier">IA_contexts_2</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Unit</span></code></div>
+
+run and runBlocking with specified context
+
+
+</td>
+</tr>
+<tr>
+<td markdown="1">
 <a href="-i_cancellation-is-cooperative_1.html">I_cancellationIsCooperative_1</a>
 </td>
 <td markdown="1">
@@ -205,6 +277,18 @@ Cancellation is cooperative 1
 <div class="signature"><code><span class="keyword">fun </span><span class="identifier">I_cancellationIsCooperative_2</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Unit</span></code></div>
 
 Cancellation is cooperative 2
+
+
+</td>
+</tr>
+<tr>
+<td markdown="1">
+<a href="-i_cancellation-is-cooperative_3_with-timeout.html">I_cancellationIsCooperative_3_withTimeout</a>
+</td>
+<td markdown="1">
+<div class="signature"><code><span class="keyword">fun </span><span class="identifier">I_cancellationIsCooperative_3_withTimeout</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Unit</span></code></div>
+
+Cancellation with timeout
 
 
 </td>
@@ -343,6 +427,78 @@ Use channels to implement fibonacci numbers generator
 </tr>
 <tr>
 <td markdown="1">
+<a href="-o_produce-channel.html">O_produceChannel</a>
+</td>
+<td markdown="1">
+<div class="signature"><code><span class="keyword">fun </span><span class="identifier">O_produceChannel</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Unit</span></code></div>
+
+Use <code>produce</code> utility function
+
+
+</td>
+</tr>
+<tr>
+<td markdown="1">
+<a href="-p_produce-prime-numbers.html">P_producePrimeNumbers</a>
+</td>
+<td markdown="1">
+<div class="signature"><code><span class="keyword">fun </span><span class="identifier">P_producePrimeNumbers</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Unit</span></code></div>
+
+Generate prime numbers with crazy channels pipeline
+
+
+</td>
+</tr>
+<tr>
+<td markdown="1">
+<a href="-q_one-receiver-two-senders.html">Q_oneReceiverTwoSenders</a>
+</td>
+<td markdown="1">
+<div class="signature"><code><span class="keyword">fun </span><span class="identifier">Q_oneReceiverTwoSenders</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Unit</span></code></div>
+
+One receiver, two senders
+
+
+</td>
+</tr>
+<tr>
+<td markdown="1">
+<a href="-q_one-sender-five-receivers.html">Q_oneSenderFiveReceivers</a>
+</td>
+<td markdown="1">
+<div class="signature"><code><span class="keyword">fun </span><span class="identifier">Q_oneSenderFiveReceivers</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Unit</span></code></div>
+
+One sender, five receivers
+
+
+</td>
+</tr>
+<tr>
+<td markdown="1">
+<a href="-r_channels-are-fair.html">R_channelsAreFair</a>
+</td>
+<td markdown="1">
+<div class="signature"><code><span class="keyword">fun </span><span class="identifier">R_channelsAreFair</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Unit</span></code></div>
+
+Channels are fair
+
+
+</td>
+</tr>
+<tr>
+<td markdown="1">
+<a href="-r_massive-nonsync-action.html">R_massiveNonsyncAction</a>
+</td>
+<td markdown="1">
+<div class="signature"><code><span class="keyword">fun </span><span class="identifier">R_massiveNonsyncAction</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Unit</span></code></div>
+
+Massive non sync action
+
+
+</td>
+</tr>
+<tr>
+<td markdown="1">
 <a href="create-future.html">createFuture</a>
 </td>
 <td markdown="1">
@@ -367,6 +523,30 @@ Extracted fun delayAndPrintWorld
 </tr>
 <tr>
 <td markdown="1">
+<a href="delay-and-return7.html">delayAndReturn7</a>
+</td>
+<td markdown="1">
+<div class="signature"><code><span class="keyword">suspend</span> <span class="keyword">fun </span><span class="identifier">delayAndReturn7</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Int</span></code></div>
+
+Delay and return 7 with logging
+
+
+</td>
+</tr>
+<tr>
+<td markdown="1">
+<a href="delay-and-return8.html">delayAndReturn8</a>
+</td>
+<td markdown="1">
+<div class="signature"><code><span class="keyword">suspend</span> <span class="keyword">fun </span><span class="identifier">delayAndReturn8</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Int</span></code></div>
+
+Delay and return 8 with logging
+
+
+</td>
+</tr>
+<tr>
+<td markdown="1">
 <a href="fibonacci.html">fibonacci</a>
 </td>
 <td markdown="1">
@@ -379,12 +559,36 @@ Fibonacci numbers generator
 </tr>
 <tr>
 <td markdown="1">
+<a href="filter.html">filter</a>
+</td>
+<td markdown="1">
+<div class="signature"><code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span> <span class="identifier">ReceiveChannel</span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">filter</span><span class="symbol">(</span><br/>&nbsp;&nbsp;&nbsp;&nbsp;<span class="parameterName" id="pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro$filter(kotlinx.coroutines.experimental.channels.ReceiveChannel((pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro.filter.T)), kotlin.coroutines.experimental.CoroutineContext, kotlin.coroutines.SuspendFunction1((pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro.filter.T, kotlin.Boolean)))/context">context</span><span class="symbol">:</span>&nbsp;<span class="identifier">CoroutineContext</span><span class="symbol">, </span><br/>&nbsp;&nbsp;&nbsp;&nbsp;<span class="parameterName" id="pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro$filter(kotlinx.coroutines.experimental.channels.ReceiveChannel((pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro.filter.T)), kotlin.coroutines.experimental.CoroutineContext, kotlin.coroutines.SuspendFunction1((pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro.filter.T, kotlin.Boolean)))/predicate">predicate</span><span class="symbol">:</span>&nbsp;<span class="identifier">SuspendFunction1</span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">,</span>&nbsp;<span class="identifier">Boolean</span><span class="symbol">&gt;</span><br/><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">ProducerJob</span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span></code></div>
+
+Simple filter implementation for channels
+
+
+</td>
+</tr>
+<tr>
+<td markdown="1">
 <a href="get-current-time-string.html">getCurrentTimeString</a>
 </td>
 <td markdown="1">
 <div class="signature"><code><span class="keyword">fun </span><span class="identifier">getCurrentTimeString</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">String</span></code></div>
 
 Current system time as a string
+
+
+</td>
+</tr>
+<tr>
+<td markdown="1">
+<a href="massive-run.html">massiveRun</a>
+</td>
+<td markdown="1">
+<div class="signature"><code><span class="keyword">suspend</span> <span class="keyword">fun </span><span class="identifier">massiveRun</span><span class="symbol">(</span><br/>&nbsp;&nbsp;&nbsp;&nbsp;<span class="parameterName" id="pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro$massiveRun(kotlin.coroutines.experimental.CoroutineContext, kotlin.coroutines.SuspendFunction0((kotlin.Unit)))/context">context</span><span class="symbol">:</span>&nbsp;<span class="identifier">CoroutineContext</span><span class="symbol">, </span><br/>&nbsp;&nbsp;&nbsp;&nbsp;<span class="parameterName" id="pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro$massiveRun(kotlin.coroutines.experimental.CoroutineContext, kotlin.coroutines.SuspendFunction0((kotlin.Unit)))/action">action</span><span class="symbol">:</span>&nbsp;<span class="identifier">SuspendFunction0</span><span class="symbol">&lt;</span><span class="identifier">Unit</span><span class="symbol">&gt;</span><br/><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Unit</span></code></div>
+
+Runs given action a million times using thousand coroutines
 
 
 </td>
@@ -427,6 +631,18 @@ Correctly suspends forever
 </tr>
 <tr>
 <td markdown="1">
+<a href="player.html">player</a>
+</td>
+<td markdown="1">
+<div class="signature"><code><span class="keyword">suspend</span> <span class="keyword">fun </span><span class="identifier">player</span><span class="symbol">(</span><span class="parameterName" id="pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro$player(kotlin.String, kotlinx.coroutines.experimental.channels.Channel((pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro.Ball)))/name">name</span><span class="symbol">:</span>&nbsp;<span class="identifier">String</span><span class="symbol">, </span><span class="parameterName" id="pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro$player(kotlin.String, kotlinx.coroutines.experimental.channels.Channel((pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro.Ball)))/table">table</span><span class="symbol">:</span>&nbsp;<span class="identifier">Channel</span><span class="symbol">&lt;</span><a href="-ball/index.html"><span class="identifier">Ball</span></a><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Unit</span></code></div>
+
+A player in ping pong game
+
+
+</td>
+</tr>
+<tr>
+<td markdown="1">
 <a href="prepare-future.html">prepareFuture</a>
 </td>
 <td markdown="1">
@@ -439,12 +655,60 @@ Prepare a future representing a coroutine
 </tr>
 <tr>
 <td markdown="1">
+<a href="process-all.html">processAll</a>
+</td>
+<td markdown="1">
+<div class="signature"><code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span> <span class="identifier">ReceiveChannel</span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">processAll</span><span class="symbol">(</span><span class="parameterName" id="pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro$processAll(kotlinx.coroutines.experimental.channels.ReceiveChannel((pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro.processAll.T)), kotlin.Int)/id">id</span><span class="symbol">:</span>&nbsp;<span class="identifier">Int</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Job</span></code></div>
+
+Prints all received values from given channel with "processor #id" prefix
+
+
+</td>
+</tr>
+<tr>
+<td markdown="1">
+<a href="produce-numbers-from.html">produceNumbersFrom</a>
+</td>
+<td markdown="1">
+<div class="signature"><code><span class="keyword">fun </span><span class="identifier">produceNumbersFrom</span><span class="symbol">(</span><br/>&nbsp;&nbsp;&nbsp;&nbsp;<span class="parameterName" id="pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro$produceNumbersFrom(kotlin.coroutines.experimental.CoroutineContext, kotlin.Int)/context">context</span><span class="symbol">:</span>&nbsp;<span class="identifier">CoroutineContext</span><span class="symbol">, </span><br/>&nbsp;&nbsp;&nbsp;&nbsp;<span class="parameterName" id="pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro$produceNumbersFrom(kotlin.coroutines.experimental.CoroutineContext, kotlin.Int)/from">from</span><span class="symbol">:</span>&nbsp;<span class="identifier">Int</span><br/><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">ProducerJob</span><span class="symbol">&lt;</span><span class="identifier">Int</span><span class="symbol">&gt;</span></code></div>
+
+Produces successive numbers
+
+
+</td>
+</tr>
+<tr>
+<td markdown="1">
+<a href="send-periodically.html">sendPeriodically</a>
+</td>
+<td markdown="1">
+<div class="signature"><code><span class="keyword">suspend</span> <span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span> <span class="identifier">SendChannel</span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">sendPeriodically</span><span class="symbol">(</span><br/>&nbsp;&nbsp;&nbsp;&nbsp;<span class="parameterName" id="pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro$sendPeriodically(kotlinx.coroutines.experimental.channels.SendChannel((pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro.sendPeriodically.T)), pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro.sendPeriodically.T, kotlin.Long)/t">t</span><span class="symbol">:</span>&nbsp;<span class="identifier">T</span><span class="symbol">, </span><br/>&nbsp;&nbsp;&nbsp;&nbsp;<span class="parameterName" id="pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro$sendPeriodically(kotlinx.coroutines.experimental.channels.SendChannel((pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro.sendPeriodically.T)), pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro.sendPeriodically.T, kotlin.Long)/delay">delay</span><span class="symbol">:</span>&nbsp;<span class="identifier">Long</span><br/><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Unit</span></code></div>
+
+Sends given value indefinitely
+
+
+</td>
+</tr>
+<tr>
+<td markdown="1">
 <a href="suspend.html">suspend</a>
 </td>
 <td markdown="1">
 <div class="signature"><code><span class="keyword">suspend</span> <span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span> <a href="http://docs.oracle.com/javase/6/docs/api/java/util/concurrent/CompletableFuture.html"><span class="identifier">CompletableFuture</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">suspend</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">T</span></code></div>
 
 Wrap future in suspension point
+
+
+</td>
+</tr>
+<tr>
+<td markdown="1">
+<a href="take.html">take</a>
+</td>
+<td markdown="1">
+<div class="signature"><code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span> <span class="identifier">ReceiveChannel</span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">take</span><span class="symbol">(</span><br/>&nbsp;&nbsp;&nbsp;&nbsp;<span class="parameterName" id="pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro$take(kotlinx.coroutines.experimental.channels.ReceiveChannel((pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro.take.T)), kotlin.coroutines.experimental.CoroutineContext, kotlin.Long)/context">context</span><span class="symbol">:</span>&nbsp;<span class="identifier">CoroutineContext</span><span class="symbol">, </span><br/>&nbsp;&nbsp;&nbsp;&nbsp;<span class="parameterName" id="pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro$take(kotlinx.coroutines.experimental.channels.ReceiveChannel((pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro.take.T)), kotlin.coroutines.experimental.CoroutineContext, kotlin.Long)/size">size</span><span class="symbol">:</span>&nbsp;<span class="identifier">Long</span><br/><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">ProducerJob</span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span></code></div>
+
+Take specified number of items from channel and send it further
 
 
 </td>

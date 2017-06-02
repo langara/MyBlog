@@ -133,6 +133,11 @@ class A_Coroutines_Intro {
         "World!".p
     }
 
+    /**
+     * Delay and return 7 with logging
+     *
+     * @sample pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro.delayAndReturn7
+     */
     suspend fun delayAndReturn7(): Int {
         "delayAndReturn7: start".p
         delay(1000L)
@@ -140,6 +145,11 @@ class A_Coroutines_Intro {
         return 7
     }
 
+    /**
+     * Delay and return 8 with logging
+     *
+     * @sample pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro.delayAndReturn8
+     */
     suspend fun delayAndReturn8(): Int {
         "delayAndReturn8: start".p
         delay(1000L)
@@ -289,7 +299,7 @@ class A_Coroutines_Intro {
      * Cancellation with timeout
      *
      * This example shows `withTimeout` function
-     * @sample pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro.I_cancellationIsCooperative_3_timeout
+     * @sample pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro.I_cancellationIsCooperative_3_withTimeout
      */
     @Test fun I_cancellationIsCooperative_3_withTimeout() = sample {
         "main: start.".p
@@ -993,6 +1003,9 @@ class A_Coroutines_Intro {
             s.p
     }
 
+    /**
+     * Prints all received values from given channel with "processor #id" prefix
+     */
     fun <T> ReceiveChannel<T>.processAll(id: Int) = launch(CommonPool) {
         for (t in this@processAll)
             "processor #$id: $t".p
@@ -1014,7 +1027,11 @@ class A_Coroutines_Intro {
     }
 
 
-    /** a ball in ping pong game */
+    /**
+     * A ball in ping pong game
+     *
+     * @property hits How many times it was hit
+     */
     data class Ball(var hits: Int)
 
 
@@ -1067,18 +1084,23 @@ class A_Coroutines_Intro {
     /**
      * Massive non sync action
      *
-     * @sample pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro.S_massiveNonsyncAction
+     * @sample pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro.R_massiveNonsyncAction
      */
     @Test
     fun R_massiveNonsyncAction() = sample {
+
         "start".p
-        var counter = 0
+
+        var counter = 0 // @Volatile would not help much; AtomicInteger would work correctly.
+
 //        val context = newSingleThreadContext("single") // this will increment counter correctly all the times
         val context = newFixedThreadPoolContext(2, "double") // this should cause some sync errors
 //        val context = CommonPool // this should cause some sync errors on systems with multiple CPUs (more than 2)
+
         massiveRun(context) {
             counter ++
         }
+
         "end. counter: $counter (should be 1000000) (error: ${1000000-counter})".p
     }
 }

@@ -1,0 +1,25 @@
+---
+title: A_Coroutines_Intro.R_channelsAreFair - 
+layout: api
+---
+
+<div class='api-docs-breadcrumbs'><a href="../index.html">pl.mareklangiewicz.myblog.coroutines</a> / <a href="index.html">A_Coroutines_Intro</a> / <a href=".">R_channelsAreFair</a></div>
+
+# R_channelsAreFair
+
+<div class="signature"><code><span class="keyword">fun </span><span class="identifier">R_channelsAreFair</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Unit</span></code></div>
+
+Channels are fair
+
+``` kotlin
+sample {
+        val table = Channel<Ball>() // a shared table
+        launch(context) { player("ping", table) }
+        launch(context) { player("pong", table) }
+//        launch(context) { player("PENGGG", table) }
+        table.send(Ball(0)) // serve the ball
+        delay(2000) // delay 1 second
+        table.receive() // game over, grab the ball
+    }
+```
+

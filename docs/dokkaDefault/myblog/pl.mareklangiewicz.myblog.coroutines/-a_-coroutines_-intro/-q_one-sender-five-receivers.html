@@ -1,0 +1,23 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>A_Coroutines_Intro.Q_oneSenderFiveReceivers - myblog</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">myblog</a>&nbsp;/&nbsp;<a href="../index.html">pl.mareklangiewicz.myblog.coroutines</a>&nbsp;/&nbsp;<a href="index.html">A_Coroutines_Intro</a>&nbsp;/&nbsp;<a href=".">Q_oneSenderFiveReceivers</a><br/>
+<br/>
+<h1>Q_oneSenderFiveReceivers</h1>
+<a name="pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro$Q_oneSenderFiveReceivers()"></a>
+<code><span class="keyword">fun </span><span class="identifier">Q_oneSenderFiveReceivers</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Unit</span></code>
+<p>One sender, five receivers</p>
+<pre><code class="lang-kotlin">sample {
+        val sender = produceNumbersFrom(CommonPool, 1)
+        for (i in 1..5)
+            sender.processAll(i)
+        delay(500)
+//        sender.cancel()
+        delay(500)
+    }</code></pre>
+</BODY>
+</HTML>

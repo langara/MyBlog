@@ -1,0 +1,22 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>A_Coroutines_Intro.Q_oneReceiverTwoSenders - </title>
+<link rel="stylesheet" href="../../style.css">
+</HEAD>
+<BODY>
+<a href="../index.html">pl.mareklangiewicz.myblog.coroutines</a>&nbsp;/&nbsp;<a href="index.html">A_Coroutines_Intro</a>&nbsp;/&nbsp;<a href=".">Q_oneReceiverTwoSenders</a><br/>
+<br/>
+<h1>Q_oneReceiverTwoSenders</h1>
+<a name="pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro$Q_oneReceiverTwoSenders()"></a>
+<code><span class="keyword">fun </span><span class="identifier">Q_oneReceiverTwoSenders</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Unit</span></code>
+<p>One receiver, two senders</p>
+<pre><code class="lang-kotlin">sample {
+        val channel = Channel&lt;String&gt;()
+        launch(context) { channel.sendPeriodically("foo200", 200) }
+        launch(context) { channel.sendPeriodically("BAR500", 500) }
+        for (s in channel.take(context, 6))
+            s.p
+    }</code></pre>
+</BODY>
+</HTML>

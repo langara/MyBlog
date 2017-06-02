@@ -1,0 +1,20 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>A_Coroutines_Intro.E_coroutineIsSequential - </title>
+<link rel="stylesheet" href="../../style.css">
+</HEAD>
+<BODY>
+<a href="../index.html">pl.mareklangiewicz.myblog.coroutines</a>&nbsp;/&nbsp;<a href="index.html">A_Coroutines_Intro</a>&nbsp;/&nbsp;<a href=".">E_coroutineIsSequential</a><br/>
+<br/>
+<h1>E_coroutineIsSequential</h1>
+<a name="pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro$E_coroutineIsSequential()"></a>
+<code><span class="keyword">fun </span><span class="identifier">E_coroutineIsSequential</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Unit</span></code>
+<p>Suspending functions are called sequentially</p>
+<pre><code class="lang-kotlin">sample {
+        "start".p
+        val result = delayAndReturn7() + delayAndReturn8()
+        "end result: $result.".p // it will take two seconds to print it
+    }</code></pre>
+</BODY>
+</HTML>

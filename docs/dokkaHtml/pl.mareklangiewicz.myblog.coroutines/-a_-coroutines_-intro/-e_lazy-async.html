@@ -1,0 +1,22 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>A_Coroutines_Intro.E_lazyAsync - </title>
+<link rel="stylesheet" href="../../style.css">
+</HEAD>
+<BODY>
+<a href="../index.html">pl.mareklangiewicz.myblog.coroutines</a>&nbsp;/&nbsp;<a href="index.html">A_Coroutines_Intro</a>&nbsp;/&nbsp;<a href=".">E_lazyAsync</a><br/>
+<br/>
+<h1>E_lazyAsync</h1>
+<a name="pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro$E_lazyAsync()"></a>
+<code><span class="keyword">fun </span><span class="identifier">E_lazyAsync</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Unit</span></code>
+<p>Run suspending functions in parallel, but lazily</p>
+<pre><code class="lang-kotlin">sample {
+        "start".p
+        val a1 = async(context, CoroutineStart.LAZY) { delayAndReturn7() }
+        val a2 = async(context, CoroutineStart.LAZY) { delayAndReturn8() }
+        val result = a1.await() + a2.await()
+        "end result: $result.".p // it will take TWO second to print it
+    }</code></pre>
+</BODY>
+</HTML>

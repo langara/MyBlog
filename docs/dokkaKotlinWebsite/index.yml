@@ -13,22 +13,41 @@
               url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-a_basics
             - title: B_runBlocking
               url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-b_run-blocking
+            - title: Ball
+              url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-ball/index
+              content:
+                - title: Ball
+                  url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-ball/-init-
+                - title: hits
+                  url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-ball/hits
             - title: C_sampleConvention
               url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-c_sample-convention
             - title: D_introduceJob
               url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-d_introduce-job
+            - title: E_coroutineIsSequential
+              url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-e_coroutine-is-sequential
+            - title: E_coroutineParallel
+              url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-e_coroutine-parallel
             - title: E_extractSuspendingFunction
               url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-e_extract-suspending-function
+            - title: E_lazyAsync
+              url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-e_lazy-async
             - title: F_coroutinesAreLightweight
               url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-f_coroutines-are-lightweight
             - title: G_exitWhileCoroutineStillActive
               url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-g_exit-while-coroutine-still-active
             - title: H_cancelJobCorrectly
               url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-h_cancel-job-correctly
+            - title: IA_contexts
+              url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-i-a_contexts
+            - title: IA_contexts_2
+              url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-i-a_contexts_2
             - title: I_cancellationIsCooperative_1
               url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-i_cancellation-is-cooperative_1
             - title: I_cancellationIsCooperative_2
               url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-i_cancellation-is-cooperative_2
+            - title: I_cancellationIsCooperative_3_withTimeout
+              url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-i_cancellation-is-cooperative_3_with-timeout
             - title: J_underTheHood_1
               url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-j_under-the-hood_1
             - title: J_underTheHood_2
@@ -51,6 +70,18 @@
               url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-m_rx-subscriber
             - title: N_fibonacciChannels
               url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-n_fibonacci-channels
+            - title: O_produceChannel
+              url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-o_produce-channel
+            - title: P_producePrimeNumbers
+              url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-p_produce-prime-numbers
+            - title: Q_oneReceiverTwoSenders
+              url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-q_one-receiver-two-senders
+            - title: Q_oneSenderFiveReceivers
+              url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-q_one-sender-five-receivers
+            - title: R_channelsAreFair
+              url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-r_channels-are-fair
+            - title: R_massiveNonsyncAction
+              url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-r_massive-nonsync-action
             - title: Receiver
               url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-receiver/index
               content:
@@ -73,10 +104,18 @@
               url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/create-future
             - title: delayAndPrintWorld
               url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/delay-and-print-world
+            - title: delayAndReturn7
+              url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/delay-and-return7
+            - title: delayAndReturn8
+              url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/delay-and-return8
             - title: fibonacci
               url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/fibonacci
+            - title: filter
+              url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/filter
             - title: getCurrentTimeString
               url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/get-current-time-string
+            - title: massiveRun
+              url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/massive-run
             - title: mydelay
               url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/mydelay
             - title: mynever1
@@ -85,10 +124,20 @@
               url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/mynever2
             - title: p
               url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/p
+            - title: player
+              url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/player
             - title: prepareFuture
               url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/prepare-future
+            - title: processAll
+              url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/process-all
+            - title: produceNumbersFrom
+              url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/produce-numbers-from
+            - title: sendPeriodically
+              url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/send-periodically
             - title: suspend
               url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/suspend
+            - title: take
+              url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/take
     - title: pl.mareklangiewicz.myblog.coroutines
       url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/index
       content:
@@ -101,22 +150,41 @@
               url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-a_basics
             - title: B_runBlocking
               url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-b_run-blocking
+            - title: Ball
+              url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-ball/index
+              content:
+                - title: Ball
+                  url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-ball/-init-
+                - title: hits
+                  url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-ball/hits
             - title: C_sampleConvention
               url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-c_sample-convention
             - title: D_introduceJob
               url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-d_introduce-job
+            - title: E_coroutineIsSequential
+              url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-e_coroutine-is-sequential
+            - title: E_coroutineParallel
+              url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-e_coroutine-parallel
             - title: E_extractSuspendingFunction
               url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-e_extract-suspending-function
+            - title: E_lazyAsync
+              url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-e_lazy-async
             - title: F_coroutinesAreLightweight
               url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-f_coroutines-are-lightweight
             - title: G_exitWhileCoroutineStillActive
               url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-g_exit-while-coroutine-still-active
             - title: H_cancelJobCorrectly
               url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-h_cancel-job-correctly
+            - title: IA_contexts
+              url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-i-a_contexts
+            - title: IA_contexts_2
+              url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-i-a_contexts_2
             - title: I_cancellationIsCooperative_1
               url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-i_cancellation-is-cooperative_1
             - title: I_cancellationIsCooperative_2
               url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-i_cancellation-is-cooperative_2
+            - title: I_cancellationIsCooperative_3_withTimeout
+              url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-i_cancellation-is-cooperative_3_with-timeout
             - title: J_underTheHood_1
               url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-j_under-the-hood_1
             - title: J_underTheHood_2
@@ -139,6 +207,18 @@
               url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-m_rx-subscriber
             - title: N_fibonacciChannels
               url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-n_fibonacci-channels
+            - title: O_produceChannel
+              url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-o_produce-channel
+            - title: P_producePrimeNumbers
+              url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-p_produce-prime-numbers
+            - title: Q_oneReceiverTwoSenders
+              url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-q_one-receiver-two-senders
+            - title: Q_oneSenderFiveReceivers
+              url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-q_one-sender-five-receivers
+            - title: R_channelsAreFair
+              url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-r_channels-are-fair
+            - title: R_massiveNonsyncAction
+              url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-r_massive-nonsync-action
             - title: Receiver
               url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/-receiver/index
               content:
@@ -161,10 +241,18 @@
               url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/create-future
             - title: delayAndPrintWorld
               url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/delay-and-print-world
+            - title: delayAndReturn7
+              url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/delay-and-return7
+            - title: delayAndReturn8
+              url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/delay-and-return8
             - title: fibonacci
               url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/fibonacci
+            - title: filter
+              url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/filter
             - title: getCurrentTimeString
               url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/get-current-time-string
+            - title: massiveRun
+              url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/massive-run
             - title: mydelay
               url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/mydelay
             - title: mynever1
@@ -173,7 +261,17 @@
               url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/mynever2
             - title: p
               url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/p
+            - title: player
+              url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/player
             - title: prepareFuture
               url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/prepare-future
+            - title: processAll
+              url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/process-all
+            - title: produceNumbersFrom
+              url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/produce-numbers-from
+            - title: sendPeriodically
+              url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/send-periodically
             - title: suspend
               url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/suspend
+            - title: take
+              url: /home/marek/code/kotlin/myblog/docs/dokkaKotlinWebsite/pl.mareklangiewicz.myblog.coroutines/-a_-coroutines_-intro/take

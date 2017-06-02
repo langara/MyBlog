@@ -1,0 +1,28 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>A_Coroutines_Intro.O_produceChannel - </title>
+<link rel="stylesheet" href="../../style.css">
+</HEAD>
+<BODY>
+<a href="../index.html">pl.mareklangiewicz.myblog.coroutines</a>&nbsp;/&nbsp;<a href="index.html">A_Coroutines_Intro</a>&nbsp;/&nbsp;<a href=".">O_produceChannel</a><br/>
+<br/>
+<h1>O_produceChannel</h1>
+<a name="pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro$O_produceChannel()"></a>
+<code><span class="keyword">fun </span><span class="identifier">O_produceChannel</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Unit</span></code>
+<p>Use <code>produce</code> utility function</p>
+<pre><code class="lang-kotlin">"main: start".p
+val channel = produce(CommonPool) {
+    for (i in 1..10) {
+        "produce: sending: $i".p
+        send(i)
+    }
+}
+launch(CommonPool) {
+    for (i in channel)
+        "received: $i".p
+}
+Thread.sleep(2000)
+"main: end".p</code></pre>
+</BODY>
+</HTML>
