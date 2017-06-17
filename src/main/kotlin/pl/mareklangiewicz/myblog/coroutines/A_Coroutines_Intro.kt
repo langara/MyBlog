@@ -176,7 +176,9 @@ class A_Coroutines_Intro {
     @Test fun E_coroutineParallel() = sample {
         "start".p
         val a1 = async(context) { delayAndReturn7() } // we do NOT await for it yet (but it already starts the `delayAndReturn7`)
+        "a1 started".p
         val a2 = async(context) { delayAndReturn8() } // we do NOT await for it yet (but it already starts the `delayAndReturn8`)
+        "a2 started".p
         val result = a1.await() + a2.await()
         "end result: $result.".p // it will take ONE second to print it
     }
@@ -189,7 +191,9 @@ class A_Coroutines_Intro {
     @Test fun E_lazyAsync() = sample {
         "start".p
         val a1 = async(context, CoroutineStart.LAZY) { delayAndReturn7() }
+        "a1 defined".p
         val a2 = async(context, CoroutineStart.LAZY) { delayAndReturn8() }
+        "a2 defined".p
         val result = a1.await() + a2.await()
         "end result: $result.".p // it will take TWO second to print it
     }
