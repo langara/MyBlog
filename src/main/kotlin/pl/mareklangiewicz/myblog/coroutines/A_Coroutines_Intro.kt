@@ -38,6 +38,9 @@ class A_Coroutines_Intro {
      */
     val Any.p get() = println("Coroutines Intro [${Thread.currentThread().name.padEnd(40).substring(0, 40)}] [${getCurrentTimeString()}] $this")
 
+    @Suppress("unused")
+    val Any?.unit get() = Unit
+
     /**
      * First coroutine
      *
@@ -397,13 +400,8 @@ class A_Coroutines_Intro {
 
         val completion = object : Continuation<Unit> {
             override val context = EmptyCoroutineContext
-            override fun resume(value: Unit) {
-                "completion: completed normally".p
-            }
-
-            override fun resumeWithException(exception: Throwable) {
-                "completion: exception: $exception".p
-            }
+            override fun resume(value: Unit) = "completion: completed normally".p
+            override fun resumeWithException(exception: Throwable) = "completion: exception: $exception".p
         }
 
         "main: start".p
@@ -446,13 +444,8 @@ class A_Coroutines_Intro {
 
         val completion = object : Continuation<Unit> {
             override val context = EmptyCoroutineContext
-            override fun resume(value: Unit) {
-                "completion: completed normally".p
-            }
-
-            override fun resumeWithException(exception: Throwable) {
-                "completion: exception: $exception".p
-            }
+            override fun resume(value: Unit) = "completion: completed normally".p
+            override fun resumeWithException(exception: Throwable) = "completion: exception: $exception".p
         }
 
         "main: start".p
@@ -502,13 +495,8 @@ class A_Coroutines_Intro {
 
         val completion = object : Continuation<Unit> {
             override val context = EmptyCoroutineContext
-            override fun resume(value: Unit) {
-                "completion: completed normally".p
-            }
-
-            override fun resumeWithException(exception: Throwable) {
-                "completion: exception: $exception".p
-            }
+            override fun resume(value: Unit) = "completion: completed normally".p
+            override fun resumeWithException(exception: Throwable) = "completion: exception: $exception".p
         }
 
         "main: start".p
@@ -547,13 +535,8 @@ class A_Coroutines_Intro {
 
         val completion = object : Continuation<T> {
             override val context = EmptyCoroutineContext
-            override fun resume(value: T) {
-                future.complete(value)
-            }
-
-            override fun resumeWithException(exception: Throwable) {
-                future.completeExceptionally(exception)
-            }
+            override fun resume(value: T) = future.complete(value).unit
+            override fun resumeWithException(exception: Throwable) = future.completeExceptionally(exception).unit
         }
 
         block.startCoroutine(completion)
@@ -605,13 +588,8 @@ class A_Coroutines_Intro {
 
         val completion = object : Continuation<T> {
             override val context = EmptyCoroutineContext
-            override fun resume(value: T) {
-                future.complete(value)
-            }
-
-            override fun resumeWithException(exception: Throwable) {
-                future.completeExceptionally(exception)
-            }
+            override fun resume(value: T) = future.complete(value).unit
+            override fun resumeWithException(exception: Throwable) = future.completeExceptionally(exception).unit
         }
 
         val continuation = block.createCoroutine(completion)
@@ -807,13 +785,8 @@ class A_Coroutines_Intro {
 
         private val completion = object : Continuation<Unit> {
             override val context = EmptyCoroutineContext
-            override fun resume(value: Unit) {
-                subscription.cancel()
-            }
-
-            override fun resumeWithException(exception: Throwable) {
-                subscription.cancel()
-            }
+            override fun resume(value: Unit) = subscription.cancel()
+            override fun resumeWithException(exception: Throwable) = subscription.cancel()
         }
 
         /**
