@@ -38,6 +38,9 @@ class A_Coroutines_Intro {
      */
     val Any.p get() = println("Coroutines Intro [${Thread.currentThread().name.padEnd(40).substring(0, 40)}] [${getCurrentTimeString()}] $this")
 
+    /**
+     * Ignore expression result and just return Unit
+     */
     @Suppress("unused")
     val Any?.unit get() = Unit
 
