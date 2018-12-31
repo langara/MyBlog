@@ -1,10 +1,10 @@
 package pl.mareklangiewicz.myblog.coroutines
 
 import io.reactivex.Flowable
-import kotlinx.coroutines.experimental.*
-import kotlinx.coroutines.experimental.channels.*
-import kotlinx.coroutines.experimental.future.await
-import kotlinx.coroutines.experimental.future.future
+import kotlinx.coroutines.*
+import kotlinx.coroutines.channels.*
+import kotlinx.coroutines.future.await
+import kotlinx.coroutines.future.future
 import org.junit.Ignore
 import org.junit.Test
 import org.reactivestreams.Subscriber
@@ -13,7 +13,9 @@ import java.util.*
 import java.util.concurrent.CompletableFuture
 import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
-import kotlin.coroutines.experimental.*
+import kotlin.coroutines.*
+import kotlin.coroutines.resume
+import kotlin.coroutines.resumeWithException
 import kotlin.system.measureTimeMillis
 
 /**
@@ -51,7 +53,7 @@ class A_Coroutines_Intro {
      */
     @Test
     fun A_basics() {
-        launch(CommonPool) {
+        GlobalScope.launch {
             delay(1000L)
             "World!".p
         }
@@ -104,13 +106,13 @@ class A_Coroutines_Intro {
      * @sample pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro.D_introduceJob
      */
     @Test fun D_introduceJob() = sample {
-        val job = launch(CommonPool) {
+        val job = launch {
             delay(1000L)
             "World!".p
         }
         "Hello,".p
         job.join() // this suspending function (join) waits for job to finish
-
+        "end".p
     }
 
     // TODO LATER: about cancellation
@@ -121,12 +123,12 @@ class A_Coroutines_Intro {
      * @sample pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro.E_extractSuspendingFunction
      */
     @Test fun E_extractSuspendingFunction() = sample {
-        val job = launch(CommonPool) {
+        val job = launch {
             delayAndPrintWorld()
         }
         "Hello,".p
         job.join() // this suspending function (join) waits for job to finish
-
+        "end".p
     }
 
     /**
@@ -181,24 +183,24 @@ class A_Coroutines_Intro {
      */
     @Test fun E_coroutineParallel() = sample {
         "start".p
-        val a1 = async(context) { delayAndReturn7() } // we do NOT await for it yet (but it already starts the `delayAndReturn7`)
+        val a1 = async { delayAndReturn7() } // we do NOT await for it yet (but it already starts the `delayAndReturn7`)
         "a1 started".p
-        val a2 = async(context) { delayAndReturn8() } // we do NOT await for it yet (but it already starts the `delayAndReturn8`)
+        val a2 = async { delayAndReturn8() } // we do NOT await for it yet (but it already starts the `delayAndReturn8`)
         "a2 started".p
         val result = a1.await() + a2.await()
         "end result: $result.".p // it will take ONE second to print it
     }
 
     /**
-     * Run suspending functions in parallel, but lazily
+     * Run suspending functions in parallel, but lazily (so sequentially)
      *
      * @sample pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro.E_lazyAsync
      */
     @Test fun E_lazyAsync() = sample {
         "start".p
-        val a1 = async(context, CoroutineStart.LAZY) { delayAndReturn7() }
+        val a1 = async(start = CoroutineStart.LAZY) { delayAndReturn7() }
         "a1 defined".p
-        val a2 = async(context, CoroutineStart.LAZY) { delayAndReturn8() }
+        val a2 = async(start = CoroutineStart.LAZY) { delayAndReturn8() }
         "a2 defined".p
         val result = a1.await() + a2.await()
         "end result: $result.".p // it will take TWO second to print it
@@ -213,7 +215,7 @@ class A_Coroutines_Intro {
     @Test fun F_coroutinesAreLightweight() = sample {
         val jobs = List(100_000) {
             // create a lot of coroutines and list their jobs
-            launch(CommonPool) {
+            launch {
                 delay(1000L)
                 print(".")
             }
@@ -222,12 +224,12 @@ class A_Coroutines_Intro {
     }
 
     /**
-     * Active coroutines are terminated when the whole process ends (like daemon threads)
+     * Active coroutines (in global scope) are terminated when the whole process ends (like daemon threads)
      *
      * @sample pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro.G_exitWhileCoroutineStillActive
      */
     @Ignore @Test fun G_exitWhileCoroutineStillActive() = sample {
-        launch(CommonPool) {
+        GlobalScope.launch {
             repeat(1000) { i ->
                 "I'm sleeping $i ...".p
                 delay(500L)
@@ -242,7 +244,7 @@ class A_Coroutines_Intro {
      * @sample pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro.H_cancelJobCorrectly
      */
     @Test fun H_cancelJobCorrectly() = sample {
-        val job = launch(CommonPool) {
+        val job = launch {
             repeat(1000) { i ->
                 "I'm sleeping $i ...".p
                 delay(500L)
@@ -262,7 +264,7 @@ class A_Coroutines_Intro {
      * @sample pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro.I_cancellationIsCooperative_1
      */
     @Test fun I_cancellationIsCooperative_1() = sample {
-        val job = launch(CommonPool) {
+        val job = launch(Dispatchers.Default) {
             var nextPrintTime = 0L
             var i = 0
             while (i < 10) { // computation loop
@@ -287,7 +289,7 @@ class A_Coroutines_Intro {
      * @sample pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro.I_cancellationIsCooperative_2
      */
     @Test fun I_cancellationIsCooperative_2() = sample {
-        val job = launch(CommonPool) {
+        val job = launch(Dispatchers.Default) {
             var nextPrintTime = 0L
             var i = 0
             while (isActive) { // computation loop
@@ -313,20 +315,24 @@ class A_Coroutines_Intro {
      */
     @Test fun I_cancellationIsCooperative_3_withTimeout() = sample {
         "main: start.".p
-        launch(CommonPool) {
-            withTimeout(100) {
-                // change to 10000 to see the difference
-                var nextPrintTime = 0L
-                while (true) { // computation loop
-                    yield() // this will throw CancellationException on timeout
-                    val currentTime = System.currentTimeMillis()
-                    if (currentTime >= nextPrintTime) {
-                        "I'm sleeping...".p
-                        nextPrintTime = currentTime + 500L
+        launch {
+            try {
+                withTimeout(100) {
+                    // change to 10000 to see the difference
+                    var nextPrintTime = 0L
+                    while (true) { // computation loop
+                        yield() // this will throw CancellationException on timeout
+                        val currentTime = System.currentTimeMillis()
+                        if (currentTime >= nextPrintTime) {
+                            "I'm sleeping...".p
+                            nextPrintTime = currentTime + 500L
+                        }
                     }
                 }
             }
+            finally { "launch: finally".p }
         }
+        "main: after launch".p
         delay(3000L) // delay a bit
         "main: end.".p
     }
@@ -342,21 +348,21 @@ class A_Coroutines_Intro {
 
         val jobs = arrayListOf<Job>()
 
-        jobs += launch(Unconfined) {
+        jobs += launch(Dispatchers.Unconfined) {
             // not confined -- will work with main thread
-            "Unconfined".p
+            "Dispatchers.Unconfined".p
         }
-        jobs += launch(context) {
+        jobs += launch(coroutineContext) {
             // context of the parent, runBlocking coroutine
-            "context".p
+            "coroutineContext".p
         }
-        jobs += launch(CommonPool) {
+        jobs += launch(Dispatchers.Default) {
             // will get dispatched to ForkJoinPool.commonPool (or equivalent)
-            "CommonPool".p
+            "Dispatchers.Default".p
         }
         jobs += launch(newSingleThreadContext("MyOwnThread")) {
             // will get its own new thread
-            "newSTC".p
+            "newSingleThreadContext".p
         }
 
         "main: joining all jobs".p
@@ -368,7 +374,7 @@ class A_Coroutines_Intro {
     }
 
     /**
-     * run and runBlocking with specified context
+     * withContext and runBlocking with specified context
      *
      * @sample pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro.IA_contexts_2
      */
@@ -378,8 +384,8 @@ class A_Coroutines_Intro {
         val ctx2 = newSingleThreadContext("Ctx2")
         runBlocking(ctx1) {
             "runBlocking(ctx1): start".p
-            run(ctx2) {
-                "run(ctx2)".p
+            withContext(ctx2) {
+                "withContext(ctx2)".p
             }
             "runBlocking(ctx1): end".p
         }
@@ -403,8 +409,7 @@ class A_Coroutines_Intro {
 
         val completion = object : Continuation<Unit> {
             override val context = EmptyCoroutineContext
-            override fun resume(value: Unit) = "completion: completed normally".p
-            override fun resumeWithException(exception: Throwable) = "completion: exception: $exception".p
+            override fun resumeWith(result: Result<Unit>) { "completion: completed with: $result".p }
         }
 
         "main: start".p
@@ -447,8 +452,7 @@ class A_Coroutines_Intro {
 
         val completion = object : Continuation<Unit> {
             override val context = EmptyCoroutineContext
-            override fun resume(value: Unit) = "completion: completed normally".p
-            override fun resumeWithException(exception: Throwable) = "completion: exception: $exception".p
+            override fun resumeWith(result: Result<Unit>) { "completion: completed with: $result".p }
         }
 
         "main: start".p
@@ -498,8 +502,7 @@ class A_Coroutines_Intro {
 
         val completion = object : Continuation<Unit> {
             override val context = EmptyCoroutineContext
-            override fun resume(value: Unit) = "completion: completed normally".p
-            override fun resumeWithException(exception: Throwable) = "completion: exception: $exception".p
+            override fun resumeWith(result: Result<Unit>) { "completion: completed with: $result".p }
         }
 
         "main: start".p
@@ -518,7 +521,7 @@ class A_Coroutines_Intro {
      */
     @Test
     fun K_sequence() {
-        val seq: Sequence<Int> = buildSequence {
+        val seq: Sequence<Int> = sequence {
             //delay(10) // this is forbidden
             yield(2)
             yield(4)
@@ -538,8 +541,11 @@ class A_Coroutines_Intro {
 
         val completion = object : Continuation<T> {
             override val context = EmptyCoroutineContext
-            override fun resume(value: T) = future.complete(value).unit
-            override fun resumeWithException(exception: Throwable) = future.completeExceptionally(exception).unit
+            override fun resumeWith(result: Result<T>) {
+                result
+                    .onSuccess { future.complete(it) }
+                    .onFailure { future.completeExceptionally(it) }
+            }
         }
 
         block.startCoroutine(completion)
@@ -591,8 +597,11 @@ class A_Coroutines_Intro {
 
         val completion = object : Continuation<T> {
             override val context = EmptyCoroutineContext
-            override fun resume(value: T) = future.complete(value).unit
-            override fun resumeWithException(exception: Throwable) = future.completeExceptionally(exception).unit
+            override fun resumeWith(result: Result<T>) {
+                result
+                    .onSuccess { future.complete(it) }
+                    .onFailure { future.completeExceptionally(it) }
+            }
         }
 
         val continuation = block.createCoroutine(completion)
@@ -613,7 +622,7 @@ class A_Coroutines_Intro {
 
         "main: start".p
 
-        val futureCreator: () -> CompletableFuture<Int> = prepareFuture {
+        val lazyFuture: () -> CompletableFuture<Int> = prepareFuture {
             "coroutine: start".p
             delay(1000)
             "coroutine: middle".p
@@ -624,7 +633,7 @@ class A_Coroutines_Intro {
 
         "main: after prepareFuture".p
 
-        val future = futureCreator()
+        val future = lazyFuture()
 
         "main: before: thenAccept".p
 
@@ -667,7 +676,7 @@ class A_Coroutines_Intro {
 
         "main: start".p
 
-        launch(CommonPool) {
+        GlobalScope.launch {
             "coroutine start".p
             myDelayFuture(1000).suspend()
             "coroutine middle".p
@@ -689,7 +698,7 @@ class A_Coroutines_Intro {
     @Test
     fun L_completableFuture_4() {
         "main: start".p
-        future {
+        GlobalScope.future {
             "main future: start".p
             val f1 = future {
                 "f1: start".p
@@ -724,7 +733,7 @@ class A_Coroutines_Intro {
     @Test
     fun L_completableFuture_5() {
         "main: start".p
-        future {
+        GlobalScope.future {
             "main future: start".p
             val f1 = prepareFuture {
                 "f1: start".p
@@ -788,8 +797,7 @@ class A_Coroutines_Intro {
 
         private val completion = object : Continuation<Unit> {
             override val context = EmptyCoroutineContext
-            override fun resume(value: Unit) = subscription.cancel()
-            override fun resumeWithException(exception: Throwable) = subscription.cancel()
+            override fun resumeWith(result: Result<Unit>) { subscription.cancel() }
         }
 
         /**
@@ -873,10 +881,8 @@ class A_Coroutines_Intro {
     @Test
     fun N_fibonacciChannels() {
         val c = Channel<Int>(2) // experiment with different capacity
-        launch(CommonPool) {
-            fibonacci(10, c)
-        }
-        launch(CommonPool) {
+        GlobalScope.launch { fibonacci(10, c) }
+        GlobalScope.launch {
             for (x in c) {
                 delay(300)
                 "*********************** received $x".p
@@ -895,17 +901,14 @@ class A_Coroutines_Intro {
 
         "main: start".p
 
-        val channel = produce(CommonPool) {
+        val channel = GlobalScope.produce {
             for (i in 1..10) {
                 "produce: sending: $i".p
                 send(i)
             }
         }
 
-        launch(CommonPool) {
-            for (i in channel)
-                "received: $i".p
-        }
+        GlobalScope.launch { for (i in channel) "received: $i".p }
 
         Thread.sleep(2000)
 
@@ -916,7 +919,7 @@ class A_Coroutines_Intro {
     /**
      * Produces successive numbers
      */
-    fun produceNumbersFrom(context: CoroutineContext, from: Int) = produce(context) {
+    fun produceNumbersFrom(context: CoroutineContext, from: Int) = GlobalScope.produce(context) {
         var x = from
         while (true) {
             send(x++)
@@ -927,11 +930,12 @@ class A_Coroutines_Intro {
     /**
      * Simple filter implementation for channels
      */
-    fun <T> ReceiveChannel<T>.filter(context: CoroutineContext, predicate: suspend (T) -> Boolean) = produce(context) {
-        for (t in this@filter)
-            if (predicate(t))
-                send(t)
-    }
+    fun <T> ReceiveChannel<T>.filter(context: CoroutineContext, predicate: suspend (T) -> Boolean) =
+        GlobalScope.produce(context) {
+            for (t in this@filter)
+                if (predicate(t))
+                    send(t)
+        }
 
     /**
      * Generate prime numbers with crazy channels pipeline
@@ -940,18 +944,18 @@ class A_Coroutines_Intro {
      */
     @Test
     fun P_producePrimeNumbers() = sample {
-        var cur = produceNumbersFrom(CommonPool, 2)
+        var cur = produceNumbersFrom(Dispatchers.Default, 2)
         for (i in 1..20) {
             val prime = cur.receive()
             "prime: $prime".p
-            cur = cur.filter(context) { it % prime != 0 }
+            cur = cur.filter(coroutineContext) { it % prime != 0 }
         }
     }
 
     /**
      * Take specified number of items from channel and send it further
      */
-    fun <T> ReceiveChannel<T>.take(context: CoroutineContext, size: Long) = produce(context) {
+    fun <T> ReceiveChannel<T>.take(context: CoroutineContext, size: Long) = GlobalScope.produce(context) {
         for (i in 1..size)
             send(receive())
     }
@@ -976,17 +980,17 @@ class A_Coroutines_Intro {
 
         val channel = Channel<String>()
 
-        launch(context) { channel.sendPeriodically("foo200", 200) }
-        launch(context) { channel.sendPeriodically("BAR500", 500) }
+        launch(coroutineContext) { channel.sendPeriodically("foo200", 200) }
+        launch(coroutineContext) { channel.sendPeriodically("BAR500", 500) }
 
-        for (s in channel.take(context, 6))
+        for (s in channel.take(coroutineContext, 6))
             s.p
     }
 
     /**
      * Prints all received values from given channel with "processor #id" prefix
      */
-    fun <T> ReceiveChannel<T>.processAll(id: Int) = launch(CommonPool) {
+    fun <T> ReceiveChannel<T>.processAll(id: Int) = GlobalScope.launch(Dispatchers.Default) {
         for (t in this@processAll)
             "processor #$id: $t".p
     }
@@ -998,7 +1002,7 @@ class A_Coroutines_Intro {
      */
     @Test
     fun Q_oneSenderFiveReceivers() = sample {
-        val sender = produceNumbersFrom(CommonPool, 1)
+        val sender = produceNumbersFrom(Dispatchers.Default, 1)
         for (i in 1..5)
             sender.processAll(i)
         delay(500)
@@ -1035,8 +1039,8 @@ class A_Coroutines_Intro {
     @Test
     fun R_channelsAreFair() = sample {
         val table = Channel<Ball>() // a shared table
-        launch(context) { player("ping", table) }
-        launch(context) { player("pong", table) }
+        launch(coroutineContext) { player("ping", table) }
+        launch(coroutineContext) { player("pong", table) }
 //        launch(context) { player("PENGGG", table) }
         table.send(Ball(0)) // serve the ball
         delay(2000) // delay 1 second
@@ -1053,7 +1057,7 @@ class A_Coroutines_Intro {
         val k = 1000 // times an action is repeated by each coroutine
         val time = measureTimeMillis {
             val jobs = List(n) {
-                launch(context) {
+                GlobalScope.launch(context) {
                     repeat(k) { action() }
                 }
             }
@@ -1075,7 +1079,7 @@ class A_Coroutines_Intro {
 
 //        val context = newSingleThreadContext("single") // this will increment counter correctly all the times
         val context = newFixedThreadPoolContext(2, "double") // this should cause some sync errors
-//        val context = CommonPool // this should cause some sync errors on systems with multiple CPUs (more than 2)
+//        val context = Dispatchers.Default // this should cause some sync errors on systems with multiple CPUs (more than 2)
 
         massiveRun(context) {
             counter++
@@ -1094,7 +1098,7 @@ class A_Coroutines_Intro {
 
 
     // This function launches a new counter actor
-    fun counterActor() = actor<Msg>(CommonPool) {
+    fun counterActor() = GlobalScope.actor<Msg>(Dispatchers.Default) {
         var counter = 0 // actor state
         for (msg in channel) { // iterate over incoming messages
             when (msg) {
@@ -1116,7 +1120,7 @@ class A_Coroutines_Intro {
 
         val counter = counterActor() // create the actor
 
-        massiveRun(CommonPool) {
+        massiveRun(Dispatchers.Default) {
             counter.send(Msg.Inc)
         }
 
