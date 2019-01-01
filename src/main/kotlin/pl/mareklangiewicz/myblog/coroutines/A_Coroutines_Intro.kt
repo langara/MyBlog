@@ -458,29 +458,16 @@ class A_Coroutines_Intro {
     }
 
     /**
-     * Should suspend forever (but it does not)
-     *
-     * @sample pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro.mynever1
+     * @sample pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro.mynever
      */
-    suspend fun mynever1() {
+    suspend fun mynever() {
         suspendCoroutine<Unit> { continuation ->
             "Got continuation: $continuation, but I will never call .resume(Unit)".p
         }
     }
 
     /**
-     * Correctly suspends forever
-     *
-     * @sample pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro.mynever2
-     */
-    suspend fun mynever2() = suspendCoroutine<Unit> { continuation ->
-        "Got continuation: $continuation, but I will never call .resume(Unit)".p
-    }
-
-    /**
-     * Under the hood - error case investigation
-     *
-     * This example should never print "coroutine end", but it does immediately...
+     * Under the hood - never returning suspend fun
      *
      * @sample pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro.J_underTheHood_3
      */
@@ -489,8 +476,8 @@ class A_Coroutines_Intro {
 
         val coroutine: suspend () -> Unit = {
             "coroutine start".p
-            mynever1() // TO FIX IT: CHANGE "mynever1()" TO "mynever2()"
-            "coroutine end - THIS LINE SHOULD NEVER BE CALLED!".p
+            mynever()
+            error("This line should never be called")
         }
 
         val completion = object : Continuation<Unit> {
