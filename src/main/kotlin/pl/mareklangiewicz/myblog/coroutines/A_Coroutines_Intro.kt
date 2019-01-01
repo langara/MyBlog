@@ -75,18 +75,16 @@ class A_Coroutines_Intro {
      * @sample pl.mareklangiewicz.myblog.coroutines.A_Coroutines_Intro.B_runBlocking
      */
     @Test
-    fun B_runBlocking() {
-        runBlocking {
-            delay(1000)
-            "1000".p
-            delay(1000)
-            "2000".p
-            delay(1000)
-            "3000".p
-        }
+    fun B_runBlocking() = runBlocking {
+        delay(1000)
+        "1000".p
+        delay(1000)
+        "2000".p
+        delay(1000)
+        "3000".p
     }
 
-    private fun sample(block: suspend CoroutineScope.() -> Unit): Unit = runBlocking { block() }
+    private fun sample(block: suspend CoroutineScope.() -> Unit) = runBlocking { block() }
 
     /**
      * Some convention for future samples/experiments/tests
@@ -399,7 +397,7 @@ class A_Coroutines_Intro {
      */
     @Test
     fun J_underTheHood_1() {
-        val coroutine: suspend Unit.() -> Unit = {
+        val coroutine: suspend () -> Unit = {
             "coroutine start".p
             delay(1000)
             "coroutine middle".p
@@ -409,11 +407,11 @@ class A_Coroutines_Intro {
 
         val completion = object : Continuation<Unit> {
             override val context = EmptyCoroutineContext
-            override fun resumeWith(result: Result<Unit>) { "completion: completed with: $result".p }
+            override fun resumeWith(result: Result<Unit>) = "completion: completed with: $result".p
         }
 
         "main: start".p
-        coroutine.startCoroutine(Unit, completion)
+        coroutine.startCoroutine(completion)
         "main: after startCoroutine".p
         Thread.sleep(3000)
         "main: after sleep 3000".p
@@ -423,14 +421,9 @@ class A_Coroutines_Intro {
 
     /**
      * Simple suspending function implementation
-     *
-     * Important: the "return" keyword (or expression body syntax) is necessary here.
-     * Without "return" it returns from suspension more than once.. looks like bug in state machine generation
      */
-    suspend fun mydelay(time: Long): Unit {
-        return suspendCoroutine<Unit> { continuation ->
-            myscheduler.schedule({ continuation.resume(Unit) }, time, TimeUnit.MILLISECONDS)
-        }
+    suspend fun mydelay(time: Long): Unit = suspendCoroutine { continuation ->
+        myscheduler.schedule({ continuation.resume(Unit) }, time, TimeUnit.MILLISECONDS)
     }
 
 
